@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatrics Health Nursing Quiz | By Muhammad Taimoor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --success-color: #10b981;
+            --success-bg: #d1fae5;
+            --error-color: #ef4444;
+            --error-bg: #fee2e2;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Start Screen */
+        .start-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .start-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .start-author {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .quote-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Quiz Header */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .progress-text {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .timer {
+            background: #fef2f2;
+            color: var(--error-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Question Area */
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            background: #f8fafc;
+            border: 2px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background: #eff6ff;
+        }
+
+        .option-btn.correct {
+            background: var(--success-bg);
+            border-color: var(--success-color);
+            color: #065f46;
+        }
+
+        .option-btn.wrong {
+            background: var(--error-bg);
+            border-color: var(--error-color);
+            color: #991b1b;
+        }
+
+        /* Explanation Box */
+        .explanation-box {
+            display: none;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-color);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .explanation-text {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Results Screen */
+        .result-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .score-text {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .screen {
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            .start-title {
+                font-size: 2rem;
+            }
+            .question-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="start-header">
+                <h1 class="start-title">Paediatrics Health Nursing</h1>
+                <p class="start-author">BSN 5th Semester • Prepared by <strong>Muhammad Taimoor</strong></p>
+                <div class="quote-box">
+                    "Nursing is not just an art, it has a heart. It is not just a science, but it has a conscience."
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem;">
+                    <strong>Details:</strong> 70 Multiple Choice Questions<br>
+                    <strong>Time Limit:</strong> 70 Minutes<br>
+                    <strong>Instructions:</strong> Select the single best choice. Immediate feedback is provided.
+                </p>
+                <button class="btn" id="start-btn">Start Assessment Now</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-text">Question <span id="current-q-num">1</span> of 70</div>
+                <div class="timer" id="timer-display">
+                    ⏳ 70:00
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="question-text" id="question-text">
+                Question goes here?
+            </div>
+
+            <div class="options-grid" id="options-grid">
+                <!-- Options injected via JS -->
+            </div>
+
+            <div class="explanation-box" id="explanation-box">
+                <div class="explanation-title">Explanation</div>
+                <div class="explanation-text" id="explanation-text">Explanation goes here.</div>
+            </div>
+
+            <button class="btn" id="next-btn" style="display: none;">Next Question</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="result-screen" class="screen">
+            <div class="result-icon">🎓</div>
+            <h2 style="text-align: center; margin-bottom: 10px;">Assessment Complete!</h2>
+            <div class="score-display"><span id="final-score">0</span> / 70</div>
+            <div class="score-text" id="score-message">Great effort!</div>
+            <button class="btn" id="restart-btn" style="margin-top: 20px;">Review / Restart</button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data extracted from the provided document
+        const quizData = [
+            {
+                q: "The UNCRC stand for?",
+                options: ["United nations council on rights of children", "United Nations convention on the rights of child", "Universal national convention of child rights", "United Nations charter on child rights"],
+                answer: 1,
+                explanation: "The United Nations Convention on the Rights of the Child (UNCRC) is an international treaty that outlines the specific rights of children globally."
+            },
+            {
+                q: "Which of the following is the most life-threatening complication of Guillain-Barré Syndrome (GBS)?",
+                options: ["Autonomic dysfunction", "Respiratory failure", "Deep vein thrombosis", "Paralysis of the lower limbs"],
+                answer: 1,
+                explanation: "As paralysis ascends in GBS, it can compromise the intercostal muscles and diaphragm, leading to respiratory failure requiring mechanical ventilation."
+            },
+            {
+                q: "Which of the following statements about Guillain-Barré Syndrome (GBS) is correct?",
+                options: ["It usually follows a viral or bacterial infection", "It is typically a slowly progressive disorder over several years", "It affects only sensory neurons and spares motor function", "It is primarily a hereditary disease"],
+                answer: 0,
+                explanation: "GBS is an autoimmune condition triggered most frequently by an acute viral or bacterial respiratory or gastrointestinal infection."
+            },
+            {
+                q: "A Nurse is talking to a toddler while providing medication. Good communication is important in this developmental stage for the following purpose:",
+                options: ["To build self-esteem and respect", "To help him recover from the disease", "To build therapeutic relationship", "To assure that someone is caring"],
+                answer: 2,
+                explanation: "Effective communication with a toddler helps establish trust, reduces anxiety, and builds a solid therapeutic relationship necessary for cooperation."
+            },
+            {
+                q: "What is the most common source of stress for a hospitalized child?",
+                options: ["Feeling bored during the stay", "Separation from family", "Enjoying time with other children", "Eating hospital food"],
+                answer: 1,
+                explanation: "Separation anxiety is the primary source of stress for hospitalized pediatric patients, especially infants and toddlers."
+            },
+            {
+                q: "Which of the following are the complications of diabetes mellitus?",
+                options: ["Retinopathy", "Nephropathy", "Neuropathy", "All of the above"],
+                answer: 3,
+                explanation: "Chronic hyperglycemia in diabetes damages microvascular systems, leading to retinopathy, nephropathy, and neuropathy."
+            },
+            {
+                q: "Which method is commonly used to deliver asthma medication to infants?",
+                options: ["Transdermal patch", "Intravenous injection", "Oral tablets", "Nebulizer"],
+                answer: 3,
+                explanation: "Infants cannot coordinate breath with traditional inhalers; a nebulizer with a mask delivers medication effectively as they breathe normally."
+            },
+            {
+                q: "Which part of the peripheral nervous system is most commonly affected in Guillain-Barré Syndrome (GBS)?",
+                options: ["Axons of motor neurons", "Myelin sheath", "Synaptic junction", "Gray matter"],
+                answer: 1,
+                explanation: "GBS is an acute demyelinating polyneuropathy where the immune system attacks the myelin sheath of peripheral nerves."
+            },
+            {
+                q: "When managing Persistent Pulmonary Hypertension of the Newborn (PPHN), which of the following interventions is most critical for improving oxygenation and reducing right-to-left shunting? (Note: Options match source text anomalies)",
+                options: ["Selecting the appropriate needle gauge for medication administration", "Accurately calculating and verifying the final concentration of the diluted medication", "Minimizing the risk of contamination by using single-use syringes only", "Administering intravenous fluids to increase blood volume"],
+                answer: 1,
+                explanation: "Although the provided options in the source appear to be for medication administration protocols, accurate calculation/verification is critical when giving potent vasoactive medications (like inhaled nitric oxide or prostacyclins) used to treat PPHN."
+            },
+            {
+                q: "Which of the following is a characteristic feature of Cushing syndrome in children?",
+                options: ["Weight loss", "Moon face", "Hyperpigmentation", "Dry skin"],
+                answer: 1,
+                explanation: "Cushing syndrome is characterized by excess cortisol, leading to fat redistribution that causes a 'moon face', central obesity, and a 'buffalo hump'."
+            },
+            {
+                q: "Which of the following nursing interventions is most appropriate for a child with a urinary tract infection (UTI) to prevent fluid and electrolyte imbalance?",
+                options: ["Limit fluid intake to avoid excessive urination", "Administer antibiotics without fluid management", "Encourage fluid intake to flush the urinary system", "Provide high-protein snacks to compensate for electrolyte loss"],
+                answer: 2,
+                explanation: "Encouraging fluids increases urine output, helping to flush bacteria from the urinary tract and preventing dehydration."
+            },
+            {
+                q: "Amoebic dysentery is characterized by:",
+                options: ["Painless diarrhea", "Constipation alternating with diarrhea", "Very loose Watery diarrhea", "Bloody diarrhea with mucus"],
+                answer: 3,
+                explanation: "Amoebic dysentery is primarily characterized by frequent stools containing blood and mucus, accompanied by abdominal pain."
+            },
+            {
+                q: "What should parents emphasize when explaining a hospital visit to their child?",
+                options: ["Staff are strange and scary", "Visit will be painful and difficult", "Doctors and nurses are there to help them feel better", "Follow instructions without asking questions"],
+                answer: 2,
+                explanation: "Honest but reassuring communication that healthcare providers are there to help reduces the child's anxiety and promotes cooperation."
+            },
+            {
+                q: "Which of the following viruses is commonly associated with bronchitis in children?",
+                options: ["Streptococcus pneumoniae", "Respiratory syncytial virus", "Neisseria meningitidis", "Varicella zoster virus"],
+                answer: 1,
+                explanation: "Respiratory Syncytial Virus (RSV) is the most common viral cause of lower respiratory tract infections like bronchiolitis/bronchitis in infants and young children."
+            },
+            {
+                q: "Which of the following is a common presenting symptom of Bartter syndrome in children?",
+                options: ["Edema", "Polyuria", "Hypertension", "Constipation"],
+                answer: 1,
+                explanation: "Bartter syndrome affects the kidneys' ability to reabsorb salt, leading to excessive urination (polyuria), dehydration, and electrolyte imbalances."
+            },
+            {
+                q: "Which of the following dietary modifications is often recommended for children with nephrotic syndrome?",
+                options: ["High-protein diet", "Low-sodium diet", "High-carbohydrate diet", "Low-fat diet"],
+                answer: 1,
+                explanation: "A low-sodium diet helps manage and reduce the severe edema characteristic of nephrotic syndrome."
+            },
+            {
+                q: "Mr. Anjuman, adolescent has meningitis and is receiving I.V. and oral fluids. The nurse should monitor this client's fluid intake because fluid overload may cause:",
+                options: ["Cerebral edema", "Dehydration", "Heart failure", "Hypovolemic shock"],
+                answer: 0,
+                explanation: "Meningitis causes brain inflammation. Fluid overload can severely exacerbate cerebral edema and increase intracranial pressure."
+            },
+            {
+                q: "In pediatric leukemia, which organ is most commonly affected by leukemic infiltration?",
+                options: ["Liver", "Brain", "Lungs", "Spleen"],
+                answer: 3,
+                explanation: "Leukemic cells often infiltrate the reticuloendothelial system, causing profound enlargement of the spleen (splenomegaly) and liver (hepatomegaly)."
+            },
+            {
+                q: "Which legal element establishes a direct link between the breach of duty and the harm suffered by the patient?",
+                options: ["Duty", "Breach of duty", "Causation", "Damages"],
+                answer: 2,
+                explanation: "Causation is the legal proof that the nurse's specific breach of duty was the direct cause of the harm/damages suffered by the patient."
+            },
+            {
+                q: "What is the normal head circumference range for a full-term newborn?",
+                options: ["25-30 cm", "30-33 cm", "33-35 cm", "35-40 cm"],
+                answer: 2,
+                explanation: "The average head circumference of a full-term newborn typically falls between 33 and 35 cm."
+            },
+            {
+                q: "What is the primary goal of treatment for juvenile Idiopathic arthritis (JIA)?",
+                options: ["Cure the disease", "Control pain, maintain function", "Prevent all complications", "Eliminate all inflammation"],
+                answer: 1,
+                explanation: "There is no cure for JIA. Treatment goals focus on controlling pain, reducing inflammation, and maintaining joint mobility and normal growth."
+            },
+            {
+                q: "What is the classic symptom of intussusception in children?",
+                options: ["Constipation", "Watery diarrhea", "Currant jelly stools", "Vomiting only"],
+                answer: 2,
+                explanation: "Intussusception typically presents with stools mixed with blood and mucus, classically described as 'currant jelly' stools."
+            },
+            {
+                q: "A BSN student is performing the Newborn Assessment. He will follow the following principles EXCEPT:",
+                options: ["Complete Head to toe assessment", "Expose all the body parts.", "Assure a warm environment", "All intrusive procedures should be performed last"],
+                answer: 1,
+                explanation: "Newborns are highly susceptible to hypothermia. You should never expose all body parts at once; expose only the area being examined."
+            },
+            {
+                q: "What is the first type of solid food that is typically introduced to an infant?",
+                options: ["Meat", "Pureed vegetables", "Rice base cereals", "Eggs"],
+                answer: 2,
+                explanation: "Iron-fortified rice cereal is usually the first solid food introduced (around 4-6 months) because it is easily digestible and highly hypoallergenic."
+            },
+            {
+                q: "What is a common diagnostic tool used to evaluate seizure activity in the brain?",
+                options: ["CT scan", "MRI", "X-ray", "EEG"],
+                answer: 3,
+                explanation: "An Electroencephalogram (EEG) measures electrical activity in the brain and is the primary tool for diagnosing seizures and epilepsy."
+            },
+            {
+                q: "Bartter syndrome is primarily characterized by which of the following electrolyte imbalances?",
+                options: ["Hyperkalemia and hyponatremia", "Hypokalemia and metabolic alkalosis", "Hypercalcemia and metabolic acidosis", "Hyponatremia and hyperphosphatemia"],
+                answer: 1,
+                explanation: "Bartter syndrome results in renal wasting of potassium and hydrogen, leading to hypokalemia and metabolic alkalosis."
+            },
+            {
+                q: "Which of the following laboratory tests is often elevated in children with juvenile idiopathic arthritis?",
+                options: ["CBC", "ESR", "Blood glucose levels", "Hemoglobin levels"],
+                answer: 1,
+                explanation: "Erythrocyte Sedimentation Rate (ESR) is a non-specific marker of inflammation that is commonly elevated in active JIA."
+            },
+            {
+                q: "Rheumatic heart disease most commonly results from an untreated infection with which of the following organisms?",
+                options: ["Streptococcus pyogenes", "Staphylococcus aureus", "Escherichia coli", "Pseudomonas aeruginosa"],
+                answer: 0,
+                explanation: "Rheumatic fever and subsequent rheumatic heart disease develop as a complication of untreated Group A beta-hemolytic strep (Streptococcus pyogenes) pharyngitis."
+            },
+            {
+                q: "What is the first-line treatment for Guillain-Barrè Syndrome (GBS) in pediatric patients?",
+                options: ["Corticosteroids", "Intravenous immunoglobulin", "Antibiotics", "Antiviral therapy"],
+                answer: 1,
+                explanation: "Intravenous Immunoglobulin (IVIG) and plasmapheresis are the mainstay treatments to reduce the autoimmune response in GBS."
+            },
+            {
+                q: "Which clinical test is commonly used to assess for congenital hip dislocation in infants?",
+                options: ["Thompson test", "Barlow test", "McMurray test", "Apley test"],
+                answer: 1,
+                explanation: "The Barlow and Ortolani tests are pediatric orthopedic maneuvers used specifically to detect developmental dysplasia of the hip."
+            },
+            {
+                q: "Which type of juvenile idiopathic arthritis affects the whole body include high fever, child may feel very ill, appear pale, or developed rash, spleen and lymph nodes might become enlarged?",
+                options: ["Polyarticular JIA", "Oligoarticular JIA", "Systemic JIA", "Psoriatic arthritis"],
+                answer: 2,
+                explanation: "Systemic JIA affects the entire body, presenting with joint pain along with systemic features like high spiking fevers, macular rash, and organomegaly."
+            },
+            {
+                q: "Which type of seizure is characterized by brief episodes of staring or loss of awareness?",
+                options: ["Tonic-clonic seizure", "Atonic seizure", "Absence seizure", "Myoclonic seizure"],
+                answer: 2,
+                explanation: "Absence seizures (formerly petit mal) present as brief staring spells, unresponsiveness, and lack of motor activity, often mistaken for daydreaming."
+            },
+            {
+                q: "Which clinical sign may indicate significant left-to-right shunting in Patent Ductus Arteriosus?",
+                options: ["Cyanosis", "Clubbing of fingers", "Wide pulse pressure", "Elevated blood pressure"],
+                answer: 2,
+                explanation: "In PDA, blood shunts from the aorta to the pulmonary artery, leading to a low diastolic pressure and a characteristically wide pulse pressure and bounding pulses."
+            },
+            {
+                q: "When caring for a child with leukemia, which of the following nursing diagnoses is the highest priority?",
+                options: ["Activity intolerance", "Risk for infection", "Risk for impaired skin integrity", "Risk for constipation"],
+                answer: 1,
+                explanation: "Leukemia profoundly suppresses normal white blood cell production. Risk for infection (neutropenia) is severe and potentially life-threatening."
+            },
+            {
+                q: "The Nurse explains to the mother about the weight of the infant 'The birth weight of the infant should be doubled by 6 months of age.' It refers to:",
+                options: ["The Development of the infant", "The Growth of the infant", "The mental development of the infant", "The Cognitive development of the infant"],
+                answer: 1,
+                explanation: "Growth refers to the measurable physical increase in size (weight, height), whereas development refers to skill/functional acquisition."
+            },
+            {
+                q: "Which type of diabetes is most common in children?",
+                options: ["Type 1 diabetes", "Type 2 diabetes", "Gestational diabetes", "Maturity-Onset Diabetes of the Young (MODY)"],
+                answer: 0,
+                explanation: "Type 1 diabetes, an autoimmune destruction of pancreatic beta cells, accounts for the vast majority of childhood diabetes diagnoses."
+            },
+            {
+                q: "Which of the following conditions is caused by growth hormone deficiency in children?",
+                options: ["Gigantism", "Cushing's syndrome", "Dwarfism", "Acromegaly"],
+                answer: 2,
+                explanation: "A deficiency in pituitary growth hormone during childhood results in pituitary dwarfism (proportionate short stature)."
+            },
+            {
+                q: "If a healthcare provider suspects child abuse or neglect, they are:",
+                options: ["Required to keep confidential due to patience privacy laws", "Legally obligated to report it to the appropriate authorities", "Allow to ignore it if the parents seem responsible", "Expected to resolve the issues with family privately"],
+                answer: 1,
+                explanation: "Healthcare professionals are mandated reporters; suspicion of abuse legally overrides general patient confidentiality to protect the child."
+            },
+            {
+                q: "What is the primary treatment for acute lymphoblastic leukemia (ALL) in children?",
+                options: ["Chemotherapy", "Radiation therapy", "Immunotherapy", "Bone marrow transplantation"],
+                answer: 0,
+                explanation: "Systemic combination chemotherapy is the primary, standard, and highly successful initial treatment for childhood ALL."
+            },
+            {
+                q: "What is the primary goal of treatment for excessive lordosis in children?",
+                options: ["To achieve complete spinal correction", "To relieve pain and improve posture", "To prevent any surgical intervention", "To promote growth"],
+                answer: 1,
+                explanation: "Treatment for postural lordosis aims to relieve discomfort, strengthen core musculature, and improve overall posture and biomechanics."
+            },
+            {
+                q: "Which complication can result from untreated severe hyperbilirubinemia?",
+                options: ["Hydrocephalus", "Hypoglycemia", "Kernicterus", "Cerebral palsy"],
+                answer: 2,
+                explanation: "Severe, untreated hyperbilirubinemia allows unconjugated bilirubin to cross the blood-brain barrier, causing permanent neurological damage known as kernicterus."
+            },
+            {
+                q: "What is a characteristic feature of the tonsils during an examination in a child with tonsillitis?",
+                options: ["Atrophied tonsils", "Swollen and red tonsils", "White patches on the cheeks", "Clear and healthy appearance"],
+                answer: 1,
+                explanation: "Acute tonsillitis presents with enlarged, erythematous (red) tonsils, often accompanied by exudate or purulent discharge."
+            },
+            {
+                q: "Which of the following vessels carries deoxygenated blood from the fetus back to the placenta?",
+                options: ["Umbilical arteries", "Umbilical vein", "Ductus venosus", "Aorta"],
+                answer: 0,
+                explanation: "In fetal circulation, the two umbilical arteries carry deoxygenated blood and waste products away from the fetus to the placenta."
+            },
+            {
+                q: "In nephrotic syndrome, which of the following is the primary pathophysiological mechanism responsible for the condition?",
+                options: ["Glomerular inflammation leading to hematuria", "Increased glomerular permeability resulting in protein loss", "Decreased renal blood flow leading to hypertension", "Obstruction of the renal tubules leading to oliguria"],
+                answer: 1,
+                explanation: "Nephrotic syndrome is caused by increased permeability of the glomerular basement membrane, leading to massive proteinuria and subsequent hypoalbuminemia."
+            },
+            {
+                q: "Which of the following is a common symptom of a urinary tract infection in infants?",
+                options: ["Fever", "Cough", "Abdominal pain", "Diarrhea"],
+                answer: 0,
+                explanation: "Infants with UTIs often present with non-specific signs, but unexplained fever is the most common and prominent symptom."
+            },
+            {
+                q: "If a patient is harmed by a delay in treatment due to a nurse's negligence, which element must be established first to support a malpractice claim?",
+                options: ["Causation", "Damages", "Breach of duty", "Duty"],
+                answer: 3,
+                explanation: "To prove malpractice, the first legal element that must be established is that the nurse owed a 'Duty of Care' to the patient."
+            },
+            {
+                q: "What is the average birth weight of a term newborn?",
+                options: ["2.0-2.5 kg", "2.5-4.0 kg", "4.0-5.0 kg", "1.5-2.0 kg"],
+                answer: 1,
+                explanation: "A healthy term newborn typically weighs between 2.5 kg and 4.0 kg (approx 5.5 to 8.8 lbs)."
+            },
+            {
+                q: "The drug of choice for treating amoebiasis is:",
+                options: ["Amoxicillin", "Metronidazole", "Ciprofloxacin", "Tetracycline"],
+                answer: 1,
+                explanation: "Metronidazole (Flagyl) is an antiprotozoal medication widely considered the first-line treatment for amoebiasis."
+            },
+            {
+                q: "Which of the following symptoms is commonly associated with acute glomerulonephritis?",
+                options: ["Polyuria", "Hematuria", "Hypercalcemia", "Hyperkalemia"],
+                answer: 1,
+                explanation: "Acute glomerulonephritis causes inflammation of the glomeruli, classically resulting in gross hematuria (cola-colored urine) and mild proteinuria."
+            },
+            {
+                q: "What type of hearing test is often performed on infants to detect hearing impairment?",
+                options: ["Pure-tone audiometry", "Tympanometry", "Otoacoustic emissions testing", "Behavioral audiometry"],
+                answer: 2,
+                explanation: "Otoacoustic emissions (OAE) testing is a quick, objective, and non-invasive screening tool standard for newborn hearing assessments."
+            },
+            {
+                q: "In addition to cortisol, which other hormone is often deficient in Addison's disease?",
+                options: ["Estrogen", "Insulin", "Aldosterone", "Epinephrine"],
+                answer: 2,
+                explanation: "Primary adrenal insufficiency (Addison's) damages the adrenal cortex, reducing the production of both glucocorticoids (cortisol) and mineralocorticoids (aldosterone)."
+            },
+            {
+                q: "In therapeutic play, which approach encourages children to express their feelings about a specific stressful event (e.g., hospitalization, trauma)?",
+                options: ["Free play", "Structured, directive play", "Problem-solving games", "Competitive play"],
+                answer: 1,
+                explanation: "Structured or directive therapeutic play uses specific toys (like medical equipment) guided by staff to help children process hospital-specific fears."
+            },
+            {
+                q: "What is the preferred site for intramuscular injection in infants?",
+                options: ["Deltoid muscle", "Vastus lateralis muscle", "Ventrogluteal muscle", "Dorsogluteal muscle"],
+                answer: 1,
+                explanation: "The vastus lateralis (anterolateral thigh) is the largest and safest muscle mass in infants and toddlers for IM injections."
+            },
+            {
+                q: "What type of vomiting is most characteristic of pyloric stenosis?",
+                options: ["Bilious vomiting", "Non-bilious projectile vomiting", "Vomiting with blood", "Regurgitation of undigested food"],
+                answer: 1,
+                explanation: "Hypertrophy of the pylorus causes a gastric outlet obstruction, resulting in forceful, non-bilious projectile vomiting shortly after feeding."
+            },
+            {
+                q: "Which is the most common presenting symptom of acute leukemia in children?",
+                options: ["Bone pain", "Fever", "Easy bruising", "Fatigue"],
+                answer: 1,
+                explanation: "While bone pain, bruising, and fatigue are common, fever (due to underlying infection from neutropenia or hypermetabolism) is an extremely frequent presenting sign."
+            },
+            {
+                q: "Which birth injury involves damage to the upper arm due to excessive lateral traction during delivery?",
+                options: ["Clavicle fracture", "Erb's palsy", "Caput succedaneum", "Intracranial hemorrhage"],
+                answer: 1,
+                explanation: "Erb's palsy is a brachial plexus injury (affecting C5-C6 nerve roots) often caused by shoulder dystocia and excessive lateral neck traction."
+            },
+            {
+                q: "Which nutrient deficiency during pregnancy is sometimes associated with an increased risk of cleft lip and palate?",
+                options: ["Vitamin D", "Folic acid", "Calcium", "Iron"],
+                answer: 1,
+                explanation: "Folic acid deficiency is heavily linked to neural tube defects, and it also plays a critical role in mitigating the risk of orofacial clefts."
+            },
+            {
+                q: "When administering prostaglandin therapy in neonates with congenital heart malformations, what is the primary therapeutic goal?",
+                options: ["Close the ductus arteriosus", "Maintain the patency of the ductus arteriosus", "Reduce systemic vascular resistance", "Increase the heart's oxygen demand"],
+                answer: 1,
+                explanation: "In ductal-dependent congenital heart lesions, IV Prostaglandin E1 is given to keep the ductus arteriosus OPEN (patent) to ensure systemic or pulmonary blood flow."
+            },
+            {
+                q: "In Hirschsprung disease, the absence of which cells causes the condition?",
+                options: ["Goblet cells", "Parietal cells", "Ganglion cells", "Epithelial cells"],
+                answer: 2,
+                explanation: "Hirschsprung disease is a congenital aganglionic megacolon caused by the absence of parasympathetic ganglion cells in a segment of the bowel, preventing normal peristalsis."
+            },
+            {
+                q: "What is the primary cause of cystic fibrosis?",
+                options: ["Viral infection", "Environmental factors", "Genetic mutation", "Bacterial infection"],
+                answer: 2,
+                explanation: "Cystic fibrosis is an autosomal recessive genetic disorder caused by mutations in the CFTR gene, leading to thick, sticky exocrine secretions."
+            },
+            {
+                q: "How long should a child remain in the position after receiving nasal drops?",
+                options: ["1-2 minutes", "5-10 minutes", "15-30 minutes", "No need to stay still"],
+                answer: 1,
+                explanation: "To allow the medication to properly coat the nasal mucosa and prevent immediate drainage down the throat, the child should remain supine for about 5-10 minutes."
+            },
+            {
+                q: "Which of the following is a common symptom of hearing impairment in children?",
+                options: ["Difficulty with balance", "Frequent headaches", "Delayed speech and language development", "Excessive crying"],
+                answer: 2,
+                explanation: "Normal hearing is crucial for language acquisition; profound delays in speech and language milestones are hallmark signs of hearing impairment."
+            },
+            {
+                q: "Which of the following is a common causative organism of acute otitis media in children?",
+                options: ["Staphylococcus aureus", "Streptococcus pneumoniae", "Escherichia coli", "Mycobacterium tuberculosis"],
+                answer: 1,
+                explanation: "Streptococcus pneumoniae, Haemophilus influenzae, and Moraxella catarrhalis are the most common bacterial causes of acute otitis media."
+            },
+            {
+                q: "Which of the following is a common challenge faced by infants with cleft palate?",
+                options: ["Difficulty swallowing", "Difficulty breathing", "Difficulty with feeding", "Difficulty walking"],
+                answer: 2,
+                explanation: "A cleft palate prevents the infant from forming a negative pressure seal in the mouth, making sucking and feeding extremely difficult."
+            },
+            {
+                q: "A child with severe diarrhea is at risk for which type of electrolyte imbalance?",
+                options: ["Hyponatremia and hypokalemia", "Hyponatremia and hypokalemia (Option repeated)", "Hypocalcemia and hypermagnesemia", "Hyperphosphatemia and hyperkalemia"],
+                answer: 0,
+                explanation: "Massive fluid loss in diarrhea leads to severe loss of sodium (hyponatremia) and potassium (hypokalemia), requiring rapid rehydration."
+            },
+            {
+                q: "When does the posterior fontanelle (soft spot) typically close?",
+                options: ["By 2 month of age", "By 6 month of age", "By 18 month of age", "By 18 month of age (Option repeated)"],
+                answer: 0,
+                explanation: "The small posterior fontanelle usually closes very early, typically between 6 to 8 weeks (about 2 months) of age."
+            },
+            {
+                q: "A child with Guillain-Barré Syndrome (GBS) develops sudden bradycardia and hypotension. This is most likely due to:",
+                options: ["Renal failure", "Hyperkalemia", "Myocardial infarction", "Autonomic dysfunction"],
+                answer: 3,
+                explanation: "GBS can involve the autonomic nervous system (dysautonomia), leading to dangerous fluctuations in heart rate (bradycardia) and blood pressure."
+            },
+            {
+                q: "When monitoring the blood glucose level of a 12-year-old child with type 2 DM, your reading is 50 mg/dL. Which is the most appropriate action?",
+                options: ["Encourage the child to get out of bed and increase activity.", "Take the child's vital signs.", "Ask the child about frequent urine output.", "Give the child 4 oz of orange juice."],
+                answer: 3,
+                explanation: "A blood sugar of 50 mg/dL indicates hypoglycemia. The immediate nursing priority is to provide a fast-acting simple carbohydrate, like 4 oz of juice."
+            },
+            {
+                q: "What is the most common pathogen associated with urinary tract infections in children?",
+                options: ["Escherichia coli", "Streptococcus pneumoniae", "Staphylococcus aureus", "Klebsiella pneumoniae"],
+                answer: 0,
+                explanation: "E. coli is an intestinal flora and is responsible for about 80-90% of pediatric urinary tract infections due to perineal contamination."
+            },
+            {
+                q: "What is the typical age range for the first tooth to appear in infants?",
+                options: ["2-4 months", "4-6 months", "6-12 months", "12-18 months"],
+                answer: 2,
+                explanation: "The first primary teeth (lower central incisors) typically erupt between 6 and 10 months of age."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timeRemaining = 70 * 60; // 70 minutes in seconds
+        let timerInterval;
+        let hasAnswered = false;
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startBtn = document.getElementById('start-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsGrid = document.getElementById('options-grid');
+        const explanationBox = document.getElementById('explanation-box');
+        const explanationText = document.getElementById('explanation-text');
+        const currentQNum = document.getElementById('current-q-num');
+        const progressBar = document.getElementById('progress-bar');
+        const timerDisplay = document.getElementById('timer-display');
+        const finalScore = document.getElementById('final-score');
+        const scoreMessage = document.getElementById('score-message');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startQuiz);
+        nextBtn.addEventListener('click', loadNextQuestion);
+        restartBtn.addEventListener('click', resetQuiz);
+
+        function startQuiz() {
+            startScreen.classList.remove('active');
+            quizScreen.classList.add('active');
+            startTimer();
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            hasAnswered = false;
+            nextBtn.style.display = 'none';
+            explanationBox.classList.remove('show');
+            
+            const currentQ = quizData[currentQuestionIndex];
+            currentQNum.textContent = currentQuestionIndex + 1;
+            
+            // Update Progress
+            const progress = ((currentQuestionIndex) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Load Content
+            questionText.textContent = `Q${currentQuestionIndex + 1}. ${currentQ.q}`;
+            optionsGrid.innerHTML = '';
+
+            currentQ.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+                btn.onclick = () => selectOption(index, btn);
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedIndex, selectedBtn) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+
+            const currentQ = quizData[currentQuestionIndex];
+            const isCorrect = selectedIndex === currentQ.answer;
+
+            const allBtns = document.querySelectorAll('.option-btn');
+            
+            allBtns.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === currentQ.answer) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            if (isCorrect) score++;
+
+            // Show Explanation
+            explanationText.textContent = currentQ.explanation;
+            explanationBox.classList.add('show');
+            nextBtn.style.display = 'block';
+            
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+            }
+        }
+
+        function loadNextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `⏳ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (timeRemaining < 300) {
+                timerDisplay.style.color = '#991b1b'; // Dark red when < 5 mins
+                timerDisplay.style.backgroundColor = '#fecaca';
+            }
+        }
+
+        function endQuiz() {
+            clearInterval(timerInterval);
+            quizScreen.classList.remove('active');
+            resultScreen.classList.add('active');
+            
+            finalScore.textContent = score;
+            const percentage = (score / quizData.length) * 100;
+            
+            if (percentage >= 80) {
+                scoreMessage.textContent = "Excellent work! You have strong knowledge in Paediatrics Health Nursing.";
+            } else if (percentage >= 60) {
+                scoreMessage.textContent = "Good job! A little more review and you'll be an expert.";
+            } else {
+                scoreMessage.textContent = "Keep studying! Review the rationales to improve your understanding.";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            timeRemaining = 70 * 60;
+            resultScreen.classList.remove('active');
+            startScreen.classList.add('active');
+            timerDisplay.style.color = '';
+            timerDisplay.style.backgroundColor = '';
+            updateTimerDisplay();
+        }
+    </script>
+</body>
+</html>
