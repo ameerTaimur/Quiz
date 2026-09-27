@@ -3,65 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pediatrics Health Nursing Quiz | By Muhammad Taimoor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Applied Nutrition for 2nd Semester Students - Muhammad Taimoor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --success-color: #10b981;
-            --success-bg: #d1fae5;
-            --error-color: #ef4444;
-            --error-bg: #fee2e2;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--secondary-color);
+            background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background ambient glow */
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(0,0,0,0) 70%);
+            bottom: -100px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
+            max-width: 860px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 36px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* Screen shake animation for penalty */
+        .shake {
+            animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shakeAnim {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* Header Branding */
+        .top-banner {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+
+        .author-tag {
+            font-size: 1.05rem;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .author-name {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .quote-box {
+            margin: 20px 0;
+            padding: 18px 24px;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: #fde68a;
+            line-height: 1.6;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Rules & Gameplay Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 640px) {
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 24px 18px;
+            }
+        }
+
+        .rule-card {
+            padding: 18px;
+            border-radius: 16px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .rule-rewards {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #a7f3d0;
+        }
+
+        .rule-punishments {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .rule-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rule-rewards .rule-title { color: #34d399; }
+        .rule-punishments .rule-title { color: #f87171; }
+
+        .btn-start {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px -5px rgba(2, 132, 199, 0.5);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 25px -5px rgba(2, 132, 199, 0.6);
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+
+        /* HUD Header */
+        .hud-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hud-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .hearts-container {
+            display: flex;
+            gap: 4px;
+            color: #ef4444;
+            font-size: 1.2rem;
+        }
+
+        .score-pill {
+            background: rgba(2, 132, 199, 0.2);
+            color: #38bdf8;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .streak-pill {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        /* Progress Bar */
+        .progress-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            width: 2%;
+            transition: width 0.4s ease;
+        }
+
+        /* Question Section */
+        .unit-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        /* Options */
+        .options-list {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
 
-        /* Screens */
-        .screen {
-            display: none;
+        .option-btn {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 0.98rem;
+            line-height: 1.45;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-            background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 40px;
-            animation: fadeIn 0.5s ease;
         }
 
-        .screen.active {
-            display: block;
+        .option-btn:hover:not(:disabled) {
+            background: rgba(2, 132, 199, 0.15);
+            border-color: #38bdf8;
+            transform: translateX(4px);
+        }
+
+        .option-btn.correct {
+            background: rgba(16, 185, 129, 0.2) !important;
+            border-color: #10b981 !important;
+            color: #ecfdf5 !important;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .option-btn.incorrect {
+            background: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+            color: #fef2f2 !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        /* Feedback and Rationale Box */
+        .rationale-card {
+            display: none;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            font-size: 0.94rem;
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -69,841 +362,529 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Start Screen */
-        .start-header {
-            text-align: center;
-            margin-bottom: 30px;
+        .rationale-card.correct-feedback {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #d1fae5;
         }
 
-        .start-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
+        .rationale-card.incorrect-feedback {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fee2e2;
+        }
+
+        .feedback-header {
             font-weight: 700;
-        }
-
-        .start-author {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .quote-box {
-            background: #f1f5f9;
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            border-radius: 0 10px 10px 0;
-            margin: 30px 0;
-            font-style: italic;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Quiz Header */
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .progress-text {
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .timer {
-            background: #fef2f2;
-            color: var(--error-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .progress-bar-container {
+        .btn-next {
             width: 100%;
-            height: 8px;
-            background: var(--border-color);
-            border-radius: 4px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* Question Area */
-        .question-text {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .option-btn {
-            background: #f8fafc;
-            border: 2px solid var(--border-color);
-            padding: 16px 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
             border-radius: 12px;
-            font-size: 1rem;
-            text-align: left;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-        }
-
-        .option-btn:hover:not(:disabled) {
-            border-color: var(--primary-color);
-            background: #eff6ff;
-        }
-
-        .option-btn.correct {
-            background: var(--success-bg);
-            border-color: var(--success-color);
-            color: #065f46;
-        }
-
-        .option-btn.wrong {
-            background: var(--error-bg);
-            border-color: var(--error-color);
-            color: #991b1b;
-        }
-
-        /* Explanation Box */
-        .explanation-box {
             display: none;
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--primary-color);
-            animation: fadeIn 0.4s ease;
+            transition: all 0.2s;
         }
 
-        .explanation-box.show {
-            display: block;
-        }
-
-        .explanation-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-
-        .explanation-text {
-            color: var(--text-main);
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
         }
 
         /* Results Screen */
-        .result-icon {
-            font-size: 4rem;
+        .results-view {
+            display: none;
             text-align: center;
-            margin-bottom: 20px;
         }
 
-        .score-display {
-            text-align: center;
-            font-size: 3rem;
+        .result-trophy {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .result-rank {
+            font-size: 1.1rem;
+            color: var(--accent);
             font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 24px;
         }
 
-        .score-text {
-            text-align: center;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 14px;
+        }
+
+        .stat-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .stat-lbl {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-top: 4px;
+            text-transform: uppercase;
         }
 
-        @media (max-width: 600px) {
-            .screen {
-                padding: 25px 20px;
-                border-radius: 15px;
-            }
-            .start-title {
-                font-size: 2rem;
-            }
-            .question-text {
-                font-size: 1.1rem;
-            }
+        .review-section {
+            text-align: left;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .review-item {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .review-q {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .review-ans {
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+        }
+
+        .review-rat {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-top: 6px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 6px;
+        }
+
+        .btn-restart {
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
 
-    <div class="container">
-        <!-- Start Screen -->
-        <div id="start-screen" class="screen active">
-            <div class="start-header">
-                <h1 class="start-title">Paediatrics Health Nursing</h1>
-                <p class="start-author">BSN 5th Semester • Prepared by <strong>Muhammad Taimoor</strong></p>
-                <div class="quote-box">
-                    "Nursing is not just an art, it has a heart. It is not just a science, but it has a conscience."
-                </div>
-                <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem;">
-                    <strong>Details:</strong> 70 Multiple Choice Questions<br>
-                    <strong>Time Limit:</strong> 70 Minutes<br>
-                    <strong>Instructions:</strong> Select the single best choice. Immediate feedback is provided.
+    <div class="container" id="quizContainer">
+        <!-- START SCREEN -->
+        <div id="startScreen">
+            <div class="top-banner">
+                <div class="app-title">Applied Nutrition for 2nd Semester Students</div>
+                <div class="author-tag">Exam Assessment & Question Bank prepared by <span class="author-name">Muhammad Taimoor</span></div>
+            </div>
+
+            <div class="quote-box">
+                “As fire tests gold, so misfortune tests brave men.”
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <p style="color: #cbd5e1; font-size: 0.98rem; max-width: 650px; margin: 0 auto; line-height: 1.5;">
+                    High-yield, 50-examiner multiple choice questions strictly covering <strong>Unit 1 (Intro to Nutrition & Assessment)</strong>, <strong>Unit 2 (Maternal Nutrition)</strong>, and <strong>Unit 3 (Infancy & Preschool Nutrition)</strong>. Single-question adaptive flow with instant clinical rationales.
                 </p>
-                <button class="btn" id="start-btn">Start Assessment Now</button>
             </div>
-        </div>
 
-        <!-- Quiz Screen -->
-        <div id="quiz-screen" class="screen">
-            <div class="quiz-header">
-                <div class="progress-text">Question <span id="current-q-num">1</span> of 70</div>
-                <div class="timer" id="timer-display">
-                    ⏳ 70:00
+            <div class="rules-grid">
+                <div class="rule-card rule-rewards">
+                    <div class="rule-title">
+                        <span>🏆</span> Rewards & Honors
+                    </div>
+                    <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+                        <li><strong>+10 Points</strong> per correct answer</li>
+                        <li><strong>Streak Bonus (+5 Pts)</strong> every 3 consecutive correct hits 🔥</li>
+                        <li><strong>Rank Progression:</strong> Advance from Novice to Distinction Gold Medalist 🥇</li>
+                        <li><strong>Interactive Audio-Visual:</strong> Confetti celebration & clinical audio chimes</li>
+                    </ul>
+                </div>
+
+                <div class="rule-card rule-punishments">
+                    <div class="rule-title">
+                        <span>⚡</span> Penalties & Challenge
+                    </div>
+                    <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+                        <li><strong>-5 Points Penalty</strong> per incorrect response</li>
+                        <li><strong>Lives System (5 Hearts ❤️):</strong> Careless clinical errors deduct 1 Life</li>
+                        <li><strong>Screen Shake & Red Alert:</strong> Visual and acoustic punishment alert</li>
+                        <li><strong>Instant Remediation:</strong> Forced review of examiner rationale before continuing</li>
+                    </ul>
                 </div>
             </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
 
-            <div class="question-text" id="question-text">
-                Question goes here?
-            </div>
-
-            <div class="options-grid" id="options-grid">
-                <!-- Options injected via JS -->
-            </div>
-
-            <div class="explanation-box" id="explanation-box">
-                <div class="explanation-title">Explanation</div>
-                <div class="explanation-text" id="explanation-text">Explanation goes here.</div>
-            </div>
-
-            <button class="btn" id="next-btn" style="display: none;">Next Question</button>
+            <button class="btn-start" onclick="startQuiz()">Begin 50-MCQ Examination</button>
         </div>
 
-        <!-- Results Screen -->
-        <div id="result-screen" class="screen">
-            <div class="result-icon">🎓</div>
-            <h2 style="text-align: center; margin-bottom: 10px;">Assessment Complete!</h2>
-            <div class="score-display"><span id="final-score">0</span> / 70</div>
-            <div class="score-text" id="score-message">Great effort!</div>
-            <button class="btn" id="restart-btn" style="margin-top: 20px;">Review / Restart</button>
+        <!-- QUIZ SCREEN -->
+        <div id="quizScreen" style="display: none;">
+            <!-- HUD -->
+            <div class="hud-bar">
+                <div class="hud-item">
+                    <span>Lives:</span>
+                    <div class="hearts-container" id="heartsContainer">
+                        ❤️❤️❤️❤️❤️
+                    </div>
+                </div>
+                <div class="hud-item">
+                    <span class="score-pill" id="scoreDisplay">Score: 0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="streak-pill" id="streakDisplay">🔥 Streak: 0</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-wrapper">
+                <div class="progress-labels">
+                    <span id="questionCounter">Question 1 of 50</span>
+                    <span id="progressPercent">2% Completed</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Question Area -->
+            <div>
+                <span class="unit-badge" id="unitBadge">Unit 1</span>
+                <div class="question-text" id="questionText">Loading question...</div>
+            </div>
+
+            <!-- Options -->
+            <div class="options-list" id="optionsList">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Rationale & Feedback -->
+            <div class="rationale-card" id="rationaleCard">
+                <div class="feedback-header" id="feedbackHeader"></div>
+                <div id="rationaleText"></div>
+            </div>
+
+            <button class="btn-next" id="btnNext" onclick="nextQuestion()">Proceed to Next Question ➔</button>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="resultsScreen" class="results-view">
+            <div class="result-trophy" id="resultTrophy">🏆</div>
+            <div class="result-title" id="resultTitle">Examination Concluded</div>
+            <div class="result-rank" id="resultRank">Distinction Gold Medalist</div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-val" id="finalScore">0</div>
+                    <div class="stat-lbl">Final Points</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="finalAccuracy">0%</div>
+                    <div class="stat-lbl">Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="finalCorrect">0 / 50</div>
+                    <div class="stat-lbl">Questions Passed</div>
+                </div>
+            </div>
+
+            <h3 style="text-align: left; margin-bottom: 12px; color: #38bdf8;">Question Review & Explanations</h3>
+            <div class="review-section" id="reviewContainer">
+                <!-- Injected via JS -->
+            </div>
+
+            <button class="btn-restart" onclick="restartQuiz()">Retake Examination</button>
         </div>
     </div>
 
+    <!-- Confetti canvas support -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Quiz Data extracted from the provided document
-        const quizData = [
-            {
-                q: "The UNCRC stand for?",
-                options: ["United nations council on rights of children", "United Nations convention on the rights of child", "Universal national convention of child rights", "United Nations charter on child rights"],
-                answer: 1,
-                explanation: "The United Nations Convention on the Rights of the Child (UNCRC) is an international treaty that outlines the specific rights of children globally."
-            },
-            {
-                q: "Which of the following is the most life-threatening complication of Guillain-Barré Syndrome (GBS)?",
-                options: ["Autonomic dysfunction", "Respiratory failure", "Deep vein thrombosis", "Paralysis of the lower limbs"],
-                answer: 1,
-                explanation: "As paralysis ascends in GBS, it can compromise the intercostal muscles and diaphragm, leading to respiratory failure requiring mechanical ventilation."
-            },
-            {
-                q: "Which of the following statements about Guillain-Barré Syndrome (GBS) is correct?",
-                options: ["It usually follows a viral or bacterial infection", "It is typically a slowly progressive disorder over several years", "It affects only sensory neurons and spares motor function", "It is primarily a hereditary disease"],
-                answer: 0,
-                explanation: "GBS is an autoimmune condition triggered most frequently by an acute viral or bacterial respiratory or gastrointestinal infection."
-            },
-            {
-                q: "A Nurse is talking to a toddler while providing medication. Good communication is important in this developmental stage for the following purpose:",
-                options: ["To build self-esteem and respect", "To help him recover from the disease", "To build therapeutic relationship", "To assure that someone is caring"],
-                answer: 2,
-                explanation: "Effective communication with a toddler helps establish trust, reduces anxiety, and builds a solid therapeutic relationship necessary for cooperation."
-            },
-            {
-                q: "What is the most common source of stress for a hospitalized child?",
-                options: ["Feeling bored during the stay", "Separation from family", "Enjoying time with other children", "Eating hospital food"],
-                answer: 1,
-                explanation: "Separation anxiety is the primary source of stress for hospitalized pediatric patients, especially infants and toddlers."
-            },
-            {
-                q: "Which of the following are the complications of diabetes mellitus?",
-                options: ["Retinopathy", "Nephropathy", "Neuropathy", "All of the above"],
-                answer: 3,
-                explanation: "Chronic hyperglycemia in diabetes damages microvascular systems, leading to retinopathy, nephropathy, and neuropathy."
-            },
-            {
-                q: "Which method is commonly used to deliver asthma medication to infants?",
-                options: ["Transdermal patch", "Intravenous injection", "Oral tablets", "Nebulizer"],
-                answer: 3,
-                explanation: "Infants cannot coordinate breath with traditional inhalers; a nebulizer with a mask delivers medication effectively as they breathe normally."
-            },
-            {
-                q: "Which part of the peripheral nervous system is most commonly affected in Guillain-Barré Syndrome (GBS)?",
-                options: ["Axons of motor neurons", "Myelin sheath", "Synaptic junction", "Gray matter"],
-                answer: 1,
-                explanation: "GBS is an acute demyelinating polyneuropathy where the immune system attacks the myelin sheath of peripheral nerves."
-            },
-            {
-                q: "When managing Persistent Pulmonary Hypertension of the Newborn (PPHN), which of the following interventions is most critical for improving oxygenation and reducing right-to-left shunting? (Note: Options match source text anomalies)",
-                options: ["Selecting the appropriate needle gauge for medication administration", "Accurately calculating and verifying the final concentration of the diluted medication", "Minimizing the risk of contamination by using single-use syringes only", "Administering intravenous fluids to increase blood volume"],
-                answer: 1,
-                explanation: "Although the provided options in the source appear to be for medication administration protocols, accurate calculation/verification is critical when giving potent vasoactive medications (like inhaled nitric oxide or prostacyclins) used to treat PPHN."
-            },
-            {
-                q: "Which of the following is a characteristic feature of Cushing syndrome in children?",
-                options: ["Weight loss", "Moon face", "Hyperpigmentation", "Dry skin"],
-                answer: 1,
-                explanation: "Cushing syndrome is characterized by excess cortisol, leading to fat redistribution that causes a 'moon face', central obesity, and a 'buffalo hump'."
-            },
-            {
-                q: "Which of the following nursing interventions is most appropriate for a child with a urinary tract infection (UTI) to prevent fluid and electrolyte imbalance?",
-                options: ["Limit fluid intake to avoid excessive urination", "Administer antibiotics without fluid management", "Encourage fluid intake to flush the urinary system", "Provide high-protein snacks to compensate for electrolyte loss"],
-                answer: 2,
-                explanation: "Encouraging fluids increases urine output, helping to flush bacteria from the urinary tract and preventing dehydration."
-            },
-            {
-                q: "Amoebic dysentery is characterized by:",
-                options: ["Painless diarrhea", "Constipation alternating with diarrhea", "Very loose Watery diarrhea", "Bloody diarrhea with mucus"],
-                answer: 3,
-                explanation: "Amoebic dysentery is primarily characterized by frequent stools containing blood and mucus, accompanied by abdominal pain."
-            },
-            {
-                q: "What should parents emphasize when explaining a hospital visit to their child?",
-                options: ["Staff are strange and scary", "Visit will be painful and difficult", "Doctors and nurses are there to help them feel better", "Follow instructions without asking questions"],
-                answer: 2,
-                explanation: "Honest but reassuring communication that healthcare providers are there to help reduces the child's anxiety and promotes cooperation."
-            },
-            {
-                q: "Which of the following viruses is commonly associated with bronchitis in children?",
-                options: ["Streptococcus pneumoniae", "Respiratory syncytial virus", "Neisseria meningitidis", "Varicella zoster virus"],
-                answer: 1,
-                explanation: "Respiratory Syncytial Virus (RSV) is the most common viral cause of lower respiratory tract infections like bronchiolitis/bronchitis in infants and young children."
-            },
-            {
-                q: "Which of the following is a common presenting symptom of Bartter syndrome in children?",
-                options: ["Edema", "Polyuria", "Hypertension", "Constipation"],
-                answer: 1,
-                explanation: "Bartter syndrome affects the kidneys' ability to reabsorb salt, leading to excessive urination (polyuria), dehydration, and electrolyte imbalances."
-            },
-            {
-                q: "Which of the following dietary modifications is often recommended for children with nephrotic syndrome?",
-                options: ["High-protein diet", "Low-sodium diet", "High-carbohydrate diet", "Low-fat diet"],
-                answer: 1,
-                explanation: "A low-sodium diet helps manage and reduce the severe edema characteristic of nephrotic syndrome."
-            },
-            {
-                q: "Mr. Anjuman, adolescent has meningitis and is receiving I.V. and oral fluids. The nurse should monitor this client's fluid intake because fluid overload may cause:",
-                options: ["Cerebral edema", "Dehydration", "Heart failure", "Hypovolemic shock"],
-                answer: 0,
-                explanation: "Meningitis causes brain inflammation. Fluid overload can severely exacerbate cerebral edema and increase intracranial pressure."
-            },
-            {
-                q: "In pediatric leukemia, which organ is most commonly affected by leukemic infiltration?",
-                options: ["Liver", "Brain", "Lungs", "Spleen"],
-                answer: 3,
-                explanation: "Leukemic cells often infiltrate the reticuloendothelial system, causing profound enlargement of the spleen (splenomegaly) and liver (hepatomegaly)."
-            },
-            {
-                q: "Which legal element establishes a direct link between the breach of duty and the harm suffered by the patient?",
-                options: ["Duty", "Breach of duty", "Causation", "Damages"],
-                answer: 2,
-                explanation: "Causation is the legal proof that the nurse's specific breach of duty was the direct cause of the harm/damages suffered by the patient."
-            },
-            {
-                q: "What is the normal head circumference range for a full-term newborn?",
-                options: ["25-30 cm", "30-33 cm", "33-35 cm", "35-40 cm"],
-                answer: 2,
-                explanation: "The average head circumference of a full-term newborn typically falls between 33 and 35 cm."
-            },
-            {
-                q: "What is the primary goal of treatment for juvenile Idiopathic arthritis (JIA)?",
-                options: ["Cure the disease", "Control pain, maintain function", "Prevent all complications", "Eliminate all inflammation"],
-                answer: 1,
-                explanation: "There is no cure for JIA. Treatment goals focus on controlling pain, reducing inflammation, and maintaining joint mobility and normal growth."
-            },
-            {
-                q: "What is the classic symptom of intussusception in children?",
-                options: ["Constipation", "Watery diarrhea", "Currant jelly stools", "Vomiting only"],
-                answer: 2,
-                explanation: "Intussusception typically presents with stools mixed with blood and mucus, classically described as 'currant jelly' stools."
-            },
-            {
-                q: "A BSN student is performing the Newborn Assessment. He will follow the following principles EXCEPT:",
-                options: ["Complete Head to toe assessment", "Expose all the body parts.", "Assure a warm environment", "All intrusive procedures should be performed last"],
-                answer: 1,
-                explanation: "Newborns are highly susceptible to hypothermia. You should never expose all body parts at once; expose only the area being examined."
-            },
-            {
-                q: "What is the first type of solid food that is typically introduced to an infant?",
-                options: ["Meat", "Pureed vegetables", "Rice base cereals", "Eggs"],
-                answer: 2,
-                explanation: "Iron-fortified rice cereal is usually the first solid food introduced (around 4-6 months) because it is easily digestible and highly hypoallergenic."
-            },
-            {
-                q: "What is a common diagnostic tool used to evaluate seizure activity in the brain?",
-                options: ["CT scan", "MRI", "X-ray", "EEG"],
-                answer: 3,
-                explanation: "An Electroencephalogram (EEG) measures electrical activity in the brain and is the primary tool for diagnosing seizures and epilepsy."
-            },
-            {
-                q: "Bartter syndrome is primarily characterized by which of the following electrolyte imbalances?",
-                options: ["Hyperkalemia and hyponatremia", "Hypokalemia and metabolic alkalosis", "Hypercalcemia and metabolic acidosis", "Hyponatremia and hyperphosphatemia"],
-                answer: 1,
-                explanation: "Bartter syndrome results in renal wasting of potassium and hydrogen, leading to hypokalemia and metabolic alkalosis."
-            },
-            {
-                q: "Which of the following laboratory tests is often elevated in children with juvenile idiopathic arthritis?",
-                options: ["CBC", "ESR", "Blood glucose levels", "Hemoglobin levels"],
-                answer: 1,
-                explanation: "Erythrocyte Sedimentation Rate (ESR) is a non-specific marker of inflammation that is commonly elevated in active JIA."
-            },
-            {
-                q: "Rheumatic heart disease most commonly results from an untreated infection with which of the following organisms?",
-                options: ["Streptococcus pyogenes", "Staphylococcus aureus", "Escherichia coli", "Pseudomonas aeruginosa"],
-                answer: 0,
-                explanation: "Rheumatic fever and subsequent rheumatic heart disease develop as a complication of untreated Group A beta-hemolytic strep (Streptococcus pyogenes) pharyngitis."
-            },
-            {
-                q: "What is the first-line treatment for Guillain-Barrè Syndrome (GBS) in pediatric patients?",
-                options: ["Corticosteroids", "Intravenous immunoglobulin", "Antibiotics", "Antiviral therapy"],
-                answer: 1,
-                explanation: "Intravenous Immunoglobulin (IVIG) and plasmapheresis are the mainstay treatments to reduce the autoimmune response in GBS."
-            },
-            {
-                q: "Which clinical test is commonly used to assess for congenital hip dislocation in infants?",
-                options: ["Thompson test", "Barlow test", "McMurray test", "Apley test"],
-                answer: 1,
-                explanation: "The Barlow and Ortolani tests are pediatric orthopedic maneuvers used specifically to detect developmental dysplasia of the hip."
-            },
-            {
-                q: "Which type of juvenile idiopathic arthritis affects the whole body include high fever, child may feel very ill, appear pale, or developed rash, spleen and lymph nodes might become enlarged?",
-                options: ["Polyarticular JIA", "Oligoarticular JIA", "Systemic JIA", "Psoriatic arthritis"],
-                answer: 2,
-                explanation: "Systemic JIA affects the entire body, presenting with joint pain along with systemic features like high spiking fevers, macular rash, and organomegaly."
-            },
-            {
-                q: "Which type of seizure is characterized by brief episodes of staring or loss of awareness?",
-                options: ["Tonic-clonic seizure", "Atonic seizure", "Absence seizure", "Myoclonic seizure"],
-                answer: 2,
-                explanation: "Absence seizures (formerly petit mal) present as brief staring spells, unresponsiveness, and lack of motor activity, often mistaken for daydreaming."
-            },
-            {
-                q: "Which clinical sign may indicate significant left-to-right shunting in Patent Ductus Arteriosus?",
-                options: ["Cyanosis", "Clubbing of fingers", "Wide pulse pressure", "Elevated blood pressure"],
-                answer: 2,
-                explanation: "In PDA, blood shunts from the aorta to the pulmonary artery, leading to a low diastolic pressure and a characteristically wide pulse pressure and bounding pulses."
-            },
-            {
-                q: "When caring for a child with leukemia, which of the following nursing diagnoses is the highest priority?",
-                options: ["Activity intolerance", "Risk for infection", "Risk for impaired skin integrity", "Risk for constipation"],
-                answer: 1,
-                explanation: "Leukemia profoundly suppresses normal white blood cell production. Risk for infection (neutropenia) is severe and potentially life-threatening."
-            },
-            {
-                q: "The Nurse explains to the mother about the weight of the infant 'The birth weight of the infant should be doubled by 6 months of age.' It refers to:",
-                options: ["The Development of the infant", "The Growth of the infant", "The mental development of the infant", "The Cognitive development of the infant"],
-                answer: 1,
-                explanation: "Growth refers to the measurable physical increase in size (weight, height), whereas development refers to skill/functional acquisition."
-            },
-            {
-                q: "Which type of diabetes is most common in children?",
-                options: ["Type 1 diabetes", "Type 2 diabetes", "Gestational diabetes", "Maturity-Onset Diabetes of the Young (MODY)"],
-                answer: 0,
-                explanation: "Type 1 diabetes, an autoimmune destruction of pancreatic beta cells, accounts for the vast majority of childhood diabetes diagnoses."
-            },
-            {
-                q: "Which of the following conditions is caused by growth hormone deficiency in children?",
-                options: ["Gigantism", "Cushing's syndrome", "Dwarfism", "Acromegaly"],
-                answer: 2,
-                explanation: "A deficiency in pituitary growth hormone during childhood results in pituitary dwarfism (proportionate short stature)."
-            },
-            {
-                q: "If a healthcare provider suspects child abuse or neglect, they are:",
-                options: ["Required to keep confidential due to patience privacy laws", "Legally obligated to report it to the appropriate authorities", "Allow to ignore it if the parents seem responsible", "Expected to resolve the issues with family privately"],
-                answer: 1,
-                explanation: "Healthcare professionals are mandated reporters; suspicion of abuse legally overrides general patient confidentiality to protect the child."
-            },
-            {
-                q: "What is the primary treatment for acute lymphoblastic leukemia (ALL) in children?",
-                options: ["Chemotherapy", "Radiation therapy", "Immunotherapy", "Bone marrow transplantation"],
-                answer: 0,
-                explanation: "Systemic combination chemotherapy is the primary, standard, and highly successful initial treatment for childhood ALL."
-            },
-            {
-                q: "What is the primary goal of treatment for excessive lordosis in children?",
-                options: ["To achieve complete spinal correction", "To relieve pain and improve posture", "To prevent any surgical intervention", "To promote growth"],
-                answer: 1,
-                explanation: "Treatment for postural lordosis aims to relieve discomfort, strengthen core musculature, and improve overall posture and biomechanics."
-            },
-            {
-                q: "Which complication can result from untreated severe hyperbilirubinemia?",
-                options: ["Hydrocephalus", "Hypoglycemia", "Kernicterus", "Cerebral palsy"],
-                answer: 2,
-                explanation: "Severe, untreated hyperbilirubinemia allows unconjugated bilirubin to cross the blood-brain barrier, causing permanent neurological damage known as kernicterus."
-            },
-            {
-                q: "What is a characteristic feature of the tonsils during an examination in a child with tonsillitis?",
-                options: ["Atrophied tonsils", "Swollen and red tonsils", "White patches on the cheeks", "Clear and healthy appearance"],
-                answer: 1,
-                explanation: "Acute tonsillitis presents with enlarged, erythematous (red) tonsils, often accompanied by exudate or purulent discharge."
-            },
-            {
-                q: "Which of the following vessels carries deoxygenated blood from the fetus back to the placenta?",
-                options: ["Umbilical arteries", "Umbilical vein", "Ductus venosus", "Aorta"],
-                answer: 0,
-                explanation: "In fetal circulation, the two umbilical arteries carry deoxygenated blood and waste products away from the fetus to the placenta."
-            },
-            {
-                q: "In nephrotic syndrome, which of the following is the primary pathophysiological mechanism responsible for the condition?",
-                options: ["Glomerular inflammation leading to hematuria", "Increased glomerular permeability resulting in protein loss", "Decreased renal blood flow leading to hypertension", "Obstruction of the renal tubules leading to oliguria"],
-                answer: 1,
-                explanation: "Nephrotic syndrome is caused by increased permeability of the glomerular basement membrane, leading to massive proteinuria and subsequent hypoalbuminemia."
-            },
-            {
-                q: "Which of the following is a common symptom of a urinary tract infection in infants?",
-                options: ["Fever", "Cough", "Abdominal pain", "Diarrhea"],
-                answer: 0,
-                explanation: "Infants with UTIs often present with non-specific signs, but unexplained fever is the most common and prominent symptom."
-            },
-            {
-                q: "If a patient is harmed by a delay in treatment due to a nurse's negligence, which element must be established first to support a malpractice claim?",
-                options: ["Causation", "Damages", "Breach of duty", "Duty"],
-                answer: 3,
-                explanation: "To prove malpractice, the first legal element that must be established is that the nurse owed a 'Duty of Care' to the patient."
-            },
-            {
-                q: "What is the average birth weight of a term newborn?",
-                options: ["2.0-2.5 kg", "2.5-4.0 kg", "4.0-5.0 kg", "1.5-2.0 kg"],
-                answer: 1,
-                explanation: "A healthy term newborn typically weighs between 2.5 kg and 4.0 kg (approx 5.5 to 8.8 lbs)."
-            },
-            {
-                q: "The drug of choice for treating amoebiasis is:",
-                options: ["Amoxicillin", "Metronidazole", "Ciprofloxacin", "Tetracycline"],
-                answer: 1,
-                explanation: "Metronidazole (Flagyl) is an antiprotozoal medication widely considered the first-line treatment for amoebiasis."
-            },
-            {
-                q: "Which of the following symptoms is commonly associated with acute glomerulonephritis?",
-                options: ["Polyuria", "Hematuria", "Hypercalcemia", "Hyperkalemia"],
-                answer: 1,
-                explanation: "Acute glomerulonephritis causes inflammation of the glomeruli, classically resulting in gross hematuria (cola-colored urine) and mild proteinuria."
-            },
-            {
-                q: "What type of hearing test is often performed on infants to detect hearing impairment?",
-                options: ["Pure-tone audiometry", "Tympanometry", "Otoacoustic emissions testing", "Behavioral audiometry"],
-                answer: 2,
-                explanation: "Otoacoustic emissions (OAE) testing is a quick, objective, and non-invasive screening tool standard for newborn hearing assessments."
-            },
-            {
-                q: "In addition to cortisol, which other hormone is often deficient in Addison's disease?",
-                options: ["Estrogen", "Insulin", "Aldosterone", "Epinephrine"],
-                answer: 2,
-                explanation: "Primary adrenal insufficiency (Addison's) damages the adrenal cortex, reducing the production of both glucocorticoids (cortisol) and mineralocorticoids (aldosterone)."
-            },
-            {
-                q: "In therapeutic play, which approach encourages children to express their feelings about a specific stressful event (e.g., hospitalization, trauma)?",
-                options: ["Free play", "Structured, directive play", "Problem-solving games", "Competitive play"],
-                answer: 1,
-                explanation: "Structured or directive therapeutic play uses specific toys (like medical equipment) guided by staff to help children process hospital-specific fears."
-            },
-            {
-                q: "What is the preferred site for intramuscular injection in infants?",
-                options: ["Deltoid muscle", "Vastus lateralis muscle", "Ventrogluteal muscle", "Dorsogluteal muscle"],
-                answer: 1,
-                explanation: "The vastus lateralis (anterolateral thigh) is the largest and safest muscle mass in infants and toddlers for IM injections."
-            },
-            {
-                q: "What type of vomiting is most characteristic of pyloric stenosis?",
-                options: ["Bilious vomiting", "Non-bilious projectile vomiting", "Vomiting with blood", "Regurgitation of undigested food"],
-                answer: 1,
-                explanation: "Hypertrophy of the pylorus causes a gastric outlet obstruction, resulting in forceful, non-bilious projectile vomiting shortly after feeding."
-            },
-            {
-                q: "Which is the most common presenting symptom of acute leukemia in children?",
-                options: ["Bone pain", "Fever", "Easy bruising", "Fatigue"],
-                answer: 1,
-                explanation: "While bone pain, bruising, and fatigue are common, fever (due to underlying infection from neutropenia or hypermetabolism) is an extremely frequent presenting sign."
-            },
-            {
-                q: "Which birth injury involves damage to the upper arm due to excessive lateral traction during delivery?",
-                options: ["Clavicle fracture", "Erb's palsy", "Caput succedaneum", "Intracranial hemorrhage"],
-                answer: 1,
-                explanation: "Erb's palsy is a brachial plexus injury (affecting C5-C6 nerve roots) often caused by shoulder dystocia and excessive lateral neck traction."
-            },
-            {
-                q: "Which nutrient deficiency during pregnancy is sometimes associated with an increased risk of cleft lip and palate?",
-                options: ["Vitamin D", "Folic acid", "Calcium", "Iron"],
-                answer: 1,
-                explanation: "Folic acid deficiency is heavily linked to neural tube defects, and it also plays a critical role in mitigating the risk of orofacial clefts."
-            },
-            {
-                q: "When administering prostaglandin therapy in neonates with congenital heart malformations, what is the primary therapeutic goal?",
-                options: ["Close the ductus arteriosus", "Maintain the patency of the ductus arteriosus", "Reduce systemic vascular resistance", "Increase the heart's oxygen demand"],
-                answer: 1,
-                explanation: "In ductal-dependent congenital heart lesions, IV Prostaglandin E1 is given to keep the ductus arteriosus OPEN (patent) to ensure systemic or pulmonary blood flow."
-            },
-            {
-                q: "In Hirschsprung disease, the absence of which cells causes the condition?",
-                options: ["Goblet cells", "Parietal cells", "Ganglion cells", "Epithelial cells"],
-                answer: 2,
-                explanation: "Hirschsprung disease is a congenital aganglionic megacolon caused by the absence of parasympathetic ganglion cells in a segment of the bowel, preventing normal peristalsis."
-            },
-            {
-                q: "What is the primary cause of cystic fibrosis?",
-                options: ["Viral infection", "Environmental factors", "Genetic mutation", "Bacterial infection"],
-                answer: 2,
-                explanation: "Cystic fibrosis is an autosomal recessive genetic disorder caused by mutations in the CFTR gene, leading to thick, sticky exocrine secretions."
-            },
-            {
-                q: "How long should a child remain in the position after receiving nasal drops?",
-                options: ["1-2 minutes", "5-10 minutes", "15-30 minutes", "No need to stay still"],
-                answer: 1,
-                explanation: "To allow the medication to properly coat the nasal mucosa and prevent immediate drainage down the throat, the child should remain supine for about 5-10 minutes."
-            },
-            {
-                q: "Which of the following is a common symptom of hearing impairment in children?",
-                options: ["Difficulty with balance", "Frequent headaches", "Delayed speech and language development", "Excessive crying"],
-                answer: 2,
-                explanation: "Normal hearing is crucial for language acquisition; profound delays in speech and language milestones are hallmark signs of hearing impairment."
-            },
-            {
-                q: "Which of the following is a common causative organism of acute otitis media in children?",
-                options: ["Staphylococcus aureus", "Streptococcus pneumoniae", "Escherichia coli", "Mycobacterium tuberculosis"],
-                answer: 1,
-                explanation: "Streptococcus pneumoniae, Haemophilus influenzae, and Moraxella catarrhalis are the most common bacterial causes of acute otitis media."
-            },
-            {
-                q: "Which of the following is a common challenge faced by infants with cleft palate?",
-                options: ["Difficulty swallowing", "Difficulty breathing", "Difficulty with feeding", "Difficulty walking"],
-                answer: 2,
-                explanation: "A cleft palate prevents the infant from forming a negative pressure seal in the mouth, making sucking and feeding extremely difficult."
-            },
-            {
-                q: "A child with severe diarrhea is at risk for which type of electrolyte imbalance?",
-                options: ["Hyponatremia and hypokalemia", "Hyponatremia and hypokalemia (Option repeated)", "Hypocalcemia and hypermagnesemia", "Hyperphosphatemia and hyperkalemia"],
-                answer: 0,
-                explanation: "Massive fluid loss in diarrhea leads to severe loss of sodium (hyponatremia) and potassium (hypokalemia), requiring rapid rehydration."
-            },
-            {
-                q: "When does the posterior fontanelle (soft spot) typically close?",
-                options: ["By 2 month of age", "By 6 month of age", "By 18 month of age", "By 18 month of age (Option repeated)"],
-                answer: 0,
-                explanation: "The small posterior fontanelle usually closes very early, typically between 6 to 8 weeks (about 2 months) of age."
-            },
-            {
-                q: "A child with Guillain-Barré Syndrome (GBS) develops sudden bradycardia and hypotension. This is most likely due to:",
-                options: ["Renal failure", "Hyperkalemia", "Myocardial infarction", "Autonomic dysfunction"],
-                answer: 3,
-                explanation: "GBS can involve the autonomic nervous system (dysautonomia), leading to dangerous fluctuations in heart rate (bradycardia) and blood pressure."
-            },
-            {
-                q: "When monitoring the blood glucose level of a 12-year-old child with type 2 DM, your reading is 50 mg/dL. Which is the most appropriate action?",
-                options: ["Encourage the child to get out of bed and increase activity.", "Take the child's vital signs.", "Ask the child about frequent urine output.", "Give the child 4 oz of orange juice."],
-                answer: 3,
-                explanation: "A blood sugar of 50 mg/dL indicates hypoglycemia. The immediate nursing priority is to provide a fast-acting simple carbohydrate, like 4 oz of juice."
-            },
-            {
-                q: "What is the most common pathogen associated with urinary tract infections in children?",
-                options: ["Escherichia coli", "Streptococcus pneumoniae", "Staphylococcus aureus", "Klebsiella pneumoniae"],
-                answer: 0,
-                explanation: "E. coli is an intestinal flora and is responsible for about 80-90% of pediatric urinary tract infections due to perineal contamination."
-            },
-            {
-                q: "What is the typical age range for the first tooth to appear in infants?",
-                options: ["2-4 months", "4-6 months", "6-12 months", "12-18 months"],
-                answer: 2,
-                explanation: "The first primary teeth (lower central incisors) typically erupt between 6 and 10 months of age."
-            }
-        ];
+        const quizData = [{"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "Which of the following substances is classified as a macronutrient required in large daily quantities, yet yields zero metabolic calories upon ingestion?", "options": ["A) Dietary Fiber", "B) Water", "C) Vitamin C", "D) Unsaturated Fatty Acid"], "answer": 1, "rationale": "Water is a vital macronutrient needed in large quantities (approx. 2 liters or 8 glasses/day) to support cellular homeostasis, joint lubrication, and circulatory volume, but it provides 0 kcal/gram of energy."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A patient with newly diagnosed Type 2 Diabetes Mellitus asks why whole grains and soluble fiber are preferred over refined sugars. Which physiological rationale should the nurse provide?", "options": ["A) Simple sugars provide long-lasting satiety and blunt postprandial glucagon secretion", "B) Complex carbohydrates and fiber are digested slowly, preventing rapid blood glucose spikes and promoting prolonged satiety", "C) Dietary fiber is completely absorbed into portal circulation to synthesize hepatic glycogen", "D) Refined starches suppress hepatic gluconeogenesis more effectively than unrefined fiber"], "answer": 1, "rationale": "Fiber and unprocessed complex starches take prolonged time to digest and absorb, which blunts postprandial glucose surges, improves insulin sensitivity, and sustains satiety."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A strict vegan patient requires nutritional guidance on achieving adequate protein quality. Which statement accurately reflects the physiology of complete versus incomplete dietary proteins?", "options": ["A) All plant-based foods inherently contain all 20 essential amino acids in optimal biological proportions", "B) Complete proteins contain all essential amino acids that the human body cannot synthesize endogenously and must obtain from diet", "C) The body can endogenously synthesize all 20 amino acids provided total caloric intake meets daily basal metabolic needs", "D) Incomplete proteins lack non-essential amino acids, which must be supplemented with fat-soluble vitamins"], "answer": 1, "rationale": "Complete proteins contain all essential amino acids (which cannot be synthesized by the body). Most plant sources lack one or more essential amino acids, necessitating complementary protein pairing across the day."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A patient on an extreme fat-free fad diet is at high risk for developing clinical deficiencies of which essential nutrient group?", "options": ["A) Water-soluble B-complex vitamins and Vitamin C", "B) Fat-soluble Vitamins A, D, E, and K", "C) Trace minerals including iron and zinc", "D) Electrolytes including sodium and potassium"], "answer": 1, "rationale": "Dietary lipids are physiologically required to facilitate the micellar emulsification, intestinal absorption, and transport of fat-soluble vitamins (A, D, E, and K)."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "When assessing the hydration status of an adult inpatient, which clinical finding is the most reliable objective indicator of adequate systemic hydration?", "options": ["A) Production of pale yellow urine with an output greater than 30 mL/hr", "B) Serum sodium level of 152 mEq/L", "C) Skin turgor exhibiting prolonged sternal tenting", "D) Concentrated amber urine with elevated specific gravity"], "answer": 0, "rationale": "Adequate hydration is objectively reflected by pale yellow, dilute urine with normal specific gravity and consistent urinary output exceeding 30 mL/hr (or 0.5 mL/kg/hr)."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "According to established dietary guidelines, what is the recommended daily intake of Potassium for healthy adults, and what is a primary clinical consequence of chronic hypokalemia?", "options": ["A) 1,500 mg/day; leading to severe hypercalcemia", "B) 2,300 mg/day; leading to acute metabolic alkalosis", "C) 4,700 mg/day; leading to hypertension, cardiac dysrhythmias, and elevated risk of kidney stones", "D) 7,000 mg/day; leading to chronic peripheral vasodilation"], "answer": 2, "rationale": "The recommended adult daily potassium intake is 4,700 mg. Insufficient potassium intake impairs neuromuscular conduction, elevating blood pressure and increasing risk of dysrhythmias and nephrolithiasis."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "An adult hypertensive patient is advised to restrict dietary sodium intake. What is the current recommended upper limit for daily sodium consumption?", "options": ["A) 500 mg per day (approx. 1/8 teaspoon)", "B) 1,200 mg per day (approx. 1/4 teaspoon)", "C) 2,300 mg per day (approx. 1 teaspoon of table salt)", "D) 4,500 mg per day (approx. 2 teaspoons of table salt)"], "answer": 2, "rationale": "Dietary guidelines advise consuming no more than 2,300 mg of sodium daily (approximately 1 teaspoon of salt) to decrease the risk of hypertension, cardiovascular disease, and stroke."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A patient recovering from major abdominal surgery exhibits poor surgical wound healing, bilateral alopecia, and blunted taste and smell sensations (dysgeusia). Which micronutrient deficiency is most likely?", "options": ["A) Copper", "B) Zinc", "C) Manganese", "D) Selenium"], "answer": 1, "rationale": "Zinc is an essential cofactor in collagen synthesis, cellular proliferation, immune response, and sensory gustatory/olfactory function. Severe deficiency manifests as impaired wound healing, alopecia, and dysgeusia."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "An adult female in her reproductive years requires 18 mg of dietary iron daily, whereas adult males require only 8 mg daily. What physiological factor accounts for this difference?", "options": ["A) Females exhibit lower gastrointestinal absorption of non-heme iron", "B) Periodic monthly blood loss through menstruation increases daily iron turnover", "C) Elevated female estrogen levels accelerate renal iron excretion", "D) Males store significantly less ferritin in hepatic and reticuloendothelial tissues"], "answer": 1, "rationale": "Menstruating females experience regular blood loss, increasing physiological demand for dietary iron to 18 mg/day to sustain hemoglobin synthesis and prevent microcytic anemia."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A patient presenting with garlic breath odor, nausea, fatigue, brittle nails, and diffuse hair loss reports consuming copious amounts of Brazil nuts daily. The nurse suspects toxicity of which trace element?", "options": ["A) Selenium", "B) Chromium", "C) Iodine", "D) Cobalt"], "answer": 0, "rationale": "Brazil nuts are exceptionally concentrated sources of selenium (RDA is 55 mcg/day). Toxic accumulation (selenosis) classically causes garlic breath odor, gastrointestinal distress, brittle nails, and alopecia."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "Why is fat-soluble vitamin toxicity (hypervitaminosis) clinically far more common than water-soluble vitamin toxicity?", "options": ["A) Fat-soluble vitamins degrade into toxic metabolites upon hepatic first-pass transit", "B) Water-soluble vitamins cannot be absorbed through intestinal microvilli in large amounts", "C) Fat-soluble vitamins are stored in adipose tissue and hepatic parenchyma and are excreted slowly", "D) Water-soluble vitamins bind irreversibly to serum albumin and are cleared by the lymphatic system"], "answer": 2, "rationale": "Unlike water-soluble vitamins (B-complex and C) which are rapidly cleared in urine, fat-soluble vitamins (A, D, E, K) accumulate in liver and adipose reserves, predisposing patients to toxicity from megadoses."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "An adult client measures 1.70 meters in height and weighs 85 kilograms. What is the client's calculated Body Mass Index (BMI), and how is it classified?", "options": ["A) BMI 24.2 kg/m\u00b2; Normal weight", "B) BMI 29.4 kg/m\u00b2; Overweight", "C) BMI 32.5 kg/m\u00b2; Class I Obesity", "D) BMI 17.8 kg/m\u00b2; Underweight"], "answer": 1, "rationale": "BMI = weight (kg) / [height (m)]\u00b2 = 85 / (1.70 \u00d7 1.70) = 85 / 2.89 \u2248 29.41 kg/m\u00b2. A BMI between 25.0 and 29.9 kg/m\u00b2 is classified as Overweight."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A nurse is evaluating nutritional laboratory markers for a critically ill patient receiving Total Parenteral Nutrition (TPN). Which serum protein is the most sensitive indicator of recent acute protein intake?", "options": ["A) Serum Albumin (half-life of 20 days)", "B) Serum Prealbumin (half-life of 2 to 3 days)", "C) Serum Transferrin (half-life of 8 days)", "D) Serum Hemoglobin (half-life of 120 days)"], "answer": 1, "rationale": "Prealbumin (normal 15\u201336 mg/dL) has a short half-life of 2\u20133 days, making it the most sensitive and responsive biochemical marker for assessing acute nutritional recovery and TPN efficacy."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "To determine the severity of catabolism and skeletal muscle mass breakdown in a severely malnourished patient, the clinician should monitor which 24-hour diagnostic parameter?", "options": ["A) 24-hour urine creatinine excretion", "B) 24-hour fecal urobilinogen level", "C) 24-hour urinary calcium clearance", "D) 24-hour postprandial blood glucose profile"], "answer": 0, "rationale": "Creatinine is released proportionally to muscle catabolism. A 24-hour urine collection measuring creatinine clearance and excretion reflects the degree of skeletal muscle wasting and negative nitrogen balance."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "A postoperative patient has tolerated a Clear Liquid diet and is advanced to a Full Liquid diet. Which food item is appropriate to add to this patient's meal tray?", "options": ["A) Chicken broth and apple juice", "B) Plain gelatin (Jell-O) and ginger ale", "C) Creamed tomato soup, vanilla pudding, and whole milk", "D) Pureed braised beef and mashed sweet potatoes"], "answer": 2, "rationale": "Full liquid diets encompass all clear liquids plus foods that are liquid or liquefiable at room temperature with opaque residue, including milk, creamed soups, pudding, and smooth cooked cereals."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "What is the primary evidence-based nursing method to verify the correct anatomic position of a small-bore nasogastric (NG) feeding tube prior to initiating each feeding?", "options": ["A) Injecting 30 mL of air through the tube while auscultating the epigastrium (the 'whoosh test')", "B) Comparing the marked external exit-site tube length with documented post-X-ray placement length", "C) Immersing the proximal tube end in water to observe for rhythmic bubbling during respiration", "D) Relying solely on the patient's verbal confirmation of absence of nausea"], "answer": 1, "rationale": "Auscultating air ('whoosh test') is unreliable and unsafe. Guidelines dictate verifying tube marking at the naris against post-X-ray baseline documentation and checking gastric aspirate pH."}, {"unit": "Unit 1: Introduction to Nutrition & Assessment", "question": "To minimize the clinical risk of pulmonary aspiration in a patient receiving continuous enteral tube feeding via a PEG tube, the nurse must maintain the head of the bed (HOB) at:", "options": ["A) Completely flat in a supine position (0\u00b0)", "B) Trendelenburg position (tilted -15\u00b0)", "C) Elevated between 30\u00b0 and 45\u00b0 continuously", "D) Prone position with bilateral knee flexion"], "answer": 2, "rationale": "Elevating the head of the bed to 30\u00b0\u201345\u00b0 during feedings and for at least 1 hour post-feeding prevents gastroesophageal reflux and life-threatening pulmonary aspiration of gastric contents."}, {"unit": "Unit 2: Maternal Nutrition", "question": "A woman planning a pregnancy is prescribed periconceptional Folic Acid (Vitamin B9). What physiological embryological milestone requires folate availability before day 28 post-conception?", "options": ["A) Ossification of the embryonic long bones", "B) Closure of the embryonic neural tube", "C) Production of fetal pulmonary surfactant", "D) Descent of the fetal testes into the scrotum"], "answer": 1, "rationale": "The embryonic neural tube closes within the first 28 days post-conception (often before pregnancy is confirmed). Periconceptional folate prevents neural tube defects such as spina bifida and anencephaly."}, {"unit": "Unit 2: Maternal Nutrition", "question": "Which statement accurately describes the physiological adjustment of maternal Basal Metabolic Rate (BMR) during a healthy pregnancy?", "options": ["A) BMR declines by 30% to conserve maternal caloric stores for active labor", "B) BMR begins rising by the fourth month of gestation and increases to 15%\u201320% above normal baseline by term", "C) BMR remains completely unchanged due to homeostatic maternal thyroid suppression", "D) BMR surges exclusively in the first two weeks post-conception then plateaus below baseline"], "answer": 1, "rationale": "Maternal BMR rises noticeably starting around the 4th month of gestation, reaching 15% to 20% above non-pregnant levels by the third trimester due to accelerated fetal and placental tissue synthesis."}, {"unit": "Unit 2: Maternal Nutrition", "question": "During late gestation, which metabolic shift occurs in maternal energy utilization to ensure adequate fetal development?", "options": ["A) Maternal tissues preferentially oxidize lipids for fuel, sparing glucose for rapid fetal placental uptake", "B) Maternal cells break down endogenous muscle proteins exclusively to provide amino acid energy", "C) Maternal hepatic tissues cease gluconeogenesis and rely solely on anaerobic glycolysis", "D) The placenta blocks maternal glucose transfer and forces the fetus to consume ketone bodies"], "answer": 0, "rationale": "Pregnancy induces maternal peripheral insulin resistance, shifting maternal metabolism toward fat mobilization (lipolysis) so that precious circulating glucose is spared for transplacental fetal transport."}, {"unit": "Unit 2: Maternal Nutrition", "question": "What is the primary physiological mechanism responsible for both increased gastrointestinal nutrient absorption and common complaints of constipation in pregnancy?", "options": ["A) Hypersecretion of gastrin leading to accelerated gastric emptying", "B) High progesterone levels inducing generalized smooth muscle relaxation and slowed intestinal transit", "C) Mechanical obstruction of the pyloric sphincter by the descending placenta", "D) Severe depletion of maternal pancreatic amylase and lipase enzymes"], "answer": 1, "rationale": "Elevated progesterone relaxes gastrointestinal smooth muscle, slowing peristaltic motility. While this optimizes intestinal nutrient absorption, it frequently causes constipation and gastroesophageal reflux."}, {"unit": "Unit 2: Maternal Nutrition", "question": "The clinical phenomenon termed 'physiologic anemia of pregnancy' develops primarily as a result of which hematological alteration?", "options": ["A) Decreased maternal bone marrow production of red blood cells", "B) Expansion of maternal plasma volume (approx. 40%\u201350%) exceeding the expansion of RBC mass (approx. 20%\u201330%)", "C) Excessive renal clearance and urinary excretion of serum ferritin", "D) Premature splenic destruction of maternal erythrocytes"], "answer": 1, "rationale": "During pregnancy, maternal plasma volume expands by 40%\u201350% whereas red blood cell volume increases by only 20%\u201330%. This disproportionate expansion causes relative hemodilution, lowering baseline Hgb/Hct."}, {"unit": "Unit 2: Maternal Nutrition", "question": "What is the recommended additional daily caloric intake for a pregnant client with a normal pre-pregnancy BMI during the second and third trimesters?", "options": ["A) No additional calories (+0 kcal/day)", "B) An additional 100 to 150 kcal/day", "C) An additional 300 to 450 kcal/day", "D) An additional 1,000 to 1,200 kcal/day"], "answer": 2, "rationale": "Caloric needs do not increase in the first trimester, but require an additional ~340 kcal/day in the second trimester and ~450 kcal/day in the third trimester (+300 to +450 kcal/day average)."}, {"unit": "Unit 2: Maternal Nutrition", "question": "Daily dietary protein requirements increase during pregnancy by an additional +25 g/day (totaling ~71 g/day). What is the primary physiological purpose of this increase?", "options": ["A) To supply primary metabolic energy for maternal basal thermogenesis", "B) To support rapid fetal organogenesis, placental expansion, and maternal uterine and mammary hypertrophy", "C) To neutralize elevated gastric acid secretions and prevent morning sickness", "D) To serve as an osmotic laxative preventing gestational constipation"], "answer": 1, "rationale": "The additional 25 grams of daily protein is dedicated to rapid synthesis of embryonic and fetal tissues, placental vascular growth, expanding maternal red blood cell mass, and breast tissue development."}, {"unit": "Unit 2: Maternal Nutrition", "question": "According to the Institute of Medicine (IOM) guidelines, what is the recommended total gestational weight gain for a woman with a normal baseline BMI (18.5\u201324.9 kg/m\u00b2)?", "options": ["A) 11 to 20 lbs (5.0 to 9.0 kg)", "B) 15 to 25 lbs (7.0 to 11.5 kg)", "C) 25 to 35 lbs (11.5 to 16.0 kg)", "D) 40 to 50 lbs (18.0 to 23.0 kg)"], "answer": 2, "rationale": "Women entering pregnancy with a normal BMI (18.5\u201324.9) should gain 25 to 35 lbs (11.5\u201316.0 kg) throughout gestation to support optimal fetal development without excessive postpartum weight retention."}, {"unit": "Unit 2: Maternal Nutrition", "question": "A pregnant woman whose gestational weight gain is severely inadequate (<10 lbs throughout gestation) places her neonate at highest risk for which clinical condition?", "options": ["A) Fetal macrosomia and birth trauma", "B) Intrauterine Growth Restriction (IUGR) and Low Birth Weight (<2,500 g)", "C) Neonatal polycythemia and hyperbilirubinemia", "D) Congenital neural tube hypertrophy"], "answer": 1, "rationale": "Insufficient maternal weight gain restricts placental perfusion and nutrient transfer, resulting in intrauterine growth restriction (IUGR), low birth weight (LBW), and increased perinatal morbidity."}, {"unit": "Unit 2: Maternal Nutrition", "question": "When teaching a pregnant client regarding oral iron supplementation (ferrous sulfate), which beverage should the nurse recommend to maximize non-heme iron absorption?", "options": ["A) A mug of hot whole milk", "B) A cup of freshly brewed black tea", "C) A glass of fresh orange juice (rich in ascorbic acid)", "D) An iced coffee with cream"], "answer": 2, "rationale": "Ascorbic acid (Vitamin C) reduces ferric iron to the more absorbable ferrous state, significantly enhancing absorption. Tannins (tea), polyphenols (coffee), and calcium (milk) inhibit iron uptake."}, {"unit": "Unit 2: Maternal Nutrition", "question": "A 16-year-old pregnant adolescent asks about her daily Calcium requirements. Which dietary allowance should the nurse reinforce for pregnant adolescents under 19 years of age?", "options": ["A) 800 mg/day", "B) 1,000 mg/day", "C) 1,300 mg/day", "D) 2,500 mg/day"], "answer": 2, "rationale": "Pregnant adolescents (<19 years) require 1,300 mg of calcium daily (compared to 1,000 mg for adults \u226519) because their own skeletal mineralization is ongoing concurrently with fetal bone growth."}, {"unit": "Unit 2: Maternal Nutrition", "question": "Why are pregnant clients explicitly cautioned against taking high-dose supplements of preformed Vitamin A (Retinol)?", "options": ["A) High doses act as a known teratogen, causing cranial neural crest and cardiac fetal malformations", "B) Retinol directly suppresses maternal thyroid-stimulating hormone (TSH)", "C) Excess Vitamin A permanently blocks the transplacental diffusion of oxygen", "D) Retinol triggers sudden severe maternal gestational diabetes"], "answer": 0, "rationale": "Preformed Vitamin A (retinol/retinoids) in megadoses is teratogenic, leading to severe fetal craniofacial, thymic, and cardiac malformations. Beta-carotene from food does not produce this teratogenic risk."}, {"unit": "Unit 2: Maternal Nutrition", "question": "Severe, uncorrected maternal Iodine deficiency during pregnancy leads to irreversible fetal cognitive impairment, deaf-mutism, and short stature, clinically diagnosed as:", "options": ["A) Scurvy", "B) Cretinism (Congenital Hypothyroidism)", "C) Phenylketonuria", "D) Galactosemia"], "answer": 1, "rationale": "Iodine is essential for maternal and fetal thyroid hormone synthesis. Profound maternal iodine deficiency causes congenital hypothyroidism, presenting as cretinism with irreversible neurodevelopmental deficit."}, {"unit": "Unit 2: Maternal Nutrition", "question": "During a prenatal clinic visit, a client confesses an irresistible craving to consume laundry starch and soil. The nurse recognizes this behavior as pica and evaluates the client for:", "options": ["A) Iron deficiency anemia", "B) Hypervitaminosis D", "C) Hypoparathyroidism", "D) Acute cholecystitis"], "answer": 0, "rationale": "Pica is the compulsive craving and ingestion of non-nutritive substances (dirt, clay, starch, ice). It is clinically strongly correlated with iron deficiency anemia and zinc deficiency."}, {"unit": "Unit 2: Maternal Nutrition", "question": "Which dietary management strategy is foundational for a pregnant client newly diagnosed with Gestational Diabetes Mellitus (GDM)?", "options": ["A) Complete elimination of all carbohydrates and institution of a ketogenic diet", "B) Distributing low-glycemic, complex carbohydrates evenly across 3 small meals and 2 to 3 snacks daily", "C) Consuming simple fruit juices every 2 hours to avoid hypoglycemia", "D) Restricting total daily caloric intake to under 1,000 kcal/day"], "answer": 1, "rationale": "Management of GDM focuses on distributing complex, low-glycemic carbohydrates evenly across small, frequent meals and snacks to prevent hyperglycemia and postprandial glucose swings while avoiding ketosis."}, {"unit": "Unit 2: Maternal Nutrition", "question": "A prenatal nurse assesses a client at 28 weeks gestation who exhibits a blood pressure of 148/96 mmHg and 2+ proteinuria on dipstick. This clinical presentation is hallmark for:", "options": ["A) Normal physiologic edema of pregnancy", "B) Gestational hypertension without complications", "C) Preeclampsia", "D) Hyperemesis gravidarum"], "answer": 2, "rationale": "Preeclampsia is defined by new-onset hypertension (BP \u2265140/90 mmHg) accompanied by proteinuria (>300 mg/24 hr or \u22651+ on dipstick) occurring after 20 weeks of gestation."}, {"unit": "Unit 2: Maternal Nutrition", "question": "An exclusively breastfeeding mother inquires about her postpartum nutritional requirements. How many additional calories per day are recommended during the first 6 months of lactation?", "options": ["A) +100 to +150 kcal/day", "B) +450 to +500 kcal/day", "C) +900 to +1,000 kcal/day", "D) No additional calories above pre-pregnancy intake"], "answer": 1, "rationale": "Human milk production requires substantial energy. An exclusively breastfeeding mother requires an additional 450 to 500 kcal/day during the first 6 months postpartum to maintain milk supply without maternal depletion."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Global pediatric health authorities (WHO, AAP) recommend exclusive breastfeeding of healthy term infants for what initial duration of life?", "options": ["A) The first 2 to 4 weeks of life", "B) The first 6 months of life", "C) The first 12 months without any solid foods", "D) Up to 2 years without introducing water or solids"], "answer": 1, "rationale": "Exclusive breastfeeding is recommended for the first 6 months of life to provide optimal nutrition, immunological protection, and gastrointestinal maturation before complementary foods begin."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "During the first 2 to 3 days postpartum, maternal breasts secrete colostrum. In what way does colostrum differ compositionally from mature human breast milk?", "options": ["A) Colostrum is higher in lactose and saturated fat but lacks immunoglobulins", "B) Colostrum is richer in protein and Immunoglobulin A (IgA), but lower in fat and carbohydrates", "C) Colostrum is identical in macronutrient ratios to mature breast milk", "D) Colostrum contains higher fat concentrations to induce rapid neonatal weight gain"], "answer": 1, "rationale": "Colostrum is a thick, yellow fluid rich in protein, secretory IgA, and white blood cells that coats and seals the infant gut against pathogens. It is lower in fat and lactose than mature breast milk."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "If an infant cannot be breastfed and donor human milk is unavailable, what is the only medically approved, safe dietary alternative during the first 6 months of life?", "options": ["A) Diluted whole pasteurized cow's milk with corn syrup", "B) Homemade plant-based almond or oat milk concoction", "C) Iron-fortified commercial infant formula", "D) Full-strength evaporated goat's milk"], "answer": 2, "rationale": "Iron-fortified commercial infant formula is specifically engineered to mimic the nutritional profile of human milk while avoiding high renal solute loads. Homemade or animal milks are unsafe for young infants."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "A breastfed term newborn is discharged home. Which daily vitamin supplement must the nurse instruct the parents to administer beginning in the first few days of life?", "options": ["A) Vitamin C drops (50 mg/day)", "B) Vitamin D drops (400 IU/day)", "C) Vitamin E drops (100 IU/day)", "D) Vitamin B12 injections monthly"], "answer": 1, "rationale": "Human breast milk contains minimal Vitamin D. To prevent rickets and hypocalcemia, all exclusively or partially breastfed infants should receive 400 IU of oral Vitamin D daily starting shortly after birth."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Why do exclusively breastfed full-term infants require a supplemental source of dietary iron starting at approximately 4 to 6 months of age?", "options": ["A) Human milk iron becomes chemically inactive after 3 months of lactation", "B) Endogenous fetal iron stores accumulated during the third trimester become physiologically exhausted by 4 to 6 months", "C) Intestinal microvilli lose the enzymatic capacity to absorb lactoferrin-bound iron", "D) Maternal prolactin production triggers active iron chelation in breast tissues"], "answer": 1, "rationale": "Full-term infants are born with hepatic iron reserves acquired transplacentally during the 3rd trimester. By 4 to 6 months, these stores deplete, requiring iron-rich complementary foods (e.g., fortified cereals) or supplements."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Which developmental milestone signifies that a 6-month-old infant is physiologically and neuromotorically ready for complementary solid foods?", "options": ["A) Presence of an active, persistent tongue-extrusion reflex", "B) Ability to sit upright with good head and neck control and loss of the tongue-extrusion reflex", "C) Appearance of a full set of 20 deciduous teeth", "D) Demonstration of a mature pincer grasp using the thumb and index finger"], "answer": 1, "rationale": "Infants are ready for solids when they have good head/trunk control, can sit with support, show interest in food, and have lost the primitive tongue-thrust (extrusion) reflex that pushes solid food out of the mouth."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "When initiating complementary feeding at 6 months of age, what guideline should parents follow to identify potential adverse food allergies or intolerances?", "options": ["A) Introduce multiple mixed-food casseroles simultaneously to promote diverse gut flora", "B) Introduce single-ingredient foods one at a time, waiting 3 to 5 days before introducing another new food", "C) Blend all purees with whole cow's milk to enhance protein absorption", "D) Season all introductory purees with honey to enhance taste acceptance"], "answer": 1, "rationale": "Introducing single-ingredient foods one at a time with a 3- to 5-day observation window allows parents and clinicians to identify allergic reactions (urticaria, vomiting, diarrhea, wheezing) to a specific food."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Why must parents strictly avoid feeding honey or corn syrup to infants younger than 12 months of age?", "options": ["A) It causes acute precipitation of calcium oxalate kidney stones", "B) It contains spores of Clostridium botulinum, which can germinate in the immature infant gut and cause infantile botulism", "C) It irreversibly destroys gastric parietal cells and intrinsic factor", "D) It induces severe hyperbilirubinemia and kernicterus"], "answer": 1, "rationale": "Honey can harbor Clostridium botulinum spores. In an infant's immature gastrointestinal tract, these spores germinate and produce neurotoxins, leading to hypotonia ('floppy baby'), respiratory paralysis, and death."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Why is unmodified whole cow's milk strictly contraindicated as a primary beverage for infants under 12 months of age?", "options": ["A) It contains excessive linoleic acid that leads to severe metabolic alkalosis", "B) It is poor in bioavailable iron, can cause microscopic gastrointestinal bleeding, and exerts an excessively high renal solute load", "C) It lacks calcium and phosphorus needed for neonatal skeletal development", "D) It accelerates gastric emptying so rapidly that macronutrients cannot be digested"], "answer": 1, "rationale": "Cow's milk possesses high protein and mineral concentrations that stress immature infant kidneys (high renal solute load), has low iron bioavailability, and can cause occult intestinal bleeding leading to severe anemia."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Current evidence-based pediatric allergy guidelines recommend which practice regarding highly allergenic complementary foods (such as smooth peanut butter) in infants?", "options": ["A) Strict avoidance of all peanut and tree nut products until age 5 years", "B) Introducing developmentally appropriate, age-safe peanut products around 6 months of age to reduce allergy risk", "C) Administering prophylactic antihistamines with every new food introduced", "D) Introducing egg whites and shellfish exclusively before 3 months of life"], "answer": 1, "rationale": "Landmark clinical trials (LEAP study) showed that introducing age-appropriate, smooth peanut-containing foods around 6 months of age significantly reduces the risk of developing a peanut allergy."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Which of the following foods presents the highest mechanical choking hazard for an 11-month-old infant and requires modification prior to serving?", "options": ["A) Well-mashed avocado", "B) Whole round grapes and intact hot dog coin slices", "C) Soft iron-fortified oatmeal porridge", "D) Pureed cooked butternut squash"], "answer": 1, "rationale": "Smooth, round, firm foods such as whole grapes, round hot dog slices, whole cherry tomatoes, and nuts can completely occlude the pediatric airway and should be quartered or sliced lengthwise."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "When a toddler transitions from infant formula/breast milk to cow's milk at 12 months of age, why is Whole (full-fat) Cow's Milk recommended between ages 1 and 2 years?", "options": ["A) Toddlers cannot digest proteins in non-fat or skim milk", "B) Dietary fat and cholesterol are critical for rapid central nervous system myelination and brain growth", "C) Whole milk contains significantly more iron than reduced-fat milk", "D) Skim milk triggers severe autoimmune insulitis in early childhood"], "answer": 1, "rationale": "Between 1 and 2 years of age, whole cow's milk is recommended because dietary lipids and essential fatty acids are necessary for myelin sheath synthesis, neurological development, and somatic growth."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "A 20-month-old toddler consumes 36 ounces (approx. >1,000 mL) of cow's milk daily and refuses solid table foods. Laboratory tests reveal a hemoglobin of 8.2 g/dL. What condition does this represent?", "options": ["A) Hemolytic uremic syndrome", "B) 'Milk Anemia' (Iron deficiency anemia caused by excessive milk displacement of iron-rich solids)", "C) Aplastic anemia secondary to viral bone marrow suppression", "D) Thalassemia major"], "answer": 1, "rationale": "Excessive intake of cow's milk (>24 oz or 720 mL/day) creates a false sense of fullness, displacing iron-dense solid foods and causing microcytic hypochromic 'milk anemia'. Intake should be limited to 16\u201324 oz/day."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "A mother is distressed because her 2-year-old child suddenly eats markedly less than during infancy and only wants to eat macaroni for three consecutive days ('food jag'). How should the nurse explain this?", "options": ["A) The child is exhibiting clinical signs of an acute intestinal malabsorption disorder", "B) This represents 'physiologic anorexia' and normal toddler food jags due to decelerated growth velocity", "C) The child requires immediate appetite-stimulant pharmacotherapy", "D) The parents should force-feed the child balanced meals to prevent developmental regression"], "answer": 1, "rationale": "Toddlers experience a marked deceleration in growth rate compared to infancy, leading to 'physiologic anorexia' and sporadic food jags. This is normal developmental behavior and requires patience, not force-feeding."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "Which nighttime practice is the leading preventable cause of Early Childhood Caries ('Baby Bottle Tooth Decay') in infants and toddlers?", "options": ["A) Allowing the infant to fall asleep with a bottle containing milk, formula, or juice", "B) Offering a pacifier coated with plain water", "C) Cleaning the infant's gums with a soft damp cloth after feeding", "D) Providing 400 IU of oral Vitamin D drops at bedtime"], "answer": 0, "rationale": "Putting an infant or toddler to bed with a bottle containing carbohydrate-rich liquids (milk, formula, juice) allows sugars to pool around maxillary incisors, where oral bacteria ferment them into enamel-eroding acid."}, {"unit": "Unit 3: Infancy & Preschool Nutrition", "question": "What is the widely recognized pediatric dietary guideline for estimating appropriate food portion sizes for toddlers and preschool-aged children?", "options": ["A) 1 adult-sized cup per year of age", "B) 1 tablespoon of each food group per year of the child's age", "C) Half of an adult dinner plate regardless of age", "D) Unrestricted portions until the child leaves food on the plate"], "answer": 1, "rationale": "A practical clinical rule of thumb for toddler and preschool portion sizing is approximately 1 tablespoon of each food item per year of age (e.g., a 2-year-old gets 2 tablespoons of vegetables, 2 tbsp of meat, etc.)."}];
 
-        let currentQuestionIndex = 0;
+        let currentIndex = 0;
         let score = 0;
-        let timeRemaining = 70 * 60; // 70 minutes in seconds
-        let timerInterval;
-        let hasAnswered = false;
+        let streak = 0;
+        let maxStreak = 0;
+        let lives = 5;
+        let userResponses = [];
 
-        // DOM Elements
-        const startScreen = document.getElementById('start-screen');
-        const quizScreen = document.getElementById('quiz-screen');
-        const resultScreen = document.getElementById('result-screen');
-        const startBtn = document.getElementById('start-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const restartBtn = document.getElementById('restart-btn');
-        const questionText = document.getElementById('question-text');
-        const optionsGrid = document.getElementById('options-grid');
-        const explanationBox = document.getElementById('explanation-box');
-        const explanationText = document.getElementById('explanation-text');
-        const currentQNum = document.getElementById('current-q-num');
-        const progressBar = document.getElementById('progress-bar');
-        const timerDisplay = document.getElementById('timer-display');
-        const finalScore = document.getElementById('final-score');
-        const scoreMessage = document.getElementById('score-message');
+        // Simple Synthesized Web Audio for Chimes and Buzzers
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-        // Event Listeners
-        startBtn.addEventListener('click', startQuiz);
-        nextBtn.addEventListener('click', loadNextQuestion);
-        restartBtn.addEventListener('click', resetQuiz);
+        function playSound(type) {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(160, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(90, audioCtx.currentTime + 0.25);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'streak') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+                    osc.frequency.setValueAtTime(1046.5, audioCtx.currentTime + 0.2);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                }
+            } catch(e) {}
+        }
 
         function startQuiz() {
-            startScreen.classList.remove('active');
-            quizScreen.classList.add('active');
-            startTimer();
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            currentIndex = 0;
+            score = 0;
+            streak = 0;
+            maxStreak = 0;
+            lives = 5;
+            userResponses = [];
+            updateHUD();
             loadQuestion();
         }
 
+        function updateHUD() {
+            document.getElementById('scoreDisplay').innerText = `Score: ${score}`;
+            document.getElementById('streakDisplay').innerText = `🔥 Streak: ${streak}`;
+            let heartsStr = '';
+            for (let i = 0; i < lives; i++) heartsStr += '❤️';
+            for (let i = lives; i < 5; i++) heartsStr += '🖤';
+            document.getElementById('heartsContainer').innerText = heartsStr;
+        }
+
         function loadQuestion() {
-            hasAnswered = false;
-            nextBtn.style.display = 'none';
-            explanationBox.classList.remove('show');
+            const q = quizData[currentIndex];
+            document.getElementById('unitBadge').innerText = q.unit;
+            document.getElementById('questionText').innerText = `Q${currentIndex + 1}. ${q.question}`;
+            document.getElementById('questionCounter').innerText = `Question ${currentIndex + 1} of ${quizData.length}`;
             
-            const currentQ = quizData[currentQuestionIndex];
-            currentQNum.textContent = currentQuestionIndex + 1;
-            
-            // Update Progress
-            const progress = ((currentQuestionIndex) / quizData.length) * 100;
-            progressBar.style.width = `${progress}%`;
+            const pct = Math.round(((currentIndex + 1) / quizData.length) * 100);
+            document.getElementById('progressPercent').innerText = `${pct}% Completed`;
+            document.getElementById('progressFill').style.width = `${pct}%`;
 
-            // Load Content
-            questionText.textContent = `Q${currentQuestionIndex + 1}. ${currentQ.q}`;
-            optionsGrid.innerHTML = '';
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
 
-            currentQ.options.forEach((option, index) => {
+            q.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
-                btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-                btn.onclick = () => selectOption(index, btn);
-                optionsGrid.appendChild(btn);
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(idx);
+                optionsList.appendChild(btn);
             });
+
+            // Hide feedback & Next button
+            const ratCard = document.getElementById('rationaleCard');
+            ratCard.style.display = 'none';
+            ratCard.className = 'rationale-card';
+            document.getElementById('btnNext').style.display = 'none';
         }
 
-        function selectOption(selectedIndex, selectedBtn) {
-            if (hasAnswered) return;
-            hasAnswered = true;
+        function selectOption(selectedIdx) {
+            const q = quizData[currentIndex];
+            const isCorrect = (selectedIdx === q.answer);
+            const container = document.getElementById('quizContainer');
 
-            const currentQ = quizData[currentQuestionIndex];
-            const isCorrect = selectedIndex === currentQ.answer;
+            // Disable all option buttons
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.disabled = true);
 
-            const allBtns = document.querySelectorAll('.option-btn');
-            
-            allBtns.forEach((btn, index) => {
-                btn.disabled = true;
-                if (index === currentQ.answer) {
-                    btn.classList.add('correct');
-                } else if (index === selectedIndex && !isCorrect) {
-                    btn.classList.add('wrong');
-                }
+            // Record response
+            userResponses.push({
+                question: q.question,
+                unit: q.unit,
+                selected: selectedIdx,
+                correct: q.answer,
+                options: q.options,
+                rationale: q.rationale,
+                isCorrect: isCorrect
             });
 
-            if (isCorrect) score++;
-
-            // Show Explanation
-            explanationText.textContent = currentQ.explanation;
-            explanationBox.classList.add('show');
-            nextBtn.style.display = 'block';
-            
-            if (currentQuestionIndex === quizData.length - 1) {
-                nextBtn.textContent = 'Finish Quiz';
+            // Mark correct & incorrect styles
+            buttons[q.answer].classList.add('correct');
+            if (!isCorrect) {
+                buttons[selectedIdx].classList.add('incorrect');
             }
+
+            const ratCard = document.getElementById('rationaleCard');
+            const feedHeader = document.getElementById('feedbackHeader');
+            const ratText = document.getElementById('rationaleText');
+
+            if (isCorrect) {
+                score += 10;
+                streak++;
+                if (streak > maxStreak) maxStreak = streak;
+
+                let bonusText = '';
+                if (streak > 0 && streak % 3 === 0) {
+                    score += 5;
+                    bonusText = ' 🔥 On Fire! +5 Streak Bonus Added!';
+                    playSound('streak');
+                } else {
+                    playSound('correct');
+                }
+
+                // Confetti trigger
+                try {
+                    confetti({
+                        particleCount: 40,
+                        spread: 60,
+                        origin: { y: 0.7 }
+                    });
+                } catch(e){}
+
+                ratCard.className = 'rationale-card correct-feedback';
+                feedHeader.innerHTML = `<span>✓ CORRECT!</span> <span style="font-size:0.88rem; color:#6ee7b7;">(+10 Points${bonusText})</span>`;
+            } else {
+                score = Math.max(0, score - 5);
+                streak = 0;
+                lives = Math.max(0, lives - 1);
+                playSound('wrong');
+
+                // Shake animation
+                container.classList.add('shake');
+                setTimeout(() => container.classList.remove('shake'), 500);
+
+                ratCard.className = 'rationale-card incorrect-feedback';
+                feedHeader.innerHTML = `<span>✗ INCORRECT!</span> <span style="font-size:0.88rem; color:#fca5a5;">(-5 Points Penalty, -1 Life ❤️)</span>`;
+            }
+
+            updateHUD();
+
+            ratText.innerHTML = `<strong>Examiner Clinical Rationale:</strong> ${q.rationale}`;
+            ratCard.style.display = 'block';
+
+            const btnNext = document.getElementById('btnNext');
+            if (currentIndex === quizData.length - 1 || lives <= 0) {
+                btnNext.innerText = 'Complete Examination & View Diagnostic Report ➔';
+            } else {
+                btnNext.innerText = 'Proceed to Next Question ➔';
+            }
+            btnNext.style.display = 'block';
         }
 
-        function loadNextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
+        function nextQuestion() {
+            if (lives <= 0 || currentIndex >= quizData.length - 1) {
+                showResults();
+            } else {
+                currentIndex++;
                 loadQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            const correctCount = userResponses.filter(r => r.isCorrect).length;
+            const accuracy = Math.round((correctCount / userResponses.length) * 100);
+
+            document.getElementById('finalScore').innerText = score;
+            document.getElementById('finalAccuracy').innerText = `${accuracy}%`;
+            document.getElementById('finalCorrect').innerText = `${correctCount} / ${quizData.length}`;
+
+            let trophy = '🥉';
+            let rank = 'Nutrition Apprentice';
+
+            if (accuracy >= 85) {
+                trophy = '🏆';
+                rank = 'Distinction Gold Medalist (Clinician Level)';
+            } else if (accuracy >= 70) {
+                trophy = '🥈';
+                rank = 'Senior Staff Nurse (High Honors)';
+            } else if (accuracy >= 50) {
+                trophy = '🥉';
+                rank = 'Junior Clinical Staff (Competent)';
             } else {
-                endQuiz();
+                trophy = '⚠️';
+                rank = 'Remediation Required (Review Core Concepts)';
             }
+
+            document.getElementById('resultTrophy').innerText = trophy;
+            document.getElementById('resultRank').innerText = rank;
+
+            // Populate reviews
+            const reviewContainer = document.getElementById('reviewContainer');
+            reviewContainer.innerHTML = '';
+
+            userResponses.forEach((res, i) => {
+                const item = document.createElement('div');
+                item.className = 'review-item';
+                const statusIcon = res.isCorrect ? '✅' : '❌';
+                const statusColor = res.isCorrect ? '#34d399' : '#f87171';
+
+                item.innerHTML = `
+                    <div class="review-q">${statusIcon} Q${i+1}. ${res.question}</div>
+                    <div class="review-ans" style="color: ${statusColor};">Your Answer: ${res.options[res.selected] || 'Unanswered'}</div>
+                    ${!res.isCorrect ? `<div class="review-ans" style="color: #34d399;">Correct Answer: ${res.options[res.correct]}</div>` : ''}
+                    <div class="review-rat"><strong>Rationale:</strong> ${res.rationale}</div>
+                `;
+                reviewContainer.appendChild(item);
+            });
         }
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeRemaining--;
-                updateTimerDisplay();
-                if (timeRemaining <= 0) {
-                    endQuiz();
-                }
-            }, 1000);
-        }
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            timerDisplay.textContent = `⏳ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            if (timeRemaining < 300) {
-                timerDisplay.style.color = '#991b1b'; // Dark red when < 5 mins
-                timerDisplay.style.backgroundColor = '#fecaca';
-            }
-        }
-
-        function endQuiz() {
-            clearInterval(timerInterval);
-            quizScreen.classList.remove('active');
-            resultScreen.classList.add('active');
-            
-            finalScore.textContent = score;
-            const percentage = (score / quizData.length) * 100;
-            
-            if (percentage >= 80) {
-                scoreMessage.textContent = "Excellent work! You have strong knowledge in Paediatrics Health Nursing.";
-            } else if (percentage >= 60) {
-                scoreMessage.textContent = "Good job! A little more review and you'll be an expert.";
-            } else {
-                scoreMessage.textContent = "Keep studying! Review the rationales to improve your understanding.";
-            }
-        }
-
-        function resetQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
-            timeRemaining = 70 * 60;
-            resultScreen.classList.remove('active');
-            startScreen.classList.add('active');
-            timerDisplay.style.color = '';
-            timerDisplay.style.backgroundColor = '';
-            updateTimerDisplay();
+        function restartQuiz() {
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
         }
     </script>
 </body>
 </html>
+
