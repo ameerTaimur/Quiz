@@ -1,1771 +1,1175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applied Nutrition Quiz | Muhammad Taimoor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept of Sexuality — 40 High-Yield Nursing MCQs | M Taimoor</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-dark: #070913;
-      --bg-card: rgba(14, 20, 36, 0.85);
-      --bg-card-hover: rgba(22, 32, 58, 0.9);
-      --neon-cyan: #00f0ff;
-      --neon-pink: #ff007f;
-      --neon-purple: #9d4edd;
-      --neon-green: #00ff88;
-      --neon-red: #ff3366;
-      --neon-amber: #ffb703;
-      --text-main: #f0f4ff;
-      --text-muted: #8b9bb4;
-      --border-cyan: rgba(0, 240, 255, 0.35);
-      --border-pink: rgba(255, 0, 127, 0.35);
-      --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
-      --glow-pink: 0 0 20px rgba(255, 0, 127, 0.4);
-      --glow-green: 0 0 20px rgba(0, 255, 136, 0.45);
-      --glow-red: 0 0 20px rgba(255, 51, 102, 0.45);
+      --primary: #0f4c5c;
+      --primary-light: #15677d;
+      --accent: #0d9488;
+      --bg: #f1f5f9;
+      --card: #ffffff;
     }
-
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      min-height: 100vh;
+      background-color: var(--bg);
+      color: #0f172a;
+      min-height: 100dvh;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
     }
-
-    /* Ambient cyber-grid & glowing orbs */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: 
-        radial-gradient(circle at 15% 20%, rgba(157, 78, 221, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 85% 75%, rgba(0, 240, 255, 0.15) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(255, 0, 127, 0.08) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+    .urdu-text {
+      font-family: 'Noto Nastaliq Urdu', 'Inter', serif;
+      line-height: 2.1;
+      direction: rtl;
     }
-
-    .grid-lines {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-      z-index: 0;
+    .tap-btn {
+      touch-action: manipulation;
+      transition: transform 0.12s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
-
-    .container {
-      width: 100%;
-      max-width: 950px;
+    .tap-btn:active {
+      transform: scale(0.985);
+    }
+    .app-shell {
+      max-width: 520px;
       margin: 0 auto;
-      padding: 24px 20px;
-      position: relative;
-      z-index: 1;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      flex: 1;
-      justify-content: center;
+      background: #f8fafc;
+      box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
     }
-
-    /* Top Bar */
-    header {
-      position: relative;
-      z-index: 10;
-      padding: 16px 24px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
-      background: rgba(7, 9, 19, 0.8);
-      backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .safe-bottom {
+      padding-bottom: max(14px, env(safe-area-inset-bottom));
     }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-tag {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-    }
-
-    .author-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--border-cyan);
-      font-size: 0.8rem;
-      color: var(--neon-cyan);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .audio-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--text-main);
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .audio-btn:hover {
-      border-color: var(--neon-cyan);
-      color: var(--neon-cyan);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-    }
-
-    /* Screen Layouts */
-    .screen {
-      display: none;
-      animation: fadeIn 0.35s ease-out forwards;
-    }
-    .screen.active {
-      display: block;
-    }
-
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* ========================================================
-       START SCREEN STYLES
-       ======================================================== */
-    .start-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-cyan);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: var(--glow-cyan), inset 0 0 25px rgba(0, 240, 255, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .start-card::after {
-      content: "";
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: linear-gradient(60deg, transparent 40%, rgba(0, 240, 255, 0.04) 50%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .author-highlight {
-      display: inline-block;
-      padding: 6px 18px;
-      background: rgba(157, 78, 221, 0.15);
-      border: 1px solid var(--neon-purple);
-      border-radius: 30px;
-      color: #e0aaff;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
-    }
-
-    .main-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
-      font-weight: 900;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #ffffff 10%, var(--neon-cyan) 60%, var(--neon-pink) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .sub-title {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      font-weight: 500;
-    }
-
-    /* Glowing Quote Box */
-    .quote-box {
-      margin: 25px auto 35px;
-      max-width: 680px;
-      background: rgba(255, 183, 3, 0.07);
-      border-left: 4px solid var(--neon-amber);
-      border-right: 1px solid rgba(255, 183, 3, 0.2);
-      border-top: 1px solid rgba(255, 183, 3, 0.2);
-      border-bottom: 1px solid rgba(255, 183, 3, 0.2);
-      padding: 20px 24px;
-      border-radius: 12px;
-      position: relative;
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.15);
-    }
-
-    .quote-icon {
-      font-family: 'Orbitron', serif;
-      font-size: 2.2rem;
-      color: var(--neon-amber);
-      line-height: 0.5;
-      display: block;
-      margin-bottom: 10px;
-      opacity: 0.8;
-    }
-
-    .quote-text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #ffe6a7;
-      letter-spacing: 0.8px;
-      line-height: 1.4;
-      font-style: italic;
-      text-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
-    }
-
-    .quote-author {
-      margin-top: 8px;
-      font-size: 0.85rem;
-      color: #ffb703;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-    }
-
-    .meta-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 35px;
-    }
-
-    .badge-pill {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      color: #cbd5e1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .badge-pill strong {
-      color: var(--neon-cyan);
-    }
-
-    /* Start Settings */
-    .settings-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      max-width: 700px;
-      margin: 0 auto 35px;
-      text-align: left;
-    }
-
-    .setting-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: border-color 0.2s;
-    }
-    .setting-card:hover {
-      border-color: var(--neon-purple);
-    }
-
-    .setting-label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #e2e8f0;
-    }
-    .setting-desc {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* Switch toggle */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-    }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(255, 255, 255, 0.2);
-      transition: .3s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px; width: 18px;
-      left: 3px; bottom: 3px;
-      background-color: white;
-      transition: .3s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-    }
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .neon-btn {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 16px 48px;
-      border-radius: 14px;
-      border: 1px solid var(--neon-cyan);
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 127, 0.25));
-      color: #ffffff;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--glow-cyan), 0 0 35px rgba(255, 0, 127, 0.2);
-    }
-    .neon-btn:hover {
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(255, 0, 127, 0.45));
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 45px rgba(255, 0, 127, 0.4);
-    }
-    .neon-btn:active {
-      transform: translateY(1px);
-    }
-
-    /* ========================================================
-       QUIZ ACTIVE SCREEN STYLES
-       ======================================================== */
-    .quiz-hud {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .hud-stat {
-      background: rgba(14, 20, 36, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 8px 16px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    .hud-stat strong {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.05rem;
-      color: var(--neon-cyan);
-    }
-
-    .timer-stat strong {
-      color: var(--neon-amber);
-    }
-    .timer-warning strong {
-      color: var(--neon-red) !important;
-      animation: pulseAlert 0.8s infinite alternate;
-    }
-    @keyframes pulseAlert {
-      from { text-shadow: 0 0 5px var(--neon-red); }
-      to { text-shadow: 0 0 18px var(--neon-red); }
-    }
-
-    /* Progress Bar */
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 24px;
-      border: 1px solid rgba(0, 240, 255, 0.15);
-      position: relative;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 2%;
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-      box-shadow: 0 0 12px var(--neon-cyan);
-      transition: width 0.35s ease;
-    }
-
-    /* Question Container */
-    .question-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-cyan);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow-cyan);
-      position: relative;
-      margin-bottom: 24px;
-    }
-
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .q-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 14px;
-      border-radius: 8px;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--neon-cyan);
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--border-cyan);
-    }
-
-    .flag-btn {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--text-muted);
-      border-radius: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .flag-btn:hover {
-      border-color: var(--neon-amber);
-      color: var(--neon-amber);
-    }
-    .flag-btn.flagged {
-      background: rgba(255, 183, 3, 0.15);
-      border-color: var(--neon-amber);
-      color: var(--neon-amber);
-      box-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
-    }
-
-    .question-text {
-      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1.5;
-      margin-bottom: 28px;
-    }
-
-    /* Options Grid */
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .option-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: left;
-      position: relative;
-      outline: none;
-    }
-
-    .option-btn:hover:not(:disabled) {
-      background: var(--bg-card-hover);
-      border-color: var(--neon-cyan);
-      transform: translateX(4px);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
-    }
-
-    .opt-letter {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--neon-cyan);
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-
-    .opt-text {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #e2e8f0;
-      line-height: 1.4;
-      flex: 1;
-    }
-
-    /* Option States */
-    .option-btn.selected {
-      border-color: var(--neon-purple);
-      background: rgba(157, 78, 221, 0.15);
-      box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
-    }
-    .option-btn.selected .opt-letter {
-      background: var(--neon-purple);
-      color: #ffffff;
-      border-color: var(--neon-purple);
-    }
-
-    .option-btn.correct {
-      border-color: var(--neon-green) !important;
-      background: rgba(0, 255, 136, 0.15) !important;
-      box-shadow: var(--glow-green) !important;
-    }
-    .option-btn.correct .opt-letter {
-      background: var(--neon-green) !important;
-      color: #070913 !important;
-      font-weight: 800;
-    }
-
-    .option-btn.wrong {
-      border-color: var(--neon-red) !important;
-      background: rgba(255, 51, 102, 0.15) !important;
-      box-shadow: var(--glow-red) !important;
-    }
-    .option-btn.wrong .opt-letter {
-      background: var(--neon-red) !important;
-      color: #ffffff !important;
-      font-weight: 800;
-    }
-
-    /* Rationale Box */
-    .rationale-box {
-      display: none;
-      margin-top: 24px;
-      padding: 20px;
-      border-radius: 12px;
-      background: rgba(0, 240, 255, 0.05);
-      border: 1px solid var(--border-cyan);
-      box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.05);
-      animation: slideDown 0.3s ease-out;
-    }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .rationale-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-      color: var(--neon-cyan);
-    }
-
-    .rationale-content {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #cbd5e1;
-    }
-
-    /* Navigation Controls */
-    .quiz-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .ctrl-btn {
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #e2e8f0;
-    }
-    .ctrl-btn:hover:not(:disabled) {
-      border-color: var(--neon-cyan);
-      color: var(--neon-cyan);
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-    }
-    .ctrl-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .btn-next {
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(157, 78, 221, 0.3));
-      border-color: var(--neon-cyan);
-      color: #ffffff;
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-    }
-    .btn-next:hover:not(:disabled) {
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(157, 78, 221, 0.5));
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-    }
-
-    .btn-finish {
-      background: linear-gradient(135deg, rgba(255, 0, 127, 0.3), rgba(157, 78, 221, 0.4));
-      border-color: var(--neon-pink);
-      color: #ffffff;
-      box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
-    }
-    .btn-finish:hover {
-      box-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
-    }
-
-    .btn-palette-toggle {
-      border-color: var(--neon-purple);
-      color: #e0aaff;
-    }
-
-    /* Question Matrix Modal / Drawer */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(7, 9, 19, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-card {
-      background: #0d1224;
-      border: 1px solid var(--border-cyan);
-      border-radius: 18px;
-      max-width: 650px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 28px;
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
-      position: relative;
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .modal-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.15rem;
-      color: var(--neon-cyan);
-      letter-spacing: 1px;
-    }
-    .close-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-    .close-btn:hover { color: #fff; }
-
-    .matrix-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 0.78rem;
-      margin-bottom: 18px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .legend-box {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-    }
-
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
-      gap: 8px;
-    }
-
-    .matrix-tile {
-      aspect-ratio: 1;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #94a3b8;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      transition: all 0.2s;
-    }
-    .matrix-tile:hover {
-      border-color: var(--neon-cyan);
-      color: #fff;
-    }
-    .matrix-tile.current {
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 10px var(--neon-cyan);
-      color: #fff;
-    }
-    .matrix-tile.answered-correct {
-      background: rgba(0, 255, 136, 0.2);
-      border-color: var(--neon-green);
-      color: var(--neon-green);
-    }
-    .matrix-tile.answered-wrong {
-      background: rgba(255, 51, 102, 0.2);
-      border-color: var(--neon-red);
-      color: var(--neon-red);
-    }
-    .matrix-tile.flagged::after {
-      content: "";
-      position: absolute;
-      top: 3px; right: 3px;
-      width: 6px; height: 6px;
-      background: var(--neon-amber);
-      border-radius: 50%;
-      box-shadow: 0 0 5px var(--neon-amber);
-    }
-
-    /* ========================================================
-       RESULTS SCREEN STYLES
-       ======================================================== */
-    .results-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-cyan);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: var(--glow-cyan);
-      margin-bottom: 30px;
-    }
-
-    .score-circle {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      margin: 0 auto 24px;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(14, 20, 36, 0.9) 70%);
-      border: 3px solid var(--neon-cyan);
-      box-shadow: var(--glow-cyan), inset 0 0 20px rgba(0, 240, 255, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .score-val {
-      font-family: 'Orbitron', monospace;
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1;
-      text-shadow: 0 0 15px var(--neon-cyan);
-    }
-    .score-total {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.95rem;
-      color: var(--neon-cyan);
-      margin-top: 4px;
-    }
-
-    .score-rank {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .score-msg {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 500px;
-      margin: 0 auto 28px;
-    }
-
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .metric-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 14px;
-    }
-    .metric-num {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .metric-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 4px;
-    }
-
-    .results-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    /* Review Section */
-    .review-section {
-      margin-top: 20px;
-    }
-
-    .review-filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .filter-btn {
-      padding: 8px 16px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #94a3b8;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .filter-btn.active {
-      background: rgba(0, 240, 255, 0.15);
-      border-color: var(--neon-cyan);
-      color: var(--neon-cyan);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-    }
-
-    .review-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .review-item {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 20px;
-      text-align: left;
-    }
-    .review-item.is-correct {
-      border-left: 4px solid var(--neon-green);
-    }
-    .review-item.is-wrong {
-      border-left: 4px solid var(--neon-red);
-    }
-
-    .review-q-num {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--neon-cyan);
-    }
-
-    .review-q-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 14px;
-    }
-
-    .review-ans-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin-bottom: 12px;
-      font-size: 0.92rem;
-    }
-
-    .review-ans-row {
-      padding: 8px 12px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .review-ans-row.chosen-correct {
-      background: rgba(0, 255, 136, 0.15);
-      color: var(--neon-green);
-      font-weight: 600;
-    }
-    .review-ans-row.chosen-wrong {
-      background: rgba(255, 51, 102, 0.15);
-      color: var(--neon-red);
-      font-weight: 600;
-    }
-    .review-ans-row.actual-correct {
-      background: rgba(0, 255, 136, 0.1);
-      color: var(--neon-green);
-      border: 1px dashed var(--neon-green);
-    }
-
-    /* Print Styles */
-    @media print {
-      body { background: #fff !important; color: #000 !important; }
-      header, .quiz-hud, .quiz-controls, .results-actions, .filter-bar, .modal-backdrop { display: none !important; }
-      .start-card, .results-card, .review-item { box-shadow: none !important; border: 1px solid #ccc !important; color: #000 !important; }
-      .quote-text, .main-title, .score-rank { color: #000 !important; -webkit-text-fill-color: initial !important; }
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .start-card { padding: 24px 18px; }
-      .question-card { padding: 22px 18px; }
-      .quote-text { font-size: 1.15rem; }
-      .main-title { font-size: 1.6rem; }
-      .neon-btn { width: 100%; padding: 14px 20px; font-size: 1rem; }
-      .quiz-controls { flex-wrap: wrap; }
-      .ctrl-btn { flex: 1; justify-content: center; }
+    .fade-in {
+      animation: fadeIn 0.22s ease-out;
     }
   </style>
 </head>
 <body>
-  <div class="grid-lines"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="brand-group">
-      <div class="brand-tag">NUTRITION NEXUS</div>
-      <div class="author-pill">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        Muhammad Taimoor
-      </div>
-    </div>
-    <button class="audio-btn" id="soundToggleBtn" onclick="toggleAudio()">
-      <span id="soundIcon">🔊</span> <span id="soundText">Sound ON</span>
-    </button>
-  </header>
-
-  <div class="container">
-    
-    <!-- ==================== SCREEN 1: START SCREEN ==================== -->
-    <div class="screen active" id="startScreen">
-      <div class="start-card">
-        <div class="author-highlight">BSN 2nd Semester • Master Quiz</div>
-        <h1 class="main-title">Applied Nutrition</h1>
-        <p class="sub-title">50 High-Yield MCQs</p>
-
-        <!-- Quote Box as requested -->
-        <div class="quote-box">
-          <span class="quote-icon">“</span>
-          <div class="quote-text">As fire tests gold, so misfortune tests brave men.</div>
-          <div class="quote-author">— Authored & Prepared by Muhammad Taimoor</div>
+  <div class="app-shell">
+    <!-- ==================== START SCREEN ==================== -->
+    <section id="start-screen" class="flex-1 flex flex-col justify-between p-5 fade-in">
+      <div class="space-y-5">
+        <!-- Top Badge -->
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-800 border border-teal-200">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            NU-151 &bull; Fundamentals of Nursing-II
+          </span>
+          <span class="text-xs font-bold text-slate-500">40 MCQs</span>
         </div>
 
-        <div class="meta-badges">
-          <div class="badge-pill"><strong>50</strong> Questions Total</div>
-          <div class="badge-pill"><strong>Units 1–3</strong> (Intro, Maternal, Pediatrics)</div>
-          <div class="badge-pill"><strong>1 MCQ</strong> Per Screen</div>
-          <div class="badge-pill"><strong>Instant</strong> Clinical Rationales</div>
-        </div>
-
-        <div class="settings-grid">
-          <div class="setting-card">
-            <div>
-              <div class="setting-label">Instant Feedback</div>
-              <div class="setting-desc">Reveal answer & rationale immediately</div>
+        <!-- Hero Title Card -->
+        <div class="rounded-2xl bg-gradient-to-br from-slate-900 via-teal-950 to-teal-900 text-white p-6 shadow-lg">
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-300 mb-1">BSN 2nd Semester &bull; Week-12</p>
+          <h1 class="text-2xl font-extrabold leading-tight mb-2">Concept of Sexuality</h1>
+          <p class="text-sm text-slate-200 leading-relaxed mb-4">
+              </p>
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3.5 py-2">
+            <div class="w-7 h-7 rounded-full bg-teal-400 text-slate-950 font-extrabold text-xs flex items-center justify-center">MT</div>
+            <div class="text-left">
+              <p class="text-[11px] text-teal-200 leading-none">Developed by</p>
+              <p class="text-sm font-bold text-white leading-tight">M Taimoor</p>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="instantFeedbackToggle" checked>
-              <span class="slider"></span>
-            </label>
           </div>
+        </div>
 
-          <div class="setting-card">
-            <div>
-              <div class="setting-label">Timer Countdown</div>
-              <div class="setting-desc">30 seconds per question challenge</div>
+        <!-- Allama Iqbal Quote Card -->
+        <div class="rounded-2xl bg-white border border-amber-200/80 p-4 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
+          <div class="pl-2">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-700"></span>
+              <span class="text-[11px] font-semibold text-slate-400"></span>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="timerToggle" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
+            <p class="urdu-text text-base text-slate-800 text-center my-1">
+ <br />
 
-          <div class="setting-card">
-            <div>
-              <div class="setting-label">Shuffle Questions</div>
-              <div class="setting-desc">Randomize the 50 MCQs sequence</div>
-            </div>
-            <label class="switch">
-              <input type="checkbox" id="shuffleToggle">
-              <span class="slider"></span>
-            </label>
+            </p>
+            <p class="text-xs italic text-slate-600 leading-relaxed mt-2 border-t border-slate-100 pt-2">
+              
+            </p>
           </div>
         </div>
 
-        <button class="neon-btn" onclick="startQuiz()">
-          INITIALIZE QUIZ &nbsp;⚡
+        <!-- Mode Selector -->
+        <div class="space-y-2.5">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Select Quiz Mode</label>
+          <div class="grid grid-cols-2 gap-2.5">
+            <button id="mode-study" type="button" class="tap-btn p-3.5 rounded-xl border-2 border-teal-600 bg-teal-50 text-left">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-bold text-teal-900">Study Mode</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+              </div>
+              <p class="text-xs text-teal-700 leading-snug">Instant answer &amp; rationale after each tap.</p>
+            </button>
+            <button id="mode-exam" type="button" class="tap-btn p-3.5 rounded-xl border-2 border-slate-200 bg-white text-left">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-bold text-slate-800">Exam Mode</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+              </div>
+              <p class="text-xs text-slate-500 leading-snug">Timed test; view score &amp; review at the end.</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Shuffle Option -->
+        <label class="flex items-center justify-between bg-white border border-slate-200 rounded-xl px-4 py-3 cursor-pointer">
+          <div>
+            <p class="text-sm font-semibold text-slate-800">Shuffle Question Order</p>
+            <p class="text-xs text-slate-500">Randomize all 40 questions each attempt</p>
+          </div>
+          <input id="shuffle-toggle" type="checkbox" class="w-5 h-5 accent-teal-600 rounded" />
+        </label>
+      </div>
+
+      <!-- Start CTA -->
+      <div class="pt-5 safe-bottom">
+        <button id="start-btn" type="button" class="tap-btn w-full py-4 rounded-2xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-base shadow-lg shadow-teal-700/25 flex items-center justify-center gap-2">
+          <span>Start Quiz (40 MCQs)</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
         </button>
       </div>
-    </div>
+    </section>
 
-    <!-- ==================== SCREEN 2: ACTIVE QUIZ ==================== -->
-    <div class="screen" id="quizScreen">
-      <!-- HUD / Status Bar -->
-      <div class="quiz-hud">
-        <div class="hud-stat">
-          QUESTION: <strong id="hudQNum">1 / 50</strong>
+    <!-- ==================== QUIZ SCREEN ==================== -->
+    <section id="quiz-screen" class="hidden flex-1 flex flex-col">
+      <!-- Sticky Top Header -->
+      <header class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <button id="quit-btn" type="button" class="tap-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200">
+            &larr; Home
+          </button>
+          <span id="q-counter" class="text-sm font-extrabold text-slate-900">Q 1 / 40</span>
+          <div class="flex items-center gap-2">
+            <span id="timer-pill" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 tabular-nums">00:00</span>
+            <span id="score-pill" class="text-xs font-bold px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200">0 pts</span>
+          </div>
         </div>
-        <div class="hud-stat" id="timerBox">
-          TIME: <strong id="hudTimer">30s</strong>
+        <!-- Progress Bar -->
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-full bg-teal-600 transition-all duration-300" style="width: 2.5%;"></div>
         </div>
-        <div class="hud-stat">
-          SCORE: <strong id="hudScore">0</strong>
-        </div>
-        <div class="hud-stat">
-          STREAK: <strong id="hudStreak" style="color:var(--neon-pink);">0 🔥</strong>
-        </div>
-      </div>
+      </header>
 
-      <!-- Neon Progress Bar -->
-      <div class="progress-track">
-        <div class="progress-fill" id="progressBar"></div>
-      </div>
+      <!-- Main Question Body -->
+      <main id="question-container" class="flex-1 p-4 space-y-4 overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <span id="topic-badge" class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wide bg-indigo-50 text-indigo-700 border border-indigo-200">
+            Topic
+          </span>
+          <span id="answered-status" class="text-xs font-medium text-slate-400"></span>
+        </div>
 
-      <!-- Main Question Card -->
-      <div class="question-card">
-        <div class="question-header">
-          <span class="q-badge" id="qBadge">QUESTION #1</span>
-          <button class="flag-btn" id="flagBtn" onclick="toggleFlag()">
-            <span id="flagIcon">⚐</span> <span id="flagText">Flag Question</span>
+        <h2 id="question-text" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+          Question text goes here
+        </h2>
+
+        <!-- Options List -->
+        <div id="options-list" class="space-y-2.5"></div>
+
+        <!-- Rationale Box (Study Mode) -->
+        <div id="rationale-box" class="hidden rounded-xl p-4 border text-sm leading-relaxed fade-in">
+          <p id="rationale-title" class="font-bold mb-1"></p>
+          <p id="rationale-text" class="text-slate-700"></p>
+        </div>
+      </main>
+
+      <!-- Sticky Bottom Thumb Bar -->
+      <footer class="sticky bottom-0 z-20 bg-white border-t border-slate-200 px-4 py-3 safe-bottom">
+        <div class="flex items-center gap-2.5">
+          <button id="prev-btn" type="button" class="tap-btn px-4 py-3 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 disabled:opacity-40">
+            Prev
+          </button>
+          <button id="grid-btn" type="button" class="tap-btn px-3.5 py-3 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <span id="grid-label">1/40</span>
+          </button>
+          <button id="next-btn" type="button" class="tap-btn flex-1 py-3 rounded-xl font-bold text-sm bg-teal-700 text-white shadow-md shadow-teal-700/20">
+            Next Question &rarr;
           </button>
         </div>
+      </footer>
+    </section>
 
-        <div class="question-text" id="questionText">Loading question text...</div>
-
-        <!-- 4 Options -->
-        <div class="options-grid" id="optionsContainer">
-          <!-- Filled dynamically -->
-        </div>
-
-        <!-- Clinical Rationale -->
-        <div class="rationale-box" id="rationaleBox">
-          <div class="rationale-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            Clinical Rationale
-          </div>
-          <div class="rationale-content" id="rationaleText"></div>
-        </div>
-      </div>
-
-      <!-- Navigation & Controls -->
-      <div class="quiz-controls">
-        <button class="ctrl-btn" id="prevBtn" onclick="prevQuestion()" disabled>
-          ← Previous
-        </button>
-        <button class="ctrl-btn btn-palette-toggle" onclick="openMatrixModal()">
-          ☵ Matrix (50)
-        </button>
-        <button class="ctrl-btn btn-next" id="nextBtn" onclick="nextQuestion()">
-          Next Question →
-        </button>
-        <button class="ctrl-btn btn-finish" id="finishBtn" onclick="confirmFinishQuiz()" style="display:none;">
-          Submit & Finish 🏆
-        </button>
-      </div>
-    </div>
-
-    <!-- ==================== SCREEN 3: RESULTS SCREEN ==================== -->
-    <div class="screen" id="resultsScreen">
-      <div class="results-card">
-        <div class="author-highlight">Assessment Complete • Muhammad Taimoor</div>
-        <h2 class="main-title" style="font-size: 2rem;">Quiz Performance Report</h2>
-        
-        <div class="score-circle">
-          <div class="score-val" id="resScore">48</div>
-          <div class="score-total" id="resTotal">OUT OF 50</div>
-        </div>
-
-        <div class="score-rank" id="resRank" style="color:var(--neon-green);">EXEMPLARY CLINICIAN</div>
-        <p class="score-msg" id="resMsg">Outstanding knowledge of fundamental, maternal, and pediatric nutrition.</p>
-
-        <div class="metrics-row">
-          <div class="metric-box">
-            <div class="metric-num" id="resAccuracy" style="color:var(--neon-cyan);">96%</div>
-            <div class="metric-label">Accuracy</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-num" id="resTimeSpent" style="color:var(--neon-amber);">12m 40s</div>
-            <div class="metric-label">Total Time</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-num" id="resBestStreak" style="color:var(--neon-pink);">18</div>
-            <div class="metric-label">Max Streak</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-num" id="resFlaggedCount" style="color:#a78bfa;">3</div>
-            <div class="metric-label">Flagged</div>
-          </div>
-        </div>
-
-        <div class="results-actions">
-          <button class="neon-btn" onclick="restartQuiz(false)" style="padding: 12px 28px; font-size: 0.95rem;">
-            RETAKE FULL QUIZ ↺
-          </button>
-          <button class="ctrl-btn" id="retryWrongBtn" onclick="retryWrongQuestions()" style="padding: 12px 24px; display:none; border-color:var(--neon-red); color:var(--neon-red);">
-            Retry Missed Only (0)
-          </button>
-          <button class="ctrl-btn" onclick="window.print()" style="padding: 12px 24px;">
-            🖨️ Print / Save Report
-          </button>
+    <!-- ==================== RESULTS SCREEN ==================== -->
+    <section id="results-screen" class="hidden flex-1 flex flex-col p-5 space-y-5 fade-in overflow-y-auto">
+      <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-teal-900 text-white p-6 text-center shadow-lg">
+        <p class="text-xs font-bold uppercase tracking-wider text-teal-300 mb-1">Quiz Completed</p>
+        <div id="final-score" class="text-4xl font-extrabold my-2">0 / 40</div>
+        <p id="final-percent" class="text-lg font-bold text-teal-200 mb-2">0%</p>
+        <p id="final-message" class="text-sm text-slate-200"></p>
+        <div class="mt-4 pt-3 border-t border-white/15 flex justify-center gap-6 text-xs text-teal-100">
+          <span>Correct: <strong id="stat-correct" class="text-white">0</strong></span>
+          <span>Wrong: <strong id="stat-wrong" class="text-white">0</strong></span>
+          <span>Time: <strong id="stat-time" class="text-white">00:00</strong></span>
         </div>
       </div>
 
-      <!-- Detailed Review Accordion / List -->
-      <div class="review-section">
-        <h3 style="font-family:'Orbitron', monospace; font-size:1.2rem; color:var(--neon-cyan); margin-bottom:14px; letter-spacing:1px;">
-          DETAILED QUESTIONS AUDIT
-        </h3>
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-2 gap-3">
+        <button id="retake-btn" type="button" class="tap-btn py-3.5 rounded-xl bg-teal-700 text-white font-bold text-sm shadow">
+          Retake Quiz
+        </button>
+        <button id="home-btn" type="button" class="tap-btn py-3.5 rounded-xl bg-white border border-slate-300 text-slate-800 font-bold text-sm">
+          Back to Home
+        </button>
+      </div>
 
-        <div class="review-filter-bar">
-          <button class="filter-btn active" onclick="filterReview('all', this)">All (50)</button>
-          <button class="filter-btn" onclick="filterReview('incorrect', this)" id="filterWrongBtn">Incorrect (0)</button>
-          <button class="filter-btn" onclick="filterReview('correct', this)" id="filterCorrectBtn">Correct (50)</button>
-          <button class="filter-btn" onclick="filterReview('flagged', this)" id="filterFlaggedBtn">Flagged (0)</button>
-        </div>
-
-        <div class="review-list" id="reviewList">
-          <!-- Filled dynamically -->
+      <!-- Review Filter -->
+      <div class="flex items-center justify-between pt-2">
+        <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-600">Answer Review</h3>
+        <div class="flex gap-1.5 bg-slate-200/70 p-1 rounded-lg">
+          <button id="filter-all" type="button" class="tap-btn px-2.5 py-1 rounded-md text-xs font-bold bg-white text-slate-900 shadow-sm">All (40)</button>
+          <button id="filter-wrong" type="button" class="tap-btn px-2.5 py-1 rounded-md text-xs font-bold text-slate-600">Wrong Only</button>
         </div>
       </div>
-    </div>
 
+      <div id="review-list" class="space-y-3 pb-8"></div>
+    </section>
   </div>
 
-  <!-- Matrix / Jump Drawer Modal -->
-  <div class="modal-backdrop" id="matrixModal" onclick="closeMatrixModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <div class="modal-head">
-        <div class="modal-title">QUESTION NAVIGATOR MATRIX</div>
-        <button class="close-btn" onclick="closeMatrixModal()">✕</button>
+  <!-- ==================== QUESTION NAVIGATOR MODAL ==================== -->
+  <div id="nav-modal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-[520px] rounded-t-3xl sm:rounded-2xl p-5 max-h-[80dvh] flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-base font-extrabold text-slate-900">Jump to Question</h3>
+        <button id="close-nav-btn" type="button" class="tap-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-bold">Close</button>
       </div>
+      <div id="nav-grid" class="grid grid-cols-5 gap-2 overflow-y-auto py-2"></div>
+    </div>
+  </div>
 
-      <div class="matrix-legend">
-        <div class="legend-item"><span class="legend-box" style="background:var(--neon-green);"></span> Correct</div>
-        <div class="legend-item"><span class="legend-box" style="background:var(--neon-red);"></span> Incorrect</div>
-        <div class="legend-item"><span class="legend-box" style="background:var(--neon-cyan);"></span> Current</div>
-        <div class="legend-item"><span class="legend-box" style="background:var(--neon-amber);"></span> Flagged</div>
-        <div class="legend-item"><span class="legend-box" style="background:rgba(255,255,255,0.1);"></span> Unanswered</div>
-      </div>
-
-      <div class="matrix-grid" id="matrixGrid">
-        <!-- 50 tiles generated dynamically -->
+  <!-- ==================== QUIT CONFIRM MODAL ==================== -->
+  <div id="quit-modal" class="hidden fixed inset-0 z-50 bg-slate-900/50 flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
+      <h3 class="text-lg font-extrabold text-slate-900">Return to Home?</h3>
+      <p class="text-sm text-slate-600">Your current quiz progress will be reset.</p>
+      <div class="flex gap-2.5">
+        <button id="cancel-quit-btn" type="button" class="tap-btn flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm">Continue Quiz</button>
+        <button id="confirm-quit-btn" type="button" class="tap-btn flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-bold text-sm">Exit</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Embedded MCQs dataset (Full 50 parsed)
-    const RAW_MCQS = [{"id": 1, "question": "Which macronutrient provides 0 calories per gram?", "options": {"A": "Carbohydrate", "B": "Protein", "C": "Water", "D": "Fat"}, "correct": "C", "rationale": "Water yields zero calories."}, {"id": 2, "question": "Which nutrient is a simple sugar?", "options": {"A": "Starch", "B": "Fiber", "C": "Glucose", "D": "Cellulose"}, "correct": "C", "rationale": "Glucose is a simple sugar."}, {"id": 3, "question": "How many total amino acids are there?", "options": {"A": "10", "B": "15", "C": "20", "D": "25"}, "correct": "C", "rationale": "There are 20 standard amino acids."}, {"id": 4, "question": "How many amino acids are essential for humans?", "options": {"A": "5", "B": "9", "C": "15", "D": "20"}, "correct": "B", "rationale": "9 amino acids are essential and must come from food."}, {"id": 5, "question": "Which food is a complete protein?", "options": {"A": "Egg", "B": "Rice", "C": "Apple", "D": "Corn"}, "correct": "A", "rationale": "Eggs contain all essential amino acids."}, {"id": 6, "question": "Which vitamin is fat-soluble?", "options": {"A": "Vitamin B1", "B": "Vitamin B12", "C": "Vitamin C", "D": "Vitamin A"}, "correct": "D", "rationale": "Vitamins A, D, E, and K are fat-soluble."}, {"id": 7, "question": "Which vitamin is water-soluble?", "options": {"A": "Vitamin A", "B": "Vitamin D", "C": "Vitamin C", "D": "Vitamin K"}, "correct": "C", "rationale": "Vitamin C and B-vitamins are water-soluble."}, {"id": 8, "question": "What is a normal adult BMI range?", "options": {"A": "<18.5", "B": "18.5 \u2013 24.9", "C": "25.0 \u2013 29.9", "D": "\u226530.0"}, "correct": "B", "rationale": "18.5 to 24.9 kg/m\u00b2 is normal weight."}, {"id": 9, "question": "A BMI of 28 is classified as:", "options": {"A": "Underweight", "B": "Normal", "C": "Overweight", "D": "Obese"}, "correct": "C", "rationale": "A BMI of 25\u201329.9 is overweight."}, {"id": 10, "question": "What is the daily sodium limit for healthy adults?", "options": {"A": "1,000 mg", "B": "1,500 mg", "C": "2,300 mg", "D": "4,000 mg"}, "correct": "C", "rationale": "The daily recommended sodium limit is 2,300 mg."}, {"id": 11, "question": "Which mineral carries oxygen in red blood cells?", "options": {"A": "Calcium", "B": "Iron", "C": "Zinc", "D": "Sodium"}, "correct": "B", "rationale": "Iron forms hemoglobin to carry oxygen."}, {"id": 12, "question": "Which mineral deficiency causes delayed wound healing?", "options": {"A": "Zinc", "B": "Potassium", "C": "Sodium", "D": "Magnesium"}, "correct": "A", "rationale": "Zinc is essential for tissue repair and healing."}, {"id": 13, "question": "Which urine color shows good hydration?", "options": {"A": "Dark amber", "B": "Pale yellow", "C": "Bright orange", "D": "Reddish brown"}, "correct": "B", "rationale": "Pale yellow urine indicates adequate hydration."}, {"id": 14, "question": "Which lab test best reflects acute nutritional changes?", "options": {"A": "Albumin", "B": "Prealbumin", "C": "Hemoglobin", "D": "Hematocrit"}, "correct": "B", "rationale": "Prealbumin has a short half-life of 2\u20133 days."}, {"id": 15, "question": "Which item is allowed on a clear liquid diet?", "options": {"A": "Milk", "B": "Apple juice", "C": "Tomato soup", "D": "Ice cream"}, "correct": "B", "rationale": "Apple juice is a clear liquid."}, {"id": 16, "question": "What head-of-bed angle prevents aspiration during tube feeding?", "options": {"A": "0\u00b0 (Flat)", "B": "10\u00b0", "C": "30\u00b0 to 45\u00b0", "D": "90\u00b0"}, "correct": "C", "rationale": "Elevate head of bed 30\u00b0\u201345\u00b0 during feedings."}, {"id": 17, "question": "TPN must be given through which route?", "options": {"A": "Mouth", "B": "Peripheral hand vein", "C": "Central IV line", "D": "Subcutaneous"}, "correct": "C", "rationale": "TPN requires a large central vein."}, {"id": 18, "question": "Which vitamin prevents neural tube defects?", "options": {"A": "Vitamin C", "B": "Folic acid", "C": "Vitamin K", "D": "Vitamin E"}, "correct": "B", "rationale": "Folic acid prevents neural tube defects."}, {"id": 19, "question": "The embryonic neural tube closes by day:", "options": {"A": "14", "B": "28", "C": "60", "D": "90"}, "correct": "B", "rationale": "The neural tube closes within 28 days post-conception."}, {"id": 20, "question": "Extra calories are first required in which trimester?", "options": {"A": "First", "B": "Second", "C": "Labor only", "D": "Postpartum only"}, "correct": "B", "rationale": "Caloric needs increase in the second trimester."}, {"id": 21, "question": "How many extra calories are needed daily in the 2nd trimester?", "options": {"A": "50 kcal", "B": "100 kcal", "C": "340 kcal", "D": "1,000 kcal"}, "correct": "C", "rationale": "An extra ~340 kcal/day is recommended."}, {"id": 22, "question": "How much extra protein is needed daily during pregnancy?", "options": {"A": "5 g", "B": "10 g", "C": "25 g", "D": "50 g"}, "correct": "C", "rationale": "Pregnant women need an additional 25 g/day of protein."}, {"id": 23, "question": "What is normal pregnancy weight gain for a normal BMI?", "options": {"A": "10\u201315 lbs", "B": "15\u201320 lbs", "C": "25\u201335 lbs", "D": "45\u201355 lbs"}, "correct": "C", "rationale": "Recommended gain is 25 to 35 lbs (11.5\u201316 kg)."}, {"id": 24, "question": "Physiologic anemia in pregnancy is mainly due to:", "options": {"A": "Blood loss", "B": "Plasma volume expansion", "C": "Bone marrow failure", "D": "Lack of calcium"}, "correct": "B", "rationale": "Plasma volume expands faster than RBC mass (hemodilution)."}, {"id": 25, "question": "Which drink best increases iron absorption?", "options": {"A": "Orange juice", "B": "Cow's milk", "C": "Black tea", "D": "Coffee"}, "correct": "A", "rationale": "Vitamin C in orange juice boosts iron absorption."}, {"id": 26, "question": "Which drink blocks iron absorption?", "options": {"A": "Water", "B": "Black tea", "C": "Apple juice", "D": "Lemonade"}, "correct": "B", "rationale": "Tannins in tea inhibit iron absorption."}, {"id": 27, "question": "Daily calcium requirement for pregnant teens (<19 years) is:", "options": {"A": "800 mg", "B": "1,000 mg", "C": "1,300 mg", "D": "2,500 mg"}, "correct": "C", "rationale": "Adolescent mothers require 1,300 mg/day of calcium."}, {"id": 28, "question": "Craving non-food items like clay or ice is called:", "options": {"A": "Bulimia", "B": "Pica", "C": "Anorexia", "D": "Dysphagia"}, "correct": "B", "rationale": "Pica is the compulsive eating of non-food substances."}, {"id": 29, "question": "Which hormone causes pregnancy constipation?", "options": {"A": "Progesterone", "B": "Estrogen", "C": "Oxytocin", "D": "Insulin"}, "correct": "A", "rationale": "Progesterone relaxes smooth muscles and slows motility."}, {"id": 30, "question": "High doses of which vitamin can cause severe birth defects?", "options": {"A": "Vitamin C", "B": "Vitamin B12", "C": "Vitamin A", "D": "Vitamin B1"}, "correct": "C", "rationale": "Excess preformed Vitamin A is teratogenic."}, {"id": 31, "question": "Severe maternal iodine deficiency causes fetal:", "options": {"A": "Scurvy", "B": "Rickets", "C": "Cretinism", "D": "Pellagra"}, "correct": "C", "rationale": "Iodine deficiency causes congenital cretinism."}, {"id": 32, "question": "What food helps relieve morning nausea?", "options": {"A": "Dry crackers", "B": "Fried eggs", "C": "Spicy soup", "D": "Ice cream"}, "correct": "A", "rationale": "Dry crackers before rising help ease nausea."}, {"id": 33, "question": "Preeclampsia is marked by high blood pressure and:", "options": {"A": "Fever", "B": "Protein in urine", "C": "Weight loss", "D": "Diarrhea"}, "correct": "B", "rationale": "Preeclampsia involves hypertension and proteinuria."}, {"id": 34, "question": "How many extra calories/day does a breastfeeding mother need?", "options": {"A": "100 kcal", "B": "250 kcal", "C": "500 kcal", "D": "1,200 kcal"}, "correct": "C", "rationale": "Lactation requires an extra 450\u2013500 kcal/day."}, {"id": 35, "question": "Exclusive breastfeeding is recommended for the first:", "options": {"A": "2 months", "B": "4 months", "C": "6 months", "D": "12 months"}, "correct": "C", "rationale": "Exclusive breastfeeding is recommended for 6 months."}, {"id": 36, "question": "The first breast milk produced after birth is called:", "options": {"A": "Colostrum", "B": "Foremilk", "C": "Hindmilk", "D": "Mature milk"}, "correct": "A", "rationale": "Colostrum is the thick yellow milk in the first 2\u20133 days."}, {"id": 37, "question": "Colostrum is richest in which antibody?", "options": {"A": "IgA", "B": "IgE", "C": "IgD", "D": "IgM"}, "correct": "A", "rationale": "Colostrum is packed with protective secretory IgA."}, {"id": 38, "question": "Which vitamin supplement do breastfed newborns need?", "options": {"A": "Vitamin A", "B": "Vitamin C", "C": "Vitamin D", "D": "Vitamin E"}, "correct": "C", "rationale": "Breastfed infants need 400 IU/day of Vitamin D."}, {"id": 39, "question": "At what age should solid foods be started?", "options": {"A": "2 months", "B": "4 months", "C": "Around 6 months", "D": "12 months"}, "correct": "C", "rationale": "Complementary foods begin around 6 months."}, {"id": 40, "question": "Which infant reflex pushes solid food out of the mouth?", "options": {"A": "Suck reflex", "B": "Extrusion reflex", "C": "Moro reflex", "D": "Grasp reflex"}, "correct": "B", "rationale": "The tongue-extrusion reflex fades around 4\u20136 months."}, {"id": 41, "question": "How many days should parents wait between new foods?", "options": {"A": "0 days", "B": "1 day", "C": "3 to 5 days", "D": "14 days"}, "correct": "C", "rationale": "Wait 3\u20135 days to observe for allergic reactions."}, {"id": 42, "question": "Which food should NEVER be given under 1 year of age?", "options": {"A": "Mashed banana", "B": "Honey", "C": "Rice cereal", "D": "Applesauce"}, "correct": "B", "rationale": "Honey carries infant botulism risk."}, {"id": 43, "question": "Why is unmodified cow's milk avoided before 1 year?", "options": {"A": "Low iron / hard on kidneys", "B": "Too much sugar", "C": "Causes fever", "D": "Has zero protein"}, "correct": "A", "rationale": "Cow's milk has low iron availability and high renal solute load."}, {"id": 44, "question": "Which milk type is recommended for children aged 1 to 2 years?", "options": {"A": "Skim milk", "B": "1% milk", "C": "Whole milk", "D": "Soy milk"}, "correct": "C", "rationale": "Whole milk provides essential fat for brain growth."}, {"id": 45, "question": "What is the daily cow's milk limit for toddlers?", "options": {"A": "1 cup", "B": "2 to 3 cups (16\u201324 oz)", "C": "6 cups", "D": "No limit"}, "correct": "B", "rationale": "Limit to 16\u201324 oz/day to prevent iron deficiency."}, {"id": 46, "question": "Drinking too much milk and refusing solid food causes:", "options": {"A": "Milk anemia", "B": "Rickets", "C": "Scurvy", "D": "Pellagra"}, "correct": "A", "rationale": "'Milk anemia' is iron deficiency anemia from excess milk."}, {"id": 47, "question": "A toddler's normal dip in appetite is called:", "options": {"A": "Anorexia nervosa", "B": "Physiologic anorexia", "C": "Bulimia", "D": "Malabsorption"}, "correct": "B", "rationale": "Decelerated growth causes normal physiologic anorexia."}, {"id": 48, "question": "Which food is a major choking risk for toddlers?", "options": {"A": "Whole grapes", "B": "Mashed potato", "C": "Yogurt", "D": "Pudding"}, "correct": "A", "rationale": "Whole round grapes can block the airway."}, {"id": 49, "question": "Baby bottle tooth decay is caused by bedtime bottles of:", "options": {"A": "Plain water", "B": "Milk or sweet juice", "C": "Unsweetened tea", "D": "Liquid vitamins"}, "correct": "B", "rationale": "Carbohydrates pool on teeth and cause rapid decay."}, {"id": 50, "question": "Toddler portion size rule per year of age is:", "options": {"A": "1 teaspoon", "B": "1 tablespoon", "C": "1 cup", "D": "1 plate"}, "correct": "B", "rationale": "The rule of thumb is 1 tablespoon per year of age."}];
+    // 40 High-Yield Exam MCQs on Concept of Sexuality (NU-151 Fundamentals of Nursing-II)
+    // Correct option distribution: 10 A (0), 10 B (1), 10 C (2), 10 D (3) - variably mixed.
+    const QUESTION_BANK = [
+      {
+        id: 1,
+        topic: "Foundations",
+        q: "According to the World Health Organization (WHO), which statement best defines human sexuality?",
+        options: [
+          "It is strictly limited to physical sexual intercourse for reproduction.",
+          "It begins only after puberty and ends during older adulthood.",
+          "It is a central aspect of being human throughout life encompassing sex, gender, intimacy, and reproduction.",
+          "It refers solely to an individual's biological chromosomes and external genitalia."
+        ],
+        answer: 2, // C
+        rationale: "WHO defines sexuality as a lifelong, holistic human aspect involving biological sex, gender identities, intimacy, pleasure, and reproduction."
+      },
+      {
+        id: 2,
+        topic: "Foundations",
+        q: "A nurse is teaching nursing students about basic sexual terminology. How should the nurse define 'gender identity'?",
+        options: [
+          "A person's deeply felt internal experience of being male, female, or another gender.",
+          "The external clothing and hairstyles a person chooses to wear in public.",
+          "The biological chromosomes (XX or XY) assigned to an infant at birth.",
+          "The romantic and sexual attraction a person feels toward another individual."
+        ],
+        answer: 0, // A
+        rationale: "Gender identity is an internal, personal sense of one's own gender, which may or may not match the biological sex assigned at birth."
+      },
+      {
+        id: 3,
+        topic: "Foundations",
+        q: "Which four dimensions make up the holistic nursing model of human sexuality?",
+        options: [
+          "Anatomical, hormonal, financial, and educational",
+          "Physical, marital, legal, and occupational",
+          "Genetic, neurological, muscular, and skeletal",
+          "Biological, psychological, sociocultural, and spiritual"
+        ],
+        answer: 3, // D
+        rationale: "Holistic nursing views sexuality through four interconnected dimensions: biological, psychological, sociocultural, and spiritual."
+      },
+      {
+        id: 4,
+        topic: "Foundations",
+        q: "Why is it an essential nursing responsibility to assess a hospitalized patient's sexual health?",
+        options: [
+          "To satisfy hospital administrative paperwork requirements only.",
+          "Because illness, surgery, and medications often affect sexual function and treatment compliance.",
+          "Because physicians are legally prohibited from discussing sexual side effects.",
+          "To ensure all patients follow the same cultural norms."
+        ],
+        answer: 1, // B
+        rationale: "Patients frequently stop life-saving medications (such as antihypertensives) due to unaddressed sexual side effects; nursing assessment improves compliance and quality of life."
+      },
+      {
+        id: 5,
+        topic: "Anatomy & Physiology",
+        q: "Which female external genital structure is the primary sensory organ of sexual pleasure and is homologous to the male penis?",
+        options: [
+          "Labia majora",
+          "Clitoris",
+          "Mons pubis",
+          "Bartholin's gland"
+        ],
+        answer: 1, // B
+        rationale: "The clitoris contains erectile cavernous tissue and rich nerve endings, making it the primary organ of female sexual pleasure."
+      },
+      {
+        id: 6,
+        topic: "Anatomy & Physiology",
+        q: "During female sexual arousal, which glands secrete a clear, alkaline lubricating mucus into the vestibule?",
+        options: [
+          "Seminal vesicles",
+          "Prostate glands",
+          "Cowper's glands",
+          "Bartholin's glands"
+        ],
+        answer: 3, // D
+        rationale: "Bartholin's (greater vestibular) glands lie on either side of the vaginal orifice and secrete lubricating mucus during arousal."
+      },
+      {
+        id: 7,
+        topic: "Anatomy & Physiology",
+        q: "In which specific part of the Fallopian tube does fertilization of the ovum by a sperm cell normally occur?",
+        options: [
+          "Ampulla",
+          "Fimbriae",
+          "Cervix",
+          "Endometrium"
+        ],
+        answer: 0, // A
+        rationale: "Fertilization typically takes place in the ampulla, the widest outer-third portion of the Fallopian tube."
+      },
+      {
+        id: 8,
+        topic: "Anatomy & Physiology",
+        q: "What maintains the normal protective acidic pH (3.8 to 4.5) of the adult vagina?",
+        options: [
+          "Prostate alkaline secretions",
+          "Estrogen directly turning into hydrochloric acid",
+          "Lactobacillus acidophilus fermenting glycogen into lactic acid",
+          "Urine refluxing through the urethral meatus"
+        ],
+        answer: 2, // C
+        rationale: "Normal vaginal flora (Lactobacillus acidophilus) ferment glycogen in vaginal epithelial cells into lactic acid, protecting against infection."
+      },
+      {
+        id: 9,
+        topic: "Anatomy & Physiology",
+        q: "In the 28-day ovarian cycle, which sudden hormonal event directly triggers ovulation on Day 14?",
+        options: [
+          "A sharp drop in prolactin",
+          "A sudden rise in progesterone from the corpus albicans",
+          "A complete stop in GnRH secretion",
+          "A massive surge in Luteinizing Hormone (LH)"
+        ],
+        answer: 3, // D
+        rationale: "High estrogen levels from the mature Graafian follicle trigger a sudden LH surge from the anterior pituitary, causing follicle rupture and ovulation."
+      },
+      {
+        id: 10,
+        topic: "Anatomy & Physiology",
+        q: "Which cells located between the seminiferous tubules of the testes synthesize and secrete testosterone?",
+        options: [
+          "Sertoli cells",
+          "Interstitial cells of Leydig",
+          "Corpus luteum cells",
+          "Follicular granulosa cells"
+        ],
+        answer: 1, // B
+        rationale: "Leydig cells produce testosterone under the stimulation of LH (ICSH), while Sertoli cells nourish developing sperm inside the seminiferous tubules."
+      },
+      {
+        id: 11,
+        topic: "Anatomy & Physiology",
+        q: "Why does the scrotum hold the testes outside the pelvic cavity?",
+        options: [
+          "Spermatogenesis requires a temperature 2°C to 3°C cooler than core body temperature.",
+          "Testosterone cannot be synthesized at 37°C.",
+          "To protect the testes from urinary bladder pressure during micturition.",
+          "To allow direct absorption of oxygen through the scrotal skin."
+        ],
+        answer: 0, // A
+        rationale: "Viable sperm production requires a cooler environment (around 34°C–35°C), regulated by the dartos and cremaster muscles."
+      },
+      {
+        id: 12,
+        topic: "Anatomy & Physiology",
+        q: "Using the nursing mnemonic 'Point and Shoot,' which division of the nervous system controls penile erection vs. ejaculation?",
+        options: [
+          "Sympathetic controls erection; Parasympathetic controls ejaculation.",
+          "Somatic nerves control erection; Endocrine hormones control ejaculation.",
+          "Parasympathetic controls erection; Sympathetic controls ejaculation.",
+          "Cranial nerves control erection; Parasympathetic controls ejaculation."
+        ],
+        answer: 2, // C
+        rationale: "P = Parasympathetic = Point (erection via Nitric Oxide vasodilation); S = Sympathetic = Shoot (emission and ejaculation)."
+      },
+      {
+        id: 13,
+        topic: "Sexual Response Cycle",
+        q: "According to Masters and Johnson, what are the two primary physiological mechanisms responsible for all physical changes during the sexual response cycle?",
+        options: [
+          "Hyperglycemia and vasoconstriction",
+          "Vasocongestion and myotonia",
+          "Osmosis and active transport",
+          "Ischemia and muscle atrophy"
+        ],
+        answer: 1, // B
+        rationale: "Vasocongestion (blood engorgement in genital tissues) and myotonia (increased neuromuscular tension) drive all four phases."
+      },
+      {
+        id: 14,
+        topic: "Sexual Response Cycle",
+        q: "During which phase of the Masters and Johnson sexual response cycle does the 'orgasmic platform' form in the outer third of the vagina?",
+        options: [
+          "Desire phase",
+          "Resolution phase",
+          "Excitement phase",
+          "Plateau phase"
+        ],
+        answer: 3, // D
+        rationale: "In the plateau phase, intense vasocongestion narrows the outer third of the vagina by 30–50%, forming the orgasmic platform."
+      },
+      {
+        id: 15,
+        topic: "Sexual Response Cycle",
+        q: "What is the key physiological difference between men and women during the Resolution phase?",
+        options: [
+          "Men experience an obligatory refractory period during which another erection/orgasm cannot occur.",
+          "Women experience a longer refractory period lasting 24 to 48 hours.",
+          "Men are physiologically capable of immediate multiple orgasms without rest.",
+          "Women's heart rate remains at 180 bpm for 2 hours after orgasm."
+        ],
+        answer: 0, // A
+        rationale: "Men have an obligatory refractory period after ejaculation, whereas women lack a mandatory refractory period and can experience multiple orgasms."
+      },
+      {
+        id: 16,
+        topic: "Sexual Response Cycle",
+        q: "During the Orgasmic phase, rhythmic pelvic muscle contractions occur in both men and women at what consistent time interval?",
+        options: [
+          "Every 5.0 seconds",
+          "Every 2.5 seconds",
+          "Every 0.8 seconds",
+          "Every 10.0 seconds"
+        ],
+        answer: 2, // C
+        rationale: "Both male ejaculatory contractions and female orgasmic platform contractions occur at regular 0.8-second intervals."
+      },
+      {
+        id: 17,
+        topic: "Sexual Response Cycle",
+        q: "Which theorist expanded the 4-phase Masters and Johnson model by adding 'Desire' as the crucial first stage?",
+        options: [
+          "Erik Erikson",
+          "Sigmund Freud",
+          "Marjory Gordon",
+          "Helen Singer Kaplan"
+        ],
+        answer: 3, // D
+        rationale: "Dr. Helen Singer Kaplan introduced the Triphasic Model (Desire, Excitement, Orgasm) emphasizing psychological desire."
+      },
+      {
+        id: 18,
+        topic: "Sexual Response Cycle",
+        q: "A 46-year-old woman tells the nurse she feels abnormal because it takes her 15 minutes of foreplay to lubricate, while her husband is ready in seconds. What is the best nursing response?",
+        options: [
+          "Refer her immediately for psychiatric therapy.",
+          "Reassure her that slower lubrication with age is normal and women often need longer stimulation.",
+          "Tell her to avoid sexual activity until after menopause.",
+          "Advise her to use petroleum jelly (Vaseline) for faster lubrication."
+        ],
+        answer: 1, // B
+        rationale: "Educating the patient that slower lubrication is a normal physiological variation (especially in perimenopause) relieves anxiety. Oil-based products like Vaseline should be avoided."
+      },
+      {
+        id: 19,
+        topic: "Life Cycle Stages",
+        q: "A worried mother tells the pediatric nurse that her 2-year-old toddler touches his genitals during diaper changes. What should the nurse advise?",
+        options: [
+          "Scold the child firmly so he learns this is a bad habit.",
+          "Apply mittens to the child's hands at all times.",
+          "Reassure the mother that genital exploration is normal at this age and gently redirect the child.",
+          "Request an urgent endocrine evaluation for precocious puberty."
+        ],
+        answer: 2, // C
+        rationale: "Toddlers explore their bodies out of natural curiosity; harsh punishment induces shame and guilt, whereas calm redirection is healthy."
+      },
+      {
+        id: 20,
+        topic: "Life Cycle Stages",
+        q: "When a 4-year-old preschooler asks, 'Where do babies come from?', what is the most appropriate nursing guidance for parents?",
+        options: [
+          "Give simple, honest, anatomically accurate answers suited to the child's age.",
+          "Tell the child that a large bird delivered the baby to the hospital.",
+          "Ignore the question and tell the child to ask again at age 18.",
+          "Give a detailed medical lecture on meiosis and fetal embryology."
+        ],
+        answer: 0, // A
+        rationale: "Preschoolers need simple, truthful, age-appropriate explanations (e.g., 'a baby grows in a special place inside the mother') to build trust."
+      },
+      {
+        id: 21,
+        topic: "Life Cycle Stages",
+        q: "According to Erik Erikson, what is the primary psychosocial developmental task of Adolescence (12–19 years)?",
+        options: [
+          "Trust vs. Mistrust",
+          "Intimacy vs. Isolation",
+          "Integrity vs. Despair",
+          "Identity vs. Role Confusion"
+        ],
+        answer: 3, // D
+        rationale: "Adolescents work to establish personal and sexual identity (Identity vs. Role Confusion) amid rapid pubertal changes."
+      },
+      {
+        id: 22,
+        topic: "Life Cycle Stages",
+        q: "Menopause is clinically defined as the permanent cessation of menstruation for how long?",
+        options: [
+          "3 consecutive months",
+          "12 consecutive months",
+          "6 consecutive months",
+          "24 consecutive months"
+        ],
+        answer: 1, // B
+        rationale: "Menopause is diagnosed retrospectively after 12 consecutive months without a menstrual period, typically around age 51."
+      },
+      {
+        id: 23,
+        topic: "Life Cycle Stages",
+        q: "Which physiological change is a normal part of aging in an older adult male (65+ years)?",
+        options: [
+          "Erections take longer to achieve, require more direct touch, and the refractory period lengthens.",
+          "Complete loss of all sexual desire and inability to feel emotional intimacy.",
+          "Testosterone increases by 50% compared to age 20.",
+          "Sperm production stops completely at age 60."
+        ],
+        answer: 0, // A
+        rationale: "Older men remain sexually capable, though erections require more direct stimulation and the refractory period extends."
+      },
+      {
+        id: 24,
+        topic: "Life Cycle Stages",
+        q: "A nursing assistant laughs after seeing an elderly married couple holding hands and kissing in a long-term care facility. What is the charge nurse's priority action?",
+        options: [
+          "Separate the couple into different rooms immediately.",
+          "Report the couple to the hospital ethics committee for misconduct.",
+          "Ignore the assistant's behavior to avoid workplace conflict.",
+          "Educate the staff that older adults have normal intimacy needs and strictly protect their privacy."
+        ],
+        answer: 3, // D
+        rationale: "Nurses must dispel the 'asexual elder' myth, uphold patient dignity, and ensure privacy (knocking, closing doors/curtains)."
+      },
+      {
+        id: 25,
+        topic: "Influencing Factors",
+        q: "Which class of antidepressant medications is most frequently associated with delayed ejaculation in men and anorgasmia in women?",
+        options: [
+          "ACE inhibitors (e.g., Lisinopril)",
+          "Penicillin antibiotics",
+          "Selective Serotonin Reuptake Inhibitors (SSRIs, e.g., Fluoxetine, Sertraline)",
+          "Proton pump inhibitors (e.g., Omeprazole)"
+        ],
+        answer: 2, // C
+        rationale: "SSRIs elevate serotonin, which inhibits dopamine pathways and causes orgasmic delay or anorgasmia in up to 50–70% of patients."
+      },
+      {
+        id: 26,
+        topic: "Influencing Factors",
+        q: "A 50-year-old man stops taking his prescribed beta-blocker (propranolol) for hypertension without telling his doctor. What is the most likely hidden reason a nurse should assess for?",
+        options: [
+          "Increased appetite",
+          "Medication-induced erectile dysfunction",
+          "Improved night vision",
+          "Excessive hair growth"
+        ],
+        answer: 1, // B
+        rationale: "Beta-blockers and thiazide diuretics commonly cause erectile dysfunction, leading patients to silently discontinue their antihypertensive therapy."
+      },
+      {
+        id: 27,
+        topic: "Influencing Factors",
+        q: "How do antipsychotic medications like haloperidol or risperidone cause sexual dysfunction and amenorrhea?",
+        options: [
+          "By destroying ovarian follicles directly",
+          "By lowering blood sugar to hypoglycemic levels",
+          "By increasing testosterone production tenfold",
+          "By blocking dopamine, which causes high prolactin levels (hyperprolactinemia)"
+        ],
+        answer: 3, // D
+        rationale: "Dopamine normally inhibits prolactin. Dopamine-blocking antipsychotics raise prolactin, suppressing FSH, LH, and libido."
+      },
+      {
+        id: 28,
+        topic: "Influencing Factors",
+        q: "Why does chronic tobacco smoking significantly increase the risk of erectile dysfunction in middle-aged men?",
+        options: [
+          "Nicotine causes peripheral vasoconstriction and accelerates penile arterial atherosclerosis.",
+          "Nicotine blocks all sensory nerves in the spinal cord.",
+          "Smoking increases estrogen levels by 300%.",
+          "Tobacco smoke causes acute vaginismus."
+        ],
+        answer: 0, // A
+        rationale: "Nicotine constricts blood vessels and damages arterial endothelium, reducing blood flow required for penile erection."
+      },
+      {
+        id: 29,
+        topic: "Influencing Factors",
+        q: "Which factor in a standard hospital ward most commonly impairs a patient's ability to express intimacy with their spouse?",
+        options: [
+          "High-protein hospital meals",
+          "Warm room temperature",
+          "Lack of privacy, frequent staff interruptions, and attached medical tubing",
+          "Daily morning vital signs checks"
+        ],
+        answer: 2, // C
+        rationale: "Shared wards, lack of privacy, and tethering equipment (IVs, catheters) make patients feel exposed and stripped of adult autonomy."
+      },
+      {
+        id: 30,
+        topic: "Alterations & Risks",
+        q: "A patient reports inability to maintain an erection during intercourse, but confirms he regularly wakes up with firm morning erections. What does this suggest?",
+        options: [
+          "Severe organic arterial blockage",
+          "A psychogenic cause (such as performance anxiety), as physical pathways are intact",
+          "Complete sacral spinal cord transection",
+          "End-stage diabetic neuropathy"
+        ],
+        answer: 1, // B
+        rationale: "Firm nocturnal/morning erections during REM sleep prove that vascular and neurological pathways are intact, pointing to psychological anxiety."
+      },
+      {
+        id: 31,
+        topic: "Alterations & Risks",
+        q: "What is the clinical definition of 'Vaginismus'?",
+        options: [
+          "Involuntary, painful spastic contraction of the outer vaginal muscles preventing penetration.",
+          "Absence of menstruation for 12 consecutive months.",
+          "Excessive vaginal lubrication during the plateau phase.",
+          "A bacterial infection caused by Neisseria gonorrhoeae."
+        ],
+        answer: 0, // A
+        rationale: "Vaginismus is an involuntary protective spasm of the pubococcygeus muscle around the lower vagina, often linked to fear or past trauma."
+      },
+      {
+        id: 32,
+        topic: "Alterations & Risks",
+        q: "A 56-year-old man recovering from a myocardial infarction (heart attack) asks when he can safely resume sex. What evidence-based rule should the nurse teach?",
+        options: [
+          "Wait at least 2 full years after any heart attack.",
+          "Take a double dose of nitroglycerin immediately before intercourse.",
+          "Sexual activity is permanently unsafe after a heart attack.",
+          "If he can climb two flights of stairs comfortably without chest pain or dyspnea, he is physically ready."
+        ],
+        answer: 3, // D
+        rationale: "Sexual intercourse with a familiar partner requires about 3–5 METs, equivalent to briskly climbing two flights of stairs."
+      },
+      {
+        id: 33,
+        topic: "Alterations & Risks",
+        q: "Which critical medication safety warning MUST the nurse give a cardiac patient who takes nitroglycerin (nitrates)?",
+        options: [
+          "Take nitroglycerin with grapefruit juice.",
+          "Avoid all water-soluble vaginal lubricants.",
+          "Never take Sildenafil (Viagra) or Tadalafil (Cialis) with nitrates due to fatal hypotension.",
+          "Stop taking aspirin 24 hours before intimacy."
+        ],
+        answer: 2, // C
+        rationale: "Combining nitrates with PDE-5 inhibitors (Sildenafil/Tadalafil) causes severe, life-threatening vasodilation and fatal hypotension."
+      },
+      {
+        id: 34,
+        topic: "Alterations & Risks",
+        q: "Which sexually transmitted infection (STI) is caused by a virus whose strains 16 and 18 are the primary cause of cervical cancer?",
+        options: [
+          "Syphilis (Treponema pallidum)",
+          "Human Papillomavirus (HPV)",
+          "Chlamydia trachomatis",
+          "Gonorrhea"
+        ],
+        answer: 1, // B
+        rationale: "High-risk oncogenic HPV strains (16 and 18) cause approximately 70% of cervical cancers; vaccination is a key preventive measure."
+      },
+      {
+        id: 35,
+        topic: "Nursing Process",
+        q: "Under Marjory Gordon's Functional Health Patterns, which pattern specifically assesses a patient's sexual satisfaction and reproductive concerns?",
+        options: [
+          "Pattern 1: Health Perception–Health Management",
+          "Pattern 4: Activity–Exercise Pattern",
+          "Pattern 7: Self-Perception–Self-Concept Pattern",
+          "Pattern 9: Sexuality–Reproductive Pattern"
+        ],
+        answer: 3, // D
+        rationale: "Gordon's Functional Health Pattern #9 is the Sexuality–Reproductive Pattern."
+      },
+      {
+        id: 36,
+        topic: "Nursing Process",
+        q: "In the PLISSIT model of sexual counseling, what does the 'P' (first step) stand for?",
+        options: [
+          "Permission — opening the topic and validating sexual concerns as normal",
+          "Prescription — ordering hormone replacement therapy",
+          "Pathology — diagnosing organic erectile failure",
+          "Psychotherapy — conducting intensive trauma counseling"
+        ],
+        answer: 0, // A
+        rationale: "PLISSIT stands for Permission, Limited Information, Specific Suggestions, and Intensive Therapy."
+      },
+      {
+        id: 37,
+        topic: "Nursing Process",
+        q: "A male patient with a new colostomy says, 'My wife will be disgusted by this bag, so I sleep in another room.' Which NANDA-I nursing diagnosis fits best?",
+        options: [
+          "Impaired Gas Exchange",
+          "Sexual Dysfunction related to spinal cord injury",
+          "Ineffective Sexuality Pattern related to fear of rejection and altered body image",
+          "Risk for Fluid Volume Deficit"
+        ],
+        answer: 2, // C
+        rationale: "When physical sexual organs are intact but interpersonal intimacy is disrupted by fear, guilt, or body image distress, 'Ineffective Sexuality Pattern' is the primary diagnosis."
+      },
+      {
+        id: 38,
+        topic: "Nursing Process",
+        q: "Which practical nursing intervention should be taught to a female patient experiencing post-menopausal vaginal dryness and dyspareunia?",
+        options: [
+          "Use petroleum jelly (Vaseline) or baby oil before intercourse.",
+          "Use a generous amount of water-soluble lubricant (e.g., K-Y Jelly) and extend foreplay.",
+          "Avoid all fluid intake for 6 hours before intimacy.",
+          "Douche daily with strong antiseptic soap."
+        ],
+        answer: 1, // B
+        rationale: "Water-soluble lubricants reduce friction safely without irritating mucosa or breaking latex condoms, unlike oil-based products."
+      },
+      {
+        id: 39,
+        topic: "Boundaries & Ethics",
+        q: "A hospitalized patient makes a sexually suggestive remark to a student nurse during a dressing change. What is the nurse's best immediate action?",
+        options: [
+          "State calmly and firmly that the comment is inappropriate and remind the patient of the professional nursing role.",
+          "Laugh politely so the patient does not feel embarrassed.",
+          "Walk out silently and never document the incident.",
+          "Scold the patient angrily and refuse all future hospital care."
+        ],
+        answer: 0, // A
+        rationale: "Step 1 of boundary management is calm, firm, neutral verbal redirection—establishing clear limits without anger or humor."
+      },
+      {
+        id: 40,
+        topic: "Boundaries & Ethics",
+        q: "How should a nurse document an incident of sexually inappropriate patient behavior in the legal medical chart?",
+        options: [
+          "Write: 'Patient acted like a rude pervert today.'",
+          "Do not write anything in the chart to protect the patient's reputation.",
+          "Record exact objective facts and quote the patient's verbatim words without personal labels.",
+          "Write a personal opinion about the patient's moral character."
+        ],
+        answer: 2, // C
+        rationale: "Nursing documentation must always be objective, factual, and non-judgmental, placing exact patient statements in quotation marks."
+      }
+    ];
 
     // App State
-    let quizList = [];
-    let currentIndex = 0;
-    let userAnswers = {}; // { qIndex: 'A' | 'B' | 'C' | 'D' }
-    let flaggedQuestions = new Set();
-    let score = 0;
-    let currentStreak = 0;
-    let maxStreak = 0;
-    let timerDuration = 30; // 30 sec per question if timer enabled
-    let timerRemaining = 30;
-    let timerInterval = null;
-    let totalTimeElapsed = 0;
-    let totalTimerInterval = null;
-    let soundEnabled = true;
+    let state = {
+      mode: 'study', // 'study' or 'exam'
+      shuffle: false,
+      questions: [],
+      currentIndex: 0,
+      answers: {}, // { index: selectedOptionIndex }
+      timerSeconds: 0,
+      timerInterval: null
+    };
 
-    // Audio Synthesizer (Zero external dependencies)
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = null;
+    // DOM Elements
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
+    const resultsScreen = document.getElementById('results-screen');
 
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new AudioContext();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+    const modeStudyBtn = document.getElementById('mode-study');
+    const modeExamBtn = document.getElementById('mode-exam');
+    const shuffleToggle = document.getElementById('shuffle-toggle');
+    const startBtn = document.getElementById('start-btn');
+
+    const quitBtn = document.getElementById('quit-btn');
+    const qCounter = document.getElementById('q-counter');
+    const timerPill = document.getElementById('timer-pill');
+    const scorePill = document.getElementById('score-pill');
+    const progressBar = document.getElementById('progress-bar');
+
+    const topicBadge = document.getElementById('topic-badge');
+    const answeredStatus = document.getElementById('answered-status');
+    const questionText = document.getElementById('question-text');
+    const optionsList = document.getElementById('options-list');
+    const rationaleBox = document.getElementById('rationale-box');
+    const rationaleTitle = document.getElementById('rationale-title');
+    const rationaleText = document.getElementById('rationale-text');
+
+    const prevBtn = document.getElementById('prev-btn');
+    const gridBtn = document.getElementById('grid-btn');
+    const gridLabel = document.getElementById('grid-label');
+    const nextBtn = document.getElementById('next-btn');
+
+    const navModal = document.getElementById('nav-modal');
+    const navGrid = document.getElementById('nav-grid');
+    const closeNavBtn = document.getElementById('close-nav-btn');
+
+    const quitModal = document.getElementById('quit-modal');
+    const cancelQuitBtn = document.getElementById('cancel-quit-btn');
+    const confirmQuitBtn = document.getElementById('confirm-quit-btn');
+
+    const finalScore = document.getElementById('final-score');
+    const finalPercent = document.getElementById('final-percent');
+    const finalMessage = document.getElementById('final-message');
+    const statCorrect = document.getElementById('stat-correct');
+    const statWrong = document.getElementById('stat-wrong');
+    const statTime = document.getElementById('stat-time');
+    const retakeBtn = document.getElementById('retake-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const filterAllBtn = document.getElementById('filter-all');
+    const filterWrongBtn = document.getElementById('filter-wrong');
+    const reviewList = document.getElementById('review-list');
+
+    const LETTERS = ['A', 'B', 'C', 'D'];
+
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
     }
 
-    function playBeep(type) {
-      if (!soundEnabled) return;
-      try {
-        initAudio();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        const now = audioCtx.currentTime;
-        if (type === 'click') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(600, now);
-          gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-          osc.start(now);
-          osc.stop(now + 0.08);
-        } else if (type === 'correct') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, now); // C5
-          osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-          osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-          osc.start(now);
-          osc.stop(now + 0.35);
-        } else if (type === 'wrong') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(220, now); // A3
-          osc.frequency.setValueAtTime(180, now + 0.1);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-          osc.start(now);
-          osc.stop(now + 0.25);
-        } else if (type === 'finish') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.3);
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-          osc.start(now);
-          osc.stop(now + 0.45);
-        }
-      } catch(e) {}
-    }
-
-    function toggleAudio() {
-      soundEnabled = !soundEnabled;
-      document.getElementById('soundIcon').innerText = soundEnabled ? '🔊' : '🔇';
-      document.getElementById('soundText').innerText = soundEnabled ? 'Sound ON' : 'Sound OFF';
-      if (soundEnabled) playBeep('click');
-    }
-
-    // Initialize Quiz
-    function startQuiz() {
-      playBeep('click');
-      const instantFeedback = document.getElementById('instantFeedbackToggle').checked;
-      const enableTimer = document.getElementById('timerToggle').checked;
-      const shuffle = document.getElementById('shuffleToggle').checked;
-
-      quizList = JSON.parse(JSON.stringify(RAW_MCQS));
-      if (shuffle) {
-        quizList.sort(() => Math.random() - 0.5);
-      }
-
-      currentIndex = 0;
-      userAnswers = {};
-      flaggedQuestions.clear();
-      score = 0;
-      currentStreak = 0;
-      maxStreak = 0;
-      totalTimeElapsed = 0;
-
-      // Timer Display setup
-      const timerBox = document.getElementById('timerBox');
-      if (!enableTimer) {
-        timerBox.style.display = 'none';
+    function setMode(mode) {
+      state.mode = mode;
+      if (mode === 'study') {
+        modeStudyBtn.className = 'tap-btn p-3.5 rounded-xl border-2 border-teal-600 bg-teal-50 text-left';
+        modeStudyBtn.querySelector('span:last-child').className = 'w-2.5 h-2.5 rounded-full bg-teal-600';
+        modeExamBtn.className = 'tap-btn p-3.5 rounded-xl border-2 border-slate-200 bg-white text-left';
+        modeExamBtn.querySelector('span:last-child').className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
       } else {
-        timerBox.style.display = 'flex';
+        modeExamBtn.className = 'tap-btn p-3.5 rounded-xl border-2 border-teal-600 bg-teal-50 text-left';
+        modeExamBtn.querySelector('span:last-child').className = 'w-2.5 h-2.5 rounded-full bg-teal-600';
+        modeStudyBtn.className = 'tap-btn p-3.5 rounded-xl border-2 border-slate-200 bg-white text-left';
+        modeStudyBtn.querySelector('span:last-child').className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
       }
+    }
 
-      // Start total time clock
-      clearInterval(totalTimerInterval);
-      totalTimerInterval = setInterval(() => {
-        totalTimeElapsed++;
+    function startQuiz() {
+      state.shuffle = shuffleToggle.checked;
+      state.questions = [...QUESTION_BANK];
+      if (state.shuffle) {
+        for (let i = state.questions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [state.questions[i], state.questions[j]] = [state.questions[j], state.questions[i]];
+        }
+      }
+      state.currentIndex = 0;
+      state.answers = {};
+      state.timerSeconds = 0;
+
+      if (state.timerInterval) clearInterval(state.timerInterval);
+      timerPill.textContent = '00:00';
+      state.timerInterval = setInterval(() => {
+        state.timerSeconds++;
+        timerPill.textContent = formatTime(state.timerSeconds);
       }, 1000);
 
-      showScreen('quizScreen');
+      startScreen.classList.add('hidden');
+      resultsScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+
       renderQuestion();
     }
 
-    function showScreen(screenId) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function getLiveScore() {
+      let correct = 0;
+      state.questions.forEach((q, idx) => {
+        if (state.answers[idx] === q.answer) correct++;
+      });
+      return correct;
     }
 
-    // Render Current Question
     function renderQuestion() {
-      const q = quizList[currentIndex];
-      const isAnswered = userAnswers[currentIndex] !== undefined;
-      const instantFeedback = document.getElementById('instantFeedbackToggle').checked;
-      const enableTimer = document.getElementById('timerToggle').checked;
+      const idx = state.currentIndex;
+      const total = state.questions.length;
+      const item = state.questions[idx];
+      const selected = state.answers[idx];
+      const hasAnswered = selected !== undefined;
 
-      // HUD updates
-      document.getElementById('hudQNum').innerText = `${currentIndex + 1} / ${quizList.length}`;
-      document.getElementById('hudScore').innerText = score;
-      document.getElementById('hudStreak').innerText = `${currentStreak} 🔥`;
-      document.getElementById('qBadge').innerText = `QUESTION #${currentIndex + 1} OF 50`;
+      qCounter.textContent = `Q ${idx + 1} / ${total}`;
+      gridLabel.textContent = `${idx + 1}/${total}`;
+      progressBar.style.width = `${((idx + 1) / total) * 100}%`;
 
-      // Progress bar
-      const progressPercent = ((currentIndex + 1) / quizList.length) * 100;
-      document.getElementById('progressBar').style.width = `${progressPercent}%`;
-
-      // Flag state
-      const flagBtn = document.getElementById('flagBtn');
-      if (flaggedQuestions.has(currentIndex)) {
-        flagBtn.classList.add('flagged');
-        document.getElementById('flagIcon').innerText = '⚑';
-        document.getElementById('flagText').innerText = 'Flagged';
+      if (state.mode === 'study') {
+        scorePill.classList.remove('hidden');
+        scorePill.textContent = `${getLiveScore()} pts`;
       } else {
-        flagBtn.classList.remove('flagged');
-        document.getElementById('flagIcon').innerText = '⚐';
-        document.getElementById('flagText').innerText = 'Flag Question';
+        scorePill.classList.add('hidden');
       }
 
-      // Question Text
-      document.getElementById('questionText').innerText = q.question;
+      topicBadge.textContent = item.topic;
+      answeredStatus.textContent = hasAnswered ? 'Answered' : 'Tap an option';
+      questionText.textContent = `${idx + 1}. ${item.q}`;
 
-      // Options
-      const optionsContainer = document.getElementById('optionsContainer');
-      optionsContainer.innerHTML = '';
-
-      const letters = ['A', 'B', 'C', 'D'];
-      letters.forEach(letter => {
-        const optText = q.options[letter];
+      optionsList.innerHTML = '';
+      item.options.forEach((optText, optIdx) => {
         const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.onclick = () => selectOption(letter);
+        btn.type = 'button';
 
-        if (isAnswered) {
-          btn.disabled = true;
-          const chosen = userAnswers[currentIndex];
-          if (chosen === letter) {
-            btn.classList.add('selected');
-          }
-          if (instantFeedback) {
-            if (letter === q.correct) {
-              btn.classList.add('correct');
-            } else if (chosen === letter) {
-              btn.classList.add('wrong');
-            }
-          }
-        }
+        let cardClass = 'tap-btn w-full text-left p-3.5 rounded-xl border-2 flex items-start gap-3 transition-all ';
+        let badgeClass = 'w-7 h-7 rounded-lg font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 ';
 
-        btn.innerHTML = `
-          <div class="opt-letter">${letter}</div>
-          <div class="opt-text">${optText}</div>
-        `;
-        optionsContainer.appendChild(btn);
-      });
-
-      // Rationale Box
-      const rationaleBox = document.getElementById('rationaleBox');
-      if (isAnswered && instantFeedback) {
-        document.getElementById('rationaleText').innerText = q.rationale;
-        rationaleBox.style.display = 'block';
-      } else {
-        rationaleBox.style.display = 'none';
-      }
-
-      // Prev / Next button states
-      document.getElementById('prevBtn').disabled = (currentIndex === 0);
-
-      const isLast = (currentIndex === quizList.length - 1);
-      const nextBtn = document.getElementById('nextBtn');
-      const finishBtn = document.getElementById('finishBtn');
-
-      if (isLast) {
-        nextBtn.style.display = 'none';
-        finishBtn.style.display = 'inline-flex';
-      } else {
-        nextBtn.style.display = 'inline-flex';
-        finishBtn.style.display = 'none';
-      }
-
-      // Reset and trigger question countdown timer
-      clearInterval(timerInterval);
-      if (enableTimer && !isAnswered) {
-        timerRemaining = timerDuration;
-        updateTimerDisplay();
-        timerInterval = setInterval(() => {
-          timerRemaining--;
-          updateTimerDisplay();
-          if (timerRemaining <= 0) {
-            clearInterval(timerInterval);
-            timeOutAutoSelect();
-          }
-        }, 1000);
-      } else if (isAnswered) {
-        document.getElementById('hudTimer').innerText = 'Done';
-        document.getElementById('timerBox').classList.remove('timer-warning');
-      }
-    }
-
-    function updateTimerDisplay() {
-      const hudTimer = document.getElementById('hudTimer');
-      const timerBox = document.getElementById('timerBox');
-      hudTimer.innerText = `${timerRemaining}s`;
-
-      if (timerRemaining <= 8) {
-        timerBox.classList.add('timer-warning');
-      } else {
-        timerBox.classList.remove('timer-warning');
-      }
-    }
-
-    function timeOutAutoSelect() {
-      if (userAnswers[currentIndex] === undefined) {
-        // Automatically mark as unanswered or pick none
-        selectOption('TIMEOUT');
-      }
-    }
-
-    // User Selects an Option
-    function selectOption(letter) {
-      if (userAnswers[currentIndex] !== undefined) return; // already answered
-
-      clearInterval(timerInterval);
-      userAnswers[currentIndex] = letter;
-
-      const q = quizList[currentIndex];
-      const isCorrect = (letter === q.correct);
-      const instantFeedback = document.getElementById('instantFeedbackToggle').checked;
-
-      if (isCorrect) {
-        score++;
-        currentStreak++;
-        if (currentStreak > maxStreak) maxStreak = currentStreak;
-        playBeep('correct');
-      } else {
-        currentStreak = 0;
-        playBeep('wrong');
-      }
-
-      renderQuestion();
-    }
-
-    function toggleFlag() {
-      playBeep('click');
-      if (flaggedQuestions.has(currentIndex)) {
-        flaggedQuestions.delete(currentIndex);
-      } else {
-        flaggedQuestions.add(currentIndex);
-      }
-      renderQuestion();
-    }
-
-    function nextQuestion() {
-      playBeep('click');
-      if (currentIndex < quizList.length - 1) {
-        currentIndex++;
-        renderQuestion();
-      }
-    }
-
-    function prevQuestion() {
-      playBeep('click');
-      if (currentIndex > 0) {
-        currentIndex--;
-        renderQuestion();
-      }
-    }
-
-    // Question Matrix / Jump Drawer
-    function openMatrixModal() {
-      playBeep('click');
-      const grid = document.getElementById('matrixGrid');
-      grid.innerHTML = '';
-
-      quizList.forEach((q, idx) => {
-        const tile = document.createElement('div');
-        tile.className = 'matrix-tile';
-        tile.innerText = idx + 1;
-
-        if (idx === currentIndex) tile.classList.add('current');
-        if (flaggedQuestions.has(idx)) tile.classList.add('flagged');
-
-        if (userAnswers[idx] !== undefined) {
-          if (userAnswers[idx] === q.correct) {
-            tile.classList.add('answered-correct');
+        if (state.mode === 'study' && hasAnswered) {
+          if (optIdx === item.answer) {
+            cardClass += 'border-emerald-500 bg-emerald-50 text-emerald-950';
+            badgeClass += 'bg-emerald-600 text-white';
+          } else if (optIdx === selected && selected !== item.answer) {
+            cardClass += 'border-rose-500 bg-rose-50 text-rose-950';
+            badgeClass += 'bg-rose-600 text-white';
           } else {
-            tile.classList.add('answered-wrong');
+            cardClass += 'border-slate-200 bg-white text-slate-500 opacity-75';
+            badgeClass += 'bg-slate-100 text-slate-500';
           }
+        } else if (hasAnswered && optIdx === selected) {
+          cardClass += 'border-teal-600 bg-teal-50 text-teal-950';
+          badgeClass += 'bg-teal-600 text-white';
+        } else {
+          cardClass += 'border-slate-200 bg-white text-slate-800 hover:border-teal-300';
+          badgeClass += 'bg-slate-100 text-slate-700';
         }
 
-        tile.onclick = () => {
-          currentIndex = idx;
-          closeMatrixModal();
+        btn.className = cardClass;
+        btn.innerHTML = `
+          <span class="${badgeClass}">${LETTERS[optIdx]}</span>
+          <span class="text-sm font-medium leading-snug flex-1">${optText}</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          if (state.mode === 'study' && state.answers[idx] !== undefined) return;
+          state.answers[idx] = optIdx;
           renderQuestion();
-        };
-
-        grid.appendChild(tile);
-      });
-
-      document.getElementById('matrixModal').classList.add('open');
-    }
-
-    function closeMatrixModal() {
-      document.getElementById('matrixModal').classList.remove('open');
-    }
-
-    function confirmFinishQuiz() {
-      const answeredCount = Object.keys(userAnswers).length;
-      if (answeredCount < quizList.length) {
-        const remaining = quizList.length - answeredCount;
-        if (!confirm(`You have ${remaining} unanswered question(s). Are you sure you want to finish and submit now?`)) {
-          return;
-        }
-      }
-      finishQuiz();
-    }
-
-    // Finish Quiz and Display Results
-    function finishQuiz() {
-      clearInterval(timerInterval);
-      clearInterval(totalTimerInterval);
-      playBeep('finish');
-
-      showScreen('resultsScreen');
-
-      const total = quizList.length;
-      const accuracy = Math.round((score / total) * 100);
-
-      document.getElementById('resScore').innerText = score;
-      document.getElementById('resTotal').innerText = `OUT OF ${total}`;
-      document.getElementById('resAccuracy').innerText = `${accuracy}%`;
-      document.getElementById('resBestStreak').innerText = maxStreak;
-      document.getElementById('resFlaggedCount').innerText = flaggedQuestions.size;
-
-      // Format time
-      const mins = Math.floor(totalTimeElapsed / 60);
-      const secs = totalTimeElapsed % 60;
-      document.getElementById('resTimeSpent').innerText = `${mins}m ${secs}s`;
-
-      // Mastery Rank and Message
-      const rankEl = document.getElementById('resRank');
-      const msgEl = document.getElementById('resMsg');
-      const retryWrongBtn = document.getElementById('retryWrongBtn');
-
-      const wrongCount = total - score;
-      if (wrongCount > 0) {
-        retryWrongBtn.style.display = 'inline-flex';
-        retryWrongBtn.innerText = `Retry Missed Only (${wrongCount})`;
-      } else {
-        retryWrongBtn.style.display = 'none';
-      }
-
-      if (accuracy >= 90) {
-        rankEl.innerText = 'EXEMPLARY CLINICIAN 🎖️';
-        rankEl.style.color = 'var(--neon-green)';
-        msgEl.innerText = 'Exceptional mastery across Nutrition Fundamentals, Maternal Nutrition, and Pediatric Care. Ready for clinical practice & exams!';
-      } else if (accuracy >= 75) {
-        rankEl.innerText = 'PROFICIENT PRACTITIONER 🩺';
-        rankEl.style.color = 'var(--neon-cyan)';
-        msgEl.innerText = 'Strong understanding of applied nutrition principles. Review minor errors below to achieve perfection.';
-      } else if (accuracy >= 50) {
-        rankEl.innerText = 'DEVELOPING SCHOLAR 📖';
-        rankEl.style.color = 'var(--neon-amber)';
-        msgEl.innerText = 'Good foundational effort. Focus your review on maternal caloric requirements, pediatric feeding milestones, and vitamin specifics.';
-      } else {
-        rankEl.innerText = 'NEEDS COMPREHENSIVE REVIEW ⚠️';
-        rankEl.style.color = 'var(--neon-red)';
-        msgEl.innerText = 'Do not be discouraged — revisit Units 1 to 3 notes and retry missed questions with rationales.';
-      }
-
-      buildReviewList();
-    }
-
-    // Build Detailed Review List
-    function buildReviewList(filter = 'all') {
-      const listEl = document.getElementById('reviewList');
-      listEl.innerHTML = '';
-
-      let wrongCount = 0;
-      let correctCount = 0;
-
-      quizList.forEach((q, idx) => {
-        const chosen = userAnswers[idx];
-        const isCorrect = (chosen === q.correct);
-        if (isCorrect) correctCount++; else wrongCount++;
-        const isFlagged = flaggedQuestions.has(idx);
-
-        if (filter === 'incorrect' && isCorrect) return;
-        if (filter === 'correct' && !isCorrect) return;
-        if (filter === 'flagged' && !isFlagged) return;
-
-        const card = document.createElement('div');
-        card.className = `review-item ${isCorrect ? 'is-correct' : 'is-wrong'}`;
-
-        const letters = ['A', 'B', 'C', 'D'];
-        let optionsHtml = '';
-
-        letters.forEach(ltr => {
-          let rowClass = 'review-ans-row';
-          let indicator = '';
-
-          if (ltr === chosen && isCorrect) {
-            rowClass += ' chosen-correct';
-            indicator = '✓ Your Choice (Correct)';
-          } else if (ltr === chosen && !isCorrect) {
-            rowClass += ' chosen-wrong';
-            indicator = '✗ Your Choice';
-          } else if (ltr === q.correct) {
-            rowClass += ' actual-correct';
-            indicator = '★ Correct Answer';
-          }
-
-          optionsHtml += `
-            <div class="${rowClass}">
-              <strong>${ltr})</strong> ${q.options[ltr]}
-              <span style="margin-left:auto; font-size:0.8rem; font-weight:700;">${indicator}</span>
-            </div>
-          `;
         });
 
-        card.innerHTML = `
-          <div class="review-q-num">
-            QUESTION #${idx + 1} ${isFlagged ? '• [FLAGGED]' : ''} • ${isCorrect ? '<span style="color:var(--neon-green)">CORRECT</span>' : '<span style="color:var(--neon-red)">INCORRECT</span>'}
-          </div>
-          <div class="review-q-title">${q.question}</div>
-          <div class="review-ans-grid">
-            ${optionsHtml}
-          </div>
-          <div style="font-size:0.88rem; color:#94a3b8; background:rgba(0,0,0,0.3); padding:10px 14px; border-radius:8px; border-left:3px solid var(--neon-cyan);">
-            <strong style="color:var(--neon-cyan);">Rationale:</strong> ${q.rationale}
-          </div>
-        `;
-        listEl.appendChild(card);
+        optionsList.appendChild(btn);
       });
 
-      document.getElementById('filterWrongBtn').innerText = `Incorrect (${wrongCount})`;
-      document.getElementById('filterCorrectBtn').innerText = `Correct (${correctCount})`;
-      document.getElementById('filterFlaggedBtn').innerText = `Flagged (${flaggedQuestions.size})`;
-    }
-
-    function filterReview(filter, btn) {
-      playBeep('click');
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      buildReviewList(filter);
-    }
-
-    // Restart Quiz
-    function restartQuiz(onlyWrong = false) {
-      playBeep('click');
-      if (onlyWrong) {
-        const missed = quizList.filter((q, idx) => userAnswers[idx] !== q.correct);
-        if (missed.length === 0) return;
-        quizList = missed;
+      // Rationale box in Study Mode
+      if (state.mode === 'study' && hasAnswered) {
+        const isCorrect = selected === item.answer;
+        rationaleBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'bg-rose-50', 'border-rose-200');
+        if (isCorrect) {
+          rationaleBox.classList.add('bg-emerald-50', 'border-emerald-200');
+          rationaleTitle.className = 'font-bold mb-1 text-emerald-800';
+          rationaleTitle.textContent = `Correct! (${LETTERS[item.answer]})`;
+        } else {
+          rationaleBox.classList.add('bg-rose-50', 'border-rose-200');
+          rationaleTitle.className = 'font-bold mb-1 text-rose-800';
+          rationaleTitle.textContent = `Incorrect — Correct Answer is ${LETTERS[item.answer]}`;
+        }
+        rationaleText.textContent = item.rationale;
       } else {
-        quizList = JSON.parse(JSON.stringify(RAW_MCQS));
+        rationaleBox.classList.add('hidden');
       }
-      currentIndex = 0;
-      userAnswers = {};
-      flaggedQuestions.clear();
-      score = 0;
-      currentStreak = 0;
-      maxStreak = 0;
-      totalTimeElapsed = 0;
 
-      showScreen('quizScreen');
-      renderQuestion();
+      prevBtn.disabled = idx === 0;
+      if (idx === total - 1) {
+        nextBtn.textContent = 'Finish Quiz \u2713';
+        nextBtn.className = 'tap-btn flex-1 py-3 rounded-xl font-bold text-sm bg-emerald-600 text-white shadow-md shadow-emerald-600/20';
+      } else {
+        nextBtn.textContent = 'Next Question \u2192';
+        nextBtn.className = 'tap-btn flex-1 py-3 rounded-xl font-bold text-sm bg-teal-700 text-white shadow-md shadow-teal-700/20';
+      }
     }
 
-    function retryWrongQuestions() {
-      restartQuiz(true);
+    function openNavGrid() {
+      navGrid.innerHTML = '';
+      state.questions.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const ans = state.answers[idx];
+        let cls = 'tap-btn py-2.5 rounded-xl font-bold text-xs border ';
+        if (idx === state.currentIndex) {
+          cls += 'border-teal-700 bg-teal-700 text-white ring-2 ring-teal-300';
+        } else if (ans !== undefined) {
+          if (state.mode === 'study') {
+            cls += ans === q.answer
+              ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
+              : 'border-rose-300 bg-rose-50 text-rose-800';
+          } else {
+            cls += 'border-teal-300 bg-teal-50 text-teal-800';
+          }
+        } else {
+          cls += 'border-slate-200 bg-slate-50 text-slate-600';
+        }
+        btn.className = cls;
+        btn.textContent = idx + 1;
+        btn.addEventListener('click', () => {
+          state.currentIndex = idx;
+          navModal.classList.add('hidden');
+          renderQuestion();
+        });
+        navGrid.appendChild(btn);
+      });
+      navModal.classList.remove('hidden');
     }
+
+    function finishQuiz() {
+      if (state.timerInterval) clearInterval(state.timerInterval);
+      const total = state.questions.length;
+      const correct = getLiveScore();
+      const wrong = total - correct;
+      const pct = Math.round((correct / total) * 100);
+
+      finalScore.textContent = `${correct} / ${total}`;
+      finalPercent.textContent = `${pct}% Score`;
+      statCorrect.textContent = correct;
+      statWrong.textContent = wrong;
+      statTime.textContent = formatTime(state.timerSeconds);
+
+      if (pct >= 85) {
+        finalMessage.textContent = 'Outstanding mastery! You are well-prepared for your BSN exam.';
+      } else if (pct >= 70) {
+        finalMessage.textContent = 'Great job! Review the missed rationales below to lock in 100%.';
+      } else if (pct >= 50) {
+        finalMessage.textContent = 'Good effort! Focus on the incorrect items below and retake.';
+      } else {
+        finalMessage.textContent = 'Keep practicing! Review each rationale carefully and try again.';
+      }
+
+      quizScreen.classList.add('hidden');
+      resultsScreen.classList.remove('hidden');
+      renderReview('all');
+    }
+
+    function renderReview(filter) {
+      if (filter === 'all') {
+        filterAllBtn.className = 'tap-btn px-2.5 py-1 rounded-md text-xs font-bold bg-white text-slate-900 shadow-sm';
+        filterWrongBtn.className = 'tap-btn px-2.5 py-1 rounded-md text-xs font-bold text-slate-600';
+      } else {
+        filterWrongBtn.className = 'tap-btn px-2.5 py-1 rounded-md text-xs font-bold bg-white text-slate-900 shadow-sm';
+        filterAllBtn.className = 'tap-btn px-2.5 py-1 rounded-md text-xs font-bold text-slate-600';
+      }
+
+      reviewList.innerHTML = '';
+      let shownCount = 0;
+
+      state.questions.forEach((q, idx) => {
+        const userAns = state.answers[idx];
+        const isCorrect = userAns === q.answer;
+        if (filter === 'wrong' && isCorrect) return;
+        shownCount++;
+
+        const card = document.createElement('div');
+        card.className = `rounded-xl border p-4 bg-white space-y-2 ${isCorrect ? 'border-emerald-200' : 'border-rose-200'}`;
+
+        const userLabel = userAns !== undefined
+          ? `${LETTERS[userAns]}. ${q.options[userAns]}`
+          : 'Not answered';
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Q${idx + 1} &bull; ${q.topic}</span>
+            <span class="text-xs font-bold px-2 py-0.5 rounded-full ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+              ${isCorrect ? 'Correct' : 'Incorrect'}
+            </span>
+          </div>
+          <p class="text-sm font-bold text-slate-900 leading-snug">${q.q}</p>
+          <div class="text-xs space-y-1 pt-1">
+            ${!isCorrect ? `<p class="text-rose-700"><strong>Your answer:</strong> ${userLabel}</p>` : ''}
+            <p class="text-emerald-700"><strong>Correct answer:</strong> ${LETTERS[q.answer]}. ${q.options[q.answer]}</p>
+          </div>
+          <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 leading-relaxed">
+            <strong>Rationale:</strong> ${q.rationale}
+          </p>
+        `;
+        reviewList.appendChild(card);
+      });
+
+      if (shownCount === 0) {
+        reviewList.innerHTML = '<div class="text-center py-8 text-sm font-semibold text-emerald-700 bg-emerald-50 rounded-xl border border-emerald-200">Zero mistakes! Every answer was correct.</div>';
+      }
+    }
+
+    // Event Listeners
+    modeStudyBtn.addEventListener('click', () => setMode('study'));
+    modeExamBtn.addEventListener('click', () => setMode('exam'));
+    startBtn.addEventListener('click', startQuiz);
+
+    prevBtn.addEventListener('click', () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (state.currentIndex < state.questions.length - 1) {
+        state.currentIndex++;
+        renderQuestion();
+      } else {
+        finishQuiz();
+      }
+    });
+
+    gridBtn.addEventListener('click', openNavGrid);
+    closeNavBtn.addEventListener('click', () => navModal.classList.add('hidden'));
+
+    quitBtn.addEventListener('click', () => quitModal.classList.remove('hidden'));
+    cancelQuitBtn.addEventListener('click', () => quitModal.classList.add('hidden'));
+    confirmQuitBtn.addEventListener('click', () => {
+      if (state.timerInterval) clearInterval(state.timerInterval);
+      quitModal.classList.add('hidden');
+      quizScreen.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+    });
+
+    retakeBtn.addEventListener('click', startQuiz);
+    homeBtn.addEventListener('click', () => {
+      resultsScreen.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+    });
+
+    filterAllBtn.addEventListener('click', () => renderReview('all'));
+    filterWrongBtn.addEventListener('click', () => renderReview('wrong'));
+  </script>
+</body>
+</html>dden');
+      quizScreen.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+    });
+
+    retakeBtn.addEventListener('click', startQuiz);
+    homeBtn.addEventListener('click', () => {
+      resultsScreen.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+    });
+
+    filterAllBtn.addEventListener('click', () => renderReview('all'));
+    filterWrongBtn.addEventListener('click', () => renderReview('wrong'));
   </script>
 </body>
 </html>
